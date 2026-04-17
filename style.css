@@ -48,14 +48,16 @@ header {
 }
 
 .logo-circle {
-    background: var(--primary);
-    color: white;
     width: 35px;
     height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+}
+
+.logo {
+    max-width: 200%;
 }
 
 nav a {
