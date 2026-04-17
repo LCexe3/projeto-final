@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CastraPrev | Bem-estar Animal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <div class="brand">
+                <div class="logo-circle"><i class="fas fa-paw"></i></div>
+                <span>Castra<b>Prev</b></span>
+            </div>
+            <nav>
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="vacinacao.html">Vacinação</a>
+                <a href="educacao.html">Educação</a>
+                <a href="agendamento.html" class="cta-header">Agendar agora</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section" data-aos="fade-in">
+            <div class="hero-text">
+                <span class="badge">CastraPrev</span>
+                <h2>Cuidar é a melhor forma de <span>prevenir</span>.</h2>
+                <p>Reduzindo o abandono e promovendo a saúde de cães e gatos através da conscientização e do acesso à castração ética.</p>
+                <div class="hero-btns">
+                    <a href="agendamento.html" class="btn-main">Começar Agora</a>
+                    <a href="castracao.html" class="btn-ghost">Ver benefícios <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="cachorro.jpeg" alt="Pet Feliz" class="main-img">
+            </div>
+        </section>
+
+        <div class="info-grid">
+            <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-shield-heart"></i>
+                <h3>Prevenção</h3>
+                <p>O controle populacional ético é o único caminho para reduzir o número de animais abandonados nas ruas.</p>
+            </div>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-stethoscope"></i>
+                <h3>Saúde</h3>
+                <p>Animais castrados e vacinados têm menor risco de doenças graves e vivem muito mais tempo.</p>
+            </div>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-book-open"></i>
+                <h3>Educação</h3>
+                <p>Acreditamos que a informação correta transforma a relação entre os tutores e os seus animais de estimação.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand" style="justify-content: center; margin-bottom: 20px;">
+                <div class="logo-circle" style="background: #4a5568;"><i class="fas fa-paw"></i></div>
+                <span style="color: white;">Castra<b>Prev</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b>. Projeto de TCC - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Inicialização das animações de scroll
+        AOS.init({ 
+            duration: 1000, 
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

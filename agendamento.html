@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento | CastraPrev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <div class="brand">
+                <div class="logo-circle"><i class="fas fa-paw"></i></div>
+                <span>Castra<b>Prev</b></span>
+            </div>
+            <nav>
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="vacinacao.html">Vacinação</a>
+                <a href="educacao.html">Educação</a>
+                <a href="agendamento.html" class="cta-header">Agendar agora</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner" data-aos="fade-in">
+            <span class="badge">Atendimento Consciente</span>
+            <h2>Solicite seu <span>Agendamento</span></h2>
+            <p>Preencha os dados abaixo. Nossa equipe entrará em contato via WhatsApp ou e-mail para confirmar a disponibilidade da clínica parceira.</p>
+        </section>
+
+<section class="form-container" data-aos="fade-up">
+    <form id="form-agendar" class="modern-form">
+        <div class="form-group">
+            <label><i class="fas fa-user"></i> Nome do Tutor</label>
+            <input type="text" placeholder="Digite seu nome completo" required>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> E-mail de Contato</label>
+                <input type="email" placeholder="exemplo@email.com" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fab fa-whatsapp"></i> WhatsApp / Telefone</label>
+                <input type="tel" placeholder="(00) 00000-0000" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-dog"></i> Espécie e Sexo do Pet</label>
+            <div class="select-wrapper">
+                <select required>
+                    <option value="" disabled selected>Selecione uma opção...</option>
+                    <option>Cão - Macho</option>
+                    <option>Cão - Fêmea</option>
+                    <option>Gato - Macho</option>
+                    <option>Gato - Fêmea</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-comment-medical"></i> Observações Médicas</label>
+            <textarea placeholder="O pet possui alguma condição especial, alergia ou já tomou alguma vacina anteriormente?"></textarea>
+        </div>
+        
+        <button type="submit" class="btn-submit">
+            Confirmar Solicitação <i class="fas fa-paper-plane"></i>
+        </button>
+    </form>
+</section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 <b>CastraPrev</b>. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script src="script.js"></script>
+</body>
+</html>

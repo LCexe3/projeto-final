@@ -1,0 +1,336 @@
+:root {
+    --primary: #2788ae;
+    --dark: #1a202c;
+    --text: #4a5568;
+    --bg: #ffffff;
+    --soft-bg: #f7fafc;
+    --accent: #ebf8ff;
+    --radius: 24px;
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--dark);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Header Flutuante */
+header {
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+}
+
+.nav-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.logo-circle {
+    background: var(--primary);
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    margin-left: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover { color: var(--primary); }
+
+.cta-header {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+/* Hero Section */
+main {
+    max-width: 1200px;
+    margin: 120px auto 0;
+    padding: 0 20px;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 60px 0;
+}
+
+.hero-text { flex: 1; }
+
+.badge {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.hero-text h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 20px 0;
+    letter-spacing: -1px;
+}
+
+.hero-text h2 span { color: var(--primary); }
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+.hero-btns { display: flex; gap: 15px; align-items: center; }
+
+.btn-main {
+    background: var(--dark);
+    color: white;
+    padding: 16px 30px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-ghost {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.hero-image-wrapper { flex: 1; position: relative; }
+
+.main-img {
+    width: 100%;
+    border-radius: var(--radius);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+/* Cards Modernos */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 80px;
+}
+
+.info-card {
+    background: var(--soft-bg);
+    padding: 40px;
+    border-radius: var(--radius);
+    transition: 0.3s;
+}
+
+.info-card i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.info-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+
+.info-card:hover {
+    background: var(--white);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    transform: translateY(-5px);
+}
+
+footer {
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    margin-top: 100px;
+}
+
+/* Container do Formulário */
+.form-container {
+    max-width: 750px; /* Reduzi um pouco a largura para não ficar esticado demais */
+    margin: 0 auto 80px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.04); /* Sombra bem leve e moderna */
+}
+
+.modern-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço uniforme entre as linhas */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-left: 4px;
+}
+
+/* Estilização dos Campos de Entrada */
+.modern-form input, 
+.modern-form select, 
+.modern-form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--soft-bg);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+/* Efeito de Clique/Foco */
+.modern-form input:focus, 
+.modern-form select:focus, 
+.modern-form textarea:focus {
+    background-color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--accent);
+    outline: none;
+}
+
+/* Layout em Colunas */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide em 2 colunas iguais */
+    gap: 20px;
+}
+
+/* Ajuste do Select */
+.select-wrapper {
+    position: relative;
+}
+
+/* Ajuste da Área de Texto */
+.modern-form textarea {
+    min-height: 110px;
+    resize: none; /* Evita que o usuário deforme o layout */
+}
+
+/* Estilo do Botão */
+.btn-submit {
+    margin-top: 10px;
+    padding: 18px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(39, 136, 174, 0.2);
+}
+
+/* Celular */
+@media (max-width: 650px) {
+    .form-row {
+        grid-template-columns: 1fr; /* Volta para 1 coluna no celular */
+    }
+    .form-container {
+        padding: 25px;
+    }
+}
+
+/* Celular */
+@media (max-width: 900px) {
+    .hero-section { flex-direction: column; text-align: center; }
+    .hero-text h2 { font-size: 2.5rem; }
+    .hero-btns { justify-content: center; }
+    nav { display: none; }
+}
+
+/* Ajuste na navegação para telas pequenas */
+@media (max-width: 900px) {
+    header {
+        padding: 15px 2%;
+    }
+
+    .nav-wrapper {
+        flex-direction: column; /* Empilha a logo e o menu */
+        gap: 15px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap; /* Permite que os links pulem de linha se não couberem */
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        margin-left: 0; /* Remove a margem lateral que demos no desktop */
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+
+    .cta-header {
+        order: -1; /* Opcional: coloca o botão de agendamento em destaque no topo */
+        width: 100%;
+        text-align: center;
+    }
+
+    .brand {
+        font-size: 1.1rem;
+    }
+
+    /* Ajuste do Main para não colar no header que cresceu */
+    main {
+        margin-top: 180px; 
+    }
+}
