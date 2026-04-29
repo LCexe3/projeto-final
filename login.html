@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <main class="login-main">
+        <section class="login-card acesso-card">
+            <a href="index.html" class="brand login-brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+
+            <span class="badge"><i class="fas fa-lock"></i> Acesso ao sistema</span>
+            <h1>Entre ou crie seu cadastro</h1>
+            <p>Escolha uma opção abaixo. Tutores podem solicitar agendamento e doadores podem registrar doações de dinheiro, ração, mantas e outros itens.</p>
+
+            <div class="auth-tabs" role="tablist" aria-label="Escolha entre login e cadastro">
+                <button type="button" class="active" data-auth-tab="login"><i class="fas fa-right-to-bracket"></i> Entrar</button>
+                <button type="button" data-auth-tab="cadastro"><i class="fas fa-user-plus"></i> Cadastrar</button>
+            </div>
+
+            <section class="auth-section active" data-auth-section="login">
+                <form id="form-login" class="login-form">
+                    <div class="form-group">
+                        <label for="login-identificacao"><i class="fas fa-user"></i> Nome ou e-mail</label>
+                        <input type="text" id="login-identificacao" placeholder="Digite seu nome ou e-mail" autocomplete="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-senha"><i class="fas fa-key"></i> Senha</label>
+                        <input type="password" id="login-senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+                    </div>
+
+                    <p id="erro-login" class="erro-login" aria-live="polite"></p>
+
+                    <button type="submit" class="btn-submit">
+                        Entrar e continuar <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <p class="login-info"><i class="fas fa-info-circle"></i> Se você ainda não tem cadastro, clique em <b>Cadastrar</b> e escolha se é tutor ou doador.</p>
+            </section>
+
+            <section class="auth-section" data-auth-section="cadastro">
+                <form id="form-cadastro" class="login-form cadastro-form">
+                    <div class="form-group">
+                        <label for="cadastro-nome"><i class="fas fa-user"></i> Nome completo</label>
+                        <input type="text" id="cadastro-nome" placeholder="Digite seu nome" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cadastro-email"><i class="fas fa-envelope"></i> E-mail</label>
+                        <input type="email" id="cadastro-email" placeholder="exemplo@email.com" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cadastro-senha"><i class="fas fa-key"></i> Criar senha</label>
+                        <input type="password" id="cadastro-senha" placeholder="Mínimo de 4 caracteres" autocomplete="new-password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-id-card"></i> Tipo de usuário</label>
+                        <div class="tipo-cadastro-grid">
+                            <label class="tipo-card">
+                                <input type="radio" name="cadastro-tipo" value="tutor" checked>
+                                <span><i class="fas fa-paw"></i></span>
+                                <strong>Tutor do animal</strong>
+                                <small>Quero agendar castração, vacinação ou orientação veterinária.</small>
+                            </label>
+
+                            <label class="tipo-card">
+                                <input type="radio" name="cadastro-tipo" value="doador">
+                                <span><i class="fas fa-hand-holding-heart"></i></span>
+                                <strong>Doador</strong>
+                                <small>Quero ajudar com dinheiro, ração, mantas, medicamentos ou outros itens.</small>
+                            </label>
+                        </div>
+                    </div>
+
+                    <p id="erro-cadastro" class="erro-login" aria-live="polite"></p>
+
+                    <button type="submit" class="btn-submit">
+                        Criar cadastro e continuar <i class="fas fa-check-circle"></i>
+                    </button>
+                </form>
+
+                <p class="login-info"><i class="fas fa-shield-alt"></i> Este cadastro é salvo no navegador usando JavaScript, ideal para demonstração do projeto.</p>
+            </section>
+
+            <a href="index.html" class="voltar-login"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+        </section>
+    </main>
+
+    <script src="auth.js"></script>
+</body>
+</html>
