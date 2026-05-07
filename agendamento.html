@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-protegida="true">
@@ -73,11 +83,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="email"><i class="fas fa-envelope"></i> E-mail de contato</label>
-                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" autocomplete="email" required>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" autocomplete="email" data-preencher-email required>
                     </div>
                     <div class="form-group">
                         <label for="telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-telefone-mask required>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-preencher-telefone data-telefone-mask required>
                     </div>
                 </div>
 
@@ -137,11 +147,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="doador-email"><i class="fas fa-envelope"></i> E-mail de contato</label>
-                        <input type="email" id="doador-email" name="doador-email" placeholder="exemplo@email.com" required>
+                        <input type="email" id="doador-email" name="doador-email" placeholder="exemplo@email.com" data-preencher-email required>
                     </div>
                     <div class="form-group">
                         <label for="doador-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
-                        <input type="tel" id="doador-telefone" name="doador-telefone" placeholder="(00) 00000-0000" data-telefone-mask required>
+                        <input type="tel" id="doador-telefone" name="doador-telefone" placeholder="(00) 00000-0000" data-preencher-telefone data-telefone-mask required>
                     </div>
                 </div>
 

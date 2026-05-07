@@ -1,4 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    /* Tema claro e escuro do site */
+    const CHAVE_TEMA_CASTRAPREV = 'castraprev_tema';
+
+    const obterTemaSalvo = () => {
+        try {
+            return localStorage.getItem(CHAVE_TEMA_CASTRAPREV) || 'light';
+        } catch (erro) {
+            return 'light';
+        }
+    };
+
+    const salvarTema = (tema) => {
+        try {
+            localStorage.setItem(CHAVE_TEMA_CASTRAPREV, tema);
+        } catch (erro) {
+            // Se o navegador bloquear o localStorage, o tema ainda muda na página atual.
+        }
+    };
+
+    const aplicarTema = (tema) => {
+        const temaFinal = tema === 'dark' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', temaFinal);
+        salvarTema(temaFinal);
+    };
+
+    const criarBotaoTema = () => {
+        if (document.querySelector('.theme-toggle')) return;
+
+        const botaoTema = document.createElement('button');
+        botaoTema.type = 'button';
+        botaoTema.className = 'theme-toggle';
+        botaoTema.setAttribute('aria-label', 'Alternar entre tema claro e tema escuro');
+
+        const atualizarBotao = () => {
+            const temaAtual = document.documentElement.getAttribute('data-theme') || 'light';
+            const temaEscuroAtivo = temaAtual === 'dark';
+
+            // Botão pequeno, apenas com o ícone, para ficar no canto da tela.
+            botaoTema.innerHTML = temaEscuroAtivo
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+
+            botaoTema.title = temaEscuroAtivo ? 'Mudar para tema claro' : 'Mudar para tema escuro';
+            botaoTema.setAttribute('aria-label', botaoTema.title);
+        };
+
+        botaoTema.addEventListener('click', () => {
+            const temaAtual = document.documentElement.getAttribute('data-theme') || 'light';
+            aplicarTema(temaAtual === 'dark' ? 'light' : 'dark');
+            atualizarBotao();
+        });
+
+        // O botão fica flutuando no canto, sem ocupar espaço no menu.
+        botaoTema.classList.add('theme-toggle-floating');
+        document.body.appendChild(botaoTema);
+
+        atualizarBotao();
+    };
+
+    aplicarTema(obterTemaSalvo());
+    criarBotaoTema();
+
     const header = document.querySelector('header');
 
     const atualizarHeader = () => {

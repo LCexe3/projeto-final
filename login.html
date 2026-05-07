@@ -8,6 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="login-page">
@@ -51,6 +61,21 @@
 
             <section class="auth-section" data-auth-section="cadastro">
                 <form id="form-cadastro" class="login-form cadastro-form">
+                    <div class="foto-perfil-box">
+                        <div class="foto-preview" id="cadastro-foto-preview" aria-label="Prévia da foto de perfil">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div class="foto-perfil-controle">
+                            <strong>Foto de perfil</strong>
+                            <p>Opcional. Escolha uma foto sua para aparecer no menu e na área Meu Perfil.</p>
+                            <label for="cadastro-foto" class="btn-foto">
+                                <i class="fas fa-camera"></i> Escolher foto
+                            </label>
+                            <input type="file" id="cadastro-foto" class="campo-foto-escondido" accept="image/*">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="cadastro-nome"><i class="fas fa-user"></i> Nome completo</label>
                         <input type="text" id="cadastro-nome" placeholder="Digite seu nome" autocomplete="name" required>
@@ -59,6 +84,81 @@
                     <div class="form-group">
                         <label for="cadastro-email"><i class="fas fa-envelope"></i> E-mail</label>
                         <input type="email" id="cadastro-email" placeholder="exemplo@email.com" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cadastro-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
+                            <input type="tel" id="cadastro-telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-telefone-mask>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-cep"><i class="fas fa-map-pin"></i> CEP</label>
+                            <input type="text" id="cadastro-cep" placeholder="00000-000" autocomplete="postal-code" maxlength="9" data-cep-mask required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cadastro-endereco"><i class="fas fa-location-dot"></i> Endereço completo</label>
+                        <input type="text" id="cadastro-endereco" placeholder="Rua, avenida, condomínio ou estrada" autocomplete="address-line1" required>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label for="cadastro-numero"><i class="fas fa-hashtag"></i> Número</label>
+                            <input type="text" id="cadastro-numero" placeholder="Ex: 123" autocomplete="address-line2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-bairro"><i class="fas fa-map"></i> Bairro</label>
+                            <input type="text" id="cadastro-bairro" placeholder="Digite o bairro" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-complemento"><i class="fas fa-circle-info"></i> Complemento</label>
+                            <input type="text" id="cadastro-complemento" placeholder="Casa, apto, bloco...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cadastro-cidade"><i class="fas fa-city"></i> Cidade</label>
+                            <input type="text" id="cadastro-cidade" placeholder="Digite a cidade" autocomplete="address-level2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-uf"><i class="fas fa-flag"></i> UF</label>
+                            <select id="cadastro-uf" autocomplete="address-level1" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -99,6 +199,7 @@
         </section>
     </main>
 
+    <script src="script.js"></script>
     <script src="auth.js"></script>
 </body>
 </html>

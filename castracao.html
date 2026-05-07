@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,7 +48,7 @@
 
         <section class="split-section">
             <div data-aos="fade-right">
-                <img src="cachorro_gato.png" alt="Cachorro e gato juntos descansando">
+                <img src="cachorro-gato2.png" alt="Cachorro e gato juntos descansando">
             </div>
             <div class="info-grid" style="margin: 0;" data-aos="fade-left">
                 <article class="info-card">
@@ -82,6 +92,27 @@
                 </tbody>
             </table>
         </div>
+
+        <section class="photo-highlight-grid" data-aos="fade-up">
+            <article class="photo-card photo-card-large">
+                <img src="cachorro_gato.png" alt="Cão e gato representando os benefícios da castração">
+                <div class="photo-card-caption">
+                    <h3>Castrar também é um ato de cuidado</h3>
+                    <p>O procedimento ajuda no controle populacional e pode contribuir para uma vida mais segura e equilibrada para o animal.</p>
+                </div>
+            </article>
+
+            <article class="tip-panel">
+                <span class="badge"><i class="fas fa-camera"></i> Destaque visual</span>
+                <h2>Página com mais fotos e informações</h2>
+                <p>Essa área foi ampliada com imagens para deixar o conteúdo mais bonito, leve e fácil de entender, sem perder a identidade do site.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Visual mais agradável para o tutor</li>
+                    <li><i class="fas fa-check-circle"></i> Conteúdo melhor distribuído na tela</li>
+                    <li><i class="fas fa-check-circle"></i> Mesma paleta e tema do CastraPrev</li>
+                </ul>
+            </article>
+        </section>
 
         <section class="benefits-section">
             <h2 class="section-title">Benefícios importantes</h2>

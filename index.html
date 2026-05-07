@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -98,6 +108,40 @@
                 <h3>Educação</h3>
                 <p>A informação correta ajuda tutores a tomarem decisões conscientes e evita maus-tratos por falta de orientação.</p>
             </article>
+        </section>
+
+        <section class="photo-showcase" data-aos="fade-up">
+            <div class="section-heading centered">
+                <span class="badge"><i class="fas fa-image"></i> Galeria CastraPrev</span>
+                <h2>Mais cuidado, mais carinho e mais proteção</h2>
+                <p>Além das informações, o CastraPrev agora também ganhou mais imagens nas páginas para deixar a navegação mais bonita e acolhedora.</p>
+            </div>
+
+            <div class="photo-grid photo-grid-3">
+                <article class="photo-card">
+                    <img src="gato2.png" alt="Cachorro feliz recebendo cuidados">
+                    <div class="photo-card-caption">
+                        <h3>Atendimento humanizado</h3>
+                        <p>O tutor encontra orientação com um visual mais acolhedor dentro do site.</p>
+                    </div>
+                </article>
+
+                <article class="photo-card">
+                    <img src="gato_cachorro3.png" alt="Cachorro e gato juntos representando o cuidado animal">
+                    <div class="photo-card-caption">
+                        <h3>Proteção para cães e gatos</h3>
+                        <p>As páginas ganharam novas áreas com fotos para destacar a missão do projeto.</p>
+                    </div>
+                </article>
+
+                <article class="photo-card">
+                    <img src="cachorro3.png" alt="Cachorro em momento de tranquilidade e saúde">
+                    <div class="photo-card-caption">
+                        <h3>Saúde e prevenção</h3>
+                        <p>Castração, vacinação e posse responsável continuam sendo os pilares do CastraPrev.</p>
+                    </div>
+                </article>
+            </div>
         </section>
     </main>
 

@@ -9,6 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,6 +44,27 @@
             <span class="badge"><i class="fas fa-book-open"></i> Conscientização</span>
             <h1>Posse <span>Responsável</span></h1>
             <p>Ter um animal de estimação é um ato de amor, mas também de compromisso. Faça o checklist e veja pontos importantes antes de adotar ou comprar um pet.</p>
+        </section>
+
+        <section class="photo-highlight-grid" data-aos="fade-up">
+            <article class="photo-card photo-card-large">
+                <img src="gato1.png" alt="Tutor com cachorro em momento de cuidado e carinho">
+                <div class="photo-card-caption">
+                    <h3>Educação começa no dia a dia</h3>
+                    <p>Com informação, rotina e carinho, o tutor cria um ambiente melhor para o animal viver com segurança e bem-estar.</p>
+                </div>
+            </article>
+
+            <article class="tip-panel">
+                <span class="badge"><i class="fas fa-heart"></i> Dica importante</span>
+                <h2>Mais beleza visual e mais orientação</h2>
+                <p>Essa página ganhou uma área com foto para valorizar o conteúdo educativo e deixar a experiência do usuário mais agradável.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Rotina saudável para o pet</li>
+                    <li><i class="fas fa-check-circle"></i> Ambiente seguro dentro de casa</li>
+                    <li><i class="fas fa-check-circle"></i> Responsabilidade em todas as fases</li>
+                </ul>
+            </article>
         </section>
 
         <section class="checklist-container" data-aos="fade-up">
@@ -101,6 +132,24 @@
             <div class="tip-content">
                 <h3>Dica de ouro</h3>
                 <p>Adestramento positivo, rotina, socialização e paciência evitam muitos problemas de comportamento. Eduque sem violência.</p>
+            </div>
+        </section>
+            <section class="photo-grid-section" data-aos="fade-up">
+            <div class="photo-grid photo-grid-2">
+                <article class="photo-card compact">
+                    <img src="pata.png" alt="Cão e gato representando convivência responsável">
+                    <div class="photo-card-caption">
+                        <h3>Lar com responsabilidade</h3>
+                        <p>Cuidar do ambiente e da saúde do pet evita fugas, riscos e estresse.</p>
+                    </div>
+                </article>
+                <article class="photo-card compact">
+                    <img src="fuça.png" alt="Cachorro tranquilo em ambiente seguro">
+                    <div class="photo-card-caption">
+                        <h3>Tempo, carinho e atenção</h3>
+                        <p>Posse responsável também é dedicar tempo para o bem-estar físico e emocional do animal.</p>
+                    </div>
+                </article>
             </div>
         </section>
     </main>

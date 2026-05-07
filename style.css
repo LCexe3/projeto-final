@@ -1212,3 +1212,950 @@ footer .brand b {
         padding: 22px;
     }
 }
+<<<<<<< HEAD
+
+/* Ajustes para campos do cadastro/login */
+.login-form > .form-group > input,
+.login-form > .form-group > select,
+.login-form .form-row input,
+.login-form .form-row select {
+    width: 100%;
+    padding: 15px 18px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #f8fbfd;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    color: var(--dark);
+    transition: 0.25s ease;
+}
+
+.login-form > .form-group > input:focus,
+.login-form > .form-group > select:focus,
+.login-form .form-row input:focus,
+.login-form .form-row select:focus {
+    background-color: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(39, 136, 174, 0.13);
+    outline: none;
+}
+
+.usuario-logado {
+    text-decoration: none;
+}
+
+.usuario-logado:hover {
+    color: var(--white);
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Página Meu Perfil */
+.perfil-hero {
+    text-align: center;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.perfil-hero p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.perfil-page-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 26px;
+    align-items: start;
+    margin-bottom: 80px;
+}
+
+.perfil-resumo-card,
+.perfil-form-container {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.perfil-resumo-card {
+    position: sticky;
+    top: 130px;
+    padding: 30px;
+    text-align: center;
+}
+
+.perfil-avatar {
+    width: 92px;
+    height: 92px;
+    margin: 0 auto 18px;
+    border-radius: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent), var(--soft-bg));
+    color: var(--primary-dark);
+    font-size: 2.5rem;
+    border: 1px solid var(--border);
+}
+
+.perfil-resumo-card h2 {
+    color: var(--dark);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.perfil-tipo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.perfil-info-lista {
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.perfil-info-lista p {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    align-items: start;
+    color: var(--text);
+    font-weight: 700;
+    word-break: break-word;
+}
+
+.perfil-info-lista i {
+    color: var(--primary);
+    margin-top: 4px;
+    text-align: center;
+}
+
+.perfil-btn-agendar {
+    width: 100%;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.perfil-form-container {
+    max-width: none;
+    margin: 0;
+}
+
+.form-row-3 {
+    grid-template-columns: 0.7fr 1.15fr 1.15fr;
+}
+
+.senha-box {
+    margin-top: 8px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffffff, var(--soft-bg));
+}
+
+.senha-box h3 {
+    margin: 12px 0 5px;
+    color: var(--dark);
+    font-size: 1.35rem;
+}
+
+.senha-box p {
+    color: var(--text);
+    margin-bottom: 18px;
+}
+
+@media (max-width: 980px) {
+    .perfil-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .perfil-resumo-card {
+        position: static;
+    }
+}
+
+@media (max-width: 650px) {
+    .perfil-page-grid {
+        gap: 18px;
+        margin-bottom: 55px;
+    }
+
+    .perfil-resumo-card,
+    .perfil-form-container,
+    .senha-box {
+        padding: 22px;
+    }
+
+    .form-row-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Foto de perfil do usuário */
+.foto-perfil-box,
+.foto-perfil-editor {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 22px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: linear-gradient(135deg, #ffffff, var(--soft-bg));
+}
+
+.foto-preview,
+.perfil-avatar-foto {
+    width: 104px;
+    height: 104px;
+    min-width: 104px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent), #ffffff);
+    color: var(--primary-dark);
+    font-size: 2.65rem;
+    border: 2px solid rgba(39, 136, 174, 0.18);
+    box-shadow: 0 14px 28px rgba(20, 33, 61, 0.10);
+}
+
+.foto-preview img,
+.perfil-avatar-foto img,
+.usuario-avatar-menu img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.foto-perfil-controle {
+    flex: 1;
+}
+
+.foto-perfil-controle strong {
+    display: block;
+    color: var(--dark);
+    font-size: 1.08rem;
+    margin-bottom: 4px;
+}
+
+.foto-perfil-controle p {
+    color: var(--text);
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+}
+
+.campo-foto-escondido {
+    display: none;
+}
+
+.foto-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-foto,
+.btn-remover-foto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 14px;
+    padding: 11px 16px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.btn-foto {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 10px 22px rgba(39, 136, 174, 0.18);
+}
+
+.btn-foto:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.btn-remover-foto {
+    background: #fff1f1;
+    color: var(--danger);
+    border: 1px solid rgba(229, 62, 62, 0.20);
+}
+
+.btn-remover-foto:hover {
+    background: #ffe1e1;
+    transform: translateY(-2px);
+}
+
+.perfil-avatar-editor {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+}
+
+.usuario-logado {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.usuario-avatar-menu {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: var(--primary-dark);
+    border: 1px solid rgba(39, 136, 174, 0.22);
+}
+
+.usuario-logado span:not(.usuario-avatar-menu) {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Fotos de destaque nas páginas internas usando imagens que já existem no projeto */
+.pagina-foto-destaque {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: 32px;
+    padding: 28px;
+    margin: 10px 0 48px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow);
+}
+
+.pagina-foto-destaque img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 22px;
+    box-shadow: 0 18px 35px rgba(20, 33, 61, 0.13);
+}
+
+.pagina-foto-destaque h2 {
+    color: var(--dark);
+    font-size: clamp(1.55rem, 3vw, 2.35rem);
+    margin: 12px 0 10px;
+    line-height: 1.15;
+}
+
+.pagina-foto-destaque p {
+    color: var(--text);
+}
+
+@media (max-width: 760px) {
+    .foto-perfil-box,
+    .foto-perfil-editor,
+    .pagina-foto-destaque {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .foto-acoes {
+        justify-content: center;
+    }
+
+    .pagina-foto-destaque img {
+        height: 240px;
+    }
+}
+
+
+/* ==========================================================
+   Fotos extras e avatar do usuário
+   ========================================================== */
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto 26px;
+}
+
+.section-heading.centered {
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-size: clamp(1.9rem, 3vw, 2.55rem);
+    color: var(--dark);
+    margin: 16px 0 10px;
+}
+
+.section-heading p {
+    color: var(--text);
+}
+
+.photo-showcase,
+.photo-grid-section,
+.photo-highlight-grid {
+    max-width: 1200px;
+    width: min(1200px, 90%);
+    margin: 0 auto 80px;
+}
+
+.photo-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.photo-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.photo-grid-2,
+.photo-highlight-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.photo-card,
+.tip-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.04);
+}
+
+.photo-card-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 26px 22px 22px;
+    background: linear-gradient(180deg, rgba(20, 33, 61, 0) 0%, rgba(20, 33, 61, 0.82) 85%);
+    color: var(--white);
+}
+
+.photo-card-caption h3 {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+}
+
+.photo-card-caption p {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.97rem;
+}
+
+.photo-card-large {
+    min-height: 380px;
+}
+
+.photo-card.compact {
+    min-height: 290px;
+}
+
+.tip-panel {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffffff 0%, var(--soft-bg) 100%);
+}
+
+.tip-panel h2 {
+    margin: 18px 0 10px;
+    font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+    color: var(--dark);
+}
+
+.tip-panel p {
+    color: var(--text);
+}
+
+.feature-list {
+    list-style: none;
+    margin-top: 18px;
+    display: grid;
+    gap: 12px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.feature-list i {
+    color: var(--primary);
+    margin-top: 4px;
+}
+
+.avatar-box {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-fallback {
+    background: linear-gradient(135deg, var(--accent), var(--soft-bg));
+    color: var(--primary-dark);
+}
+
+.usuario-logado {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 22px rgba(20, 33, 61, 0.08);
+}
+
+.usuario-logado small {
+    display: block;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.avatar-mini {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+
+.usuario-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.perfil-avatar {
+    overflow: hidden;
+}
+
+.perfil-foto-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--dark);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-outline:hover {
+    transform: translateY(-2px);
+    border-color: rgba(39, 136, 174, 0.35);
+    box-shadow: 0 12px 22px rgba(20, 33, 61, 0.08);
+}
+
+.btn-remove-avatar {
+    color: var(--danger);
+}
+
+.perfil-foto-legenda {
+    color: var(--muted);
+    font-size: 0.93rem;
+    margin-bottom: 18px;
+}
+
+@media (max-width: 980px) {
+    .photo-grid-3,
+    .photo-grid-2,
+    .photo-highlight-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .photo-showcase,
+    .photo-grid-section,
+    .photo-highlight-grid {
+        margin-bottom: 55px;
+    }
+
+    .tip-panel {
+        padding: 24px;
+    }
+
+    .photo-card-caption {
+        padding: 20px 18px 18px;
+    }
+
+    .usuario-logado {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .perfil-foto-acoes {
+        flex-direction: column;
+    }
+}
+
+
+/* ==========================================================
+   INÍCIO DO TEMA CLARO E ESCURO - CastraPrev
+   ========================================================== */
+:root {
+    color-scheme: light;
+    --body-gradient: linear-gradient(180deg, #ffffff 0%, var(--bg) 45%, #ffffff 100%);
+    --header-bg: rgba(255, 255, 255, 0.88);
+    --header-scrolled-bg: rgba(255, 255, 255, 0.96);
+    --header-border: rgba(219, 231, 238, 0.70);
+    --surface: rgba(255, 255, 255, 0.96);
+    --surface-strong: #ffffff;
+    --surface-soft: #f8fbfd;
+    --surface-gradient: linear-gradient(135deg, #ffffff 0%, var(--soft-bg) 100%);
+    --input-bg: #f8fbfd;
+    --input-focus-bg: #ffffff;
+    --input-border: transparent;
+    --table-row: #f8fbfd;
+    --dark-bg: #14213d;
+    --success-soft: #f0fff4;
+    --success-border: #c6f6d5;
+    --warning-soft: #fffaf0;
+    --danger-soft: #fff1f1;
+    --danger-soft-hover: #ffe1e1;
+    --theme-toggle-bg: rgba(255, 255, 255, 0.92);
+    --theme-toggle-color: #14213d;
+    --theme-toggle-border: rgba(219, 231, 238, 0.95);
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --primary: #47c7e9;
+    --primary-dark: #8be7ff;
+    --secondary: #56e0c7;
+    --dark: #edf8fc;
+    --text: #c9d8df;
+    --muted: #9fb3bf;
+    --bg: #07131b;
+    --soft-bg: #102534;
+    --accent: rgba(71, 199, 233, 0.16);
+    --danger: #ff7777;
+    --success: #7ee0a0;
+    --gold: #ffd27a;
+    --border: rgba(167, 205, 220, 0.20);
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.38);
+    --body-gradient: radial-gradient(circle at top left, rgba(71, 199, 233, 0.20), transparent 32%),
+                     linear-gradient(180deg, #061018 0%, #0a1721 48%, #07131b 100%);
+    --header-bg: rgba(7, 19, 27, 0.84);
+    --header-scrolled-bg: rgba(7, 19, 27, 0.96);
+    --header-border: rgba(167, 205, 220, 0.16);
+    --surface: rgba(16, 33, 46, 0.96);
+    --surface-strong: #142b3d;
+    --surface-soft: #0d1f2d;
+    --surface-gradient: linear-gradient(135deg, #102534 0%, #0d1f2d 100%);
+    --input-bg: #0b1d2a;
+    --input-focus-bg: #102b3d;
+    --input-border: rgba(167, 205, 220, 0.16);
+    --table-row: rgba(255, 255, 255, 0.035);
+    --dark-bg: #050d14;
+    --success-soft: rgba(126, 224, 160, 0.11);
+    --success-border: rgba(126, 224, 160, 0.30);
+    --warning-soft: rgba(255, 210, 122, 0.12);
+    --danger-soft: rgba(255, 119, 119, 0.12);
+    --danger-soft-hover: rgba(255, 119, 119, 0.20);
+    --theme-toggle-bg: rgba(16, 33, 46, 0.96);
+    --theme-toggle-color: #edf8fc;
+    --theme-toggle-border: rgba(167, 205, 220, 0.22);
+}
+
+body,
+body.login-page {
+    background: var(--body-gradient);
+    color: var(--dark);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background: var(--header-bg);
+    border-bottom-color: var(--header-border);
+}
+
+header.scrolled {
+    background: var(--header-scrolled-bg);
+    box-shadow: var(--shadow);
+}
+
+.theme-toggle {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--theme-toggle-border);
+    border-radius: 50%;
+    background: var(--theme-toggle-bg);
+    color: var(--theme-toggle-color);
+    padding: 0;
+    font-family: inherit;
+    font-size: 1.15rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(20, 33, 61, 0.16);
+    backdrop-filter: blur(12px);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.04);
+    border-color: rgba(39, 136, 174, 0.45);
+}
+
+.theme-toggle-floating {
+    position: fixed;
+    right: 22px;
+    top: 96px;
+    z-index: 2000;
+}
+
+.stat-box,
+.info-card,
+.table-container,
+.step-content,
+.checklist-container,
+.form-container,
+.access-panel,
+.login-card,
+.tipo-card,
+.perfil-agendamento,
+.perfil-resumo-card,
+.perfil-form-container,
+.foto-perfil-box,
+.foto-perfil-editor,
+.pagina-foto-destaque,
+.photo-card,
+.tip-panel,
+.senha-box {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+.info-card:hover,
+.tipo-card:hover,
+.photo-card:hover,
+.btn-outline:hover {
+    background: var(--surface-strong);
+}
+
+.hero-image-wrapper::before,
+.access-panel-ok,
+.tipo-card:has(input:checked),
+.senha-box,
+.foto-perfil-box,
+.foto-perfil-editor,
+.foto-preview,
+.perfil-avatar,
+.perfil-avatar-foto,
+.tip-panel {
+    background: var(--surface-gradient);
+}
+
+.modern-table tbody tr:nth-child(even),
+.check-item,
+.login-info,
+.auth-tabs,
+.perfil-select-area select {
+    background: var(--surface-soft);
+}
+
+.check-item:hover {
+    background: var(--accent);
+}
+
+.modern-form input,
+.modern-form select,
+.modern-form textarea,
+.login-form > .form-group > input,
+.login-form > .form-group > select,
+.login-form .form-row input,
+.login-form .form-row select,
+.perfil-select-area select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--dark);
+}
+
+.modern-form input:focus,
+.modern-form select:focus,
+.modern-form textarea:focus,
+.login-form > .form-group > input:focus,
+.login-form > .form-group > select:focus,
+.login-form .form-row input:focus,
+.login-form .form-row select:focus,
+.perfil-select-area select:focus {
+    background-color: var(--input-focus-bg);
+}
+
+.modern-form input::placeholder,
+.modern-form textarea::placeholder,
+.login-form input::placeholder {
+    color: var(--muted);
+}
+
+.modern-form select option,
+.login-form select option,
+.perfil-select-area select option {
+    background: var(--surface-strong);
+    color: var(--dark);
+}
+
+.modern-table thead th,
+footer,
+.btn-login,
+.btn-sair {
+    background: var(--dark-bg);
+    color: #ffffff !important;
+}
+
+footer {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.login-confirmado,
+.form-message {
+    background: var(--success-soft);
+    border-color: var(--success-border);
+}
+
+.gold-tip {
+    background: var(--warning-soft);
+}
+
+.btn-remover-foto {
+    background: var(--danger-soft);
+}
+
+.btn-remover-foto:hover {
+    background: var(--danger-soft-hover);
+}
+
+.btn-outline,
+.usuario-logado {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .brand,
+html[data-theme="dark"] .brand span,
+html[data-theme="dark"] .btn-ghost,
+html[data-theme="dark"] .feature-list li,
+html[data-theme="dark"] .tipo-card strong,
+html[data-theme="dark"] .form-group label,
+html[data-theme="dark"] .perfil-select-area label,
+html[data-theme="dark"] .section-heading h2,
+html[data-theme="dark"] .pagina-foto-destaque h2,
+html[data-theme="dark"] .tip-panel h2,
+html[data-theme="dark"] .login-card h1,
+html[data-theme="dark"] .perfil-resumo-card h2,
+html[data-theme="dark"] .senha-box h3 {
+    color: var(--dark);
+}
+
+html[data-theme="dark"] .main-img,
+html[data-theme="dark"] .split-section img,
+html[data-theme="dark"] .pagina-foto-destaque img,
+html[data-theme="dark"] .photo-card img {
+    filter: brightness(0.86) contrast(1.06);
+}
+
+html[data-theme="dark"] .logo,
+html[data-theme="dark"] .avatar-box img {
+    filter: none;
+}
+
+html[data-theme="dark"] .login-page {
+    background: var(--body-gradient);
+}
+
+@media (max-width: 900px) {
+    .theme-toggle-floating {
+        top: 110px;
+        right: 16px;
+    }
+}
+
+@media (max-width: 650px) {
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+
+    .theme-toggle-floating {
+        right: 14px;
+        top: 118px;
+    }
+}
+/* ==========================================================
+   FIM DO TEMA CLARO E ESCURO
+   ========================================================== */
+=======
+>>>>>>> 9fcb41df31265c945a9128358199752119083148
