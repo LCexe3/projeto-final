@@ -5,11 +5,23 @@ const CHAVE_TIPO_USUARIO = 'castraprev_tipo_usuario';
 const CHAVE_USUARIOS = 'castraprev_usuarios';
 
 function carregarUsuarios() {
-    return JSON.parse(localStorage.getItem(CHAVE_USUARIOS)) || [];
+    try {
+        const usuariosSalvos = JSON.parse(localStorage.getItem(CHAVE_USUARIOS));
+        return Array.isArray(usuariosSalvos) ? usuariosSalvos : [];
+    } catch (erro) {
+        console.warn('Não foi possível carregar os usuários salvos:', erro);
+        return [];
+    }
 }
 
 function salvarUsuarios(usuarios) {
-    localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
+    try {
+        localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
+        return true;
+    } catch (erro) {
+        console.warn('Não foi possível salvar os usuários:', erro);
+        return false;
+    }
 }
 
 function estaLogado() {
@@ -82,6 +94,67 @@ function atualizarPreviewAvatarPerfil(fotoPerfil = '', nome = '') {
         }
     });
 }
+
+function atualizarPreviewFotoCadastro(fotoPerfil = '') {
+    const preview = document.getElementById('cadastro-foto-preview');
+    if (!preview) return;
+
+    if (fotoPerfil) {
+        preview.innerHTML = `<img src="${fotoPerfil}" alt="Prévia da foto de perfil">`;
+    } else {
+        preview.innerHTML = '<i class="fas fa-user"></i>';
+    }
+}
+
+function converterImagemPerfilParaBase64(arquivo) {
+    return new Promise((resolve, reject) => {
+        if (!arquivo) {
+            resolve('');
+            return;
+        }
+
+        if (!arquivo.type.startsWith('image/')) {
+            reject(new Error('arquivo-invalido'));
+            return;
+        }
+
+        const leitor = new FileReader();
+
+        leitor.onload = function (evento) {
+            const imagemOriginal = evento.target?.result || '';
+            const imagem = new Image();
+
+            imagem.onload = function () {
+                const tamanhoMaximo = 520;
+                const proporcao = Math.min(1, tamanhoMaximo / Math.max(imagem.width, imagem.height));
+                const largura = Math.max(1, Math.round(imagem.width * proporcao));
+                const altura = Math.max(1, Math.round(imagem.height * proporcao));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = largura;
+                canvas.height = altura;
+
+                const contexto = canvas.getContext('2d');
+                contexto.drawImage(imagem, 0, 0, largura, altura);
+
+                resolve(canvas.toDataURL('image/jpeg', 0.86));
+            };
+
+            imagem.onerror = function () {
+                resolve(imagemOriginal);
+            };
+
+            imagem.src = imagemOriginal;
+        };
+
+        leitor.onerror = function () {
+            reject(new Error('erro-leitura'));
+        };
+
+        leitor.readAsDataURL(arquivo);
+    });
+}
+
 
 function pegarUsuarioLogadoCompleto() {
     const usuarios = carregarUsuarios();
@@ -254,7 +327,34 @@ function configurarFormularioCadastro() {
     const formCadastro = document.getElementById('form-cadastro');
     if (!formCadastro) return;
 
-    formCadastro.addEventListener('submit', function (event) {
+    const inputFotoCadastro = document.getElementById('cadastro-foto');
+    const erroCadastro = document.getElementById('erro-cadastro');
+    let fotoPerfilCadastro = '';
+
+    if (inputFotoCadastro) {
+        inputFotoCadastro.addEventListener('change', async function () {
+            const arquivo = inputFotoCadastro.files && inputFotoCadastro.files[0];
+
+            if (!arquivo) {
+                fotoPerfilCadastro = '';
+                atualizarPreviewFotoCadastro('');
+                return;
+            }
+
+            try {
+                fotoPerfilCadastro = await converterImagemPerfilParaBase64(arquivo);
+                atualizarPreviewFotoCadastro(fotoPerfilCadastro);
+                if (erroCadastro) erroCadastro.textContent = '';
+            } catch (erro) {
+                fotoPerfilCadastro = '';
+                atualizarPreviewFotoCadastro('');
+                inputFotoCadastro.value = '';
+                if (erroCadastro) erroCadastro.textContent = 'Escolha um arquivo de imagem válido para a foto de perfil.';
+            }
+        });
+    }
+
+    formCadastro.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         const nome = document.getElementById('cadastro-nome').value.trim();
@@ -269,7 +369,18 @@ function configurarFormularioCadastro() {
         const uf = document.getElementById('cadastro-uf')?.value.trim() || '';
         const senha = document.getElementById('cadastro-senha').value.trim();
         const tipoSelecionado = document.querySelector('input[name="cadastro-tipo"]:checked');
-        const erro = document.getElementById('erro-cadastro');
+        const erro = erroCadastro || document.getElementById('erro-cadastro');
+
+        if (inputFotoCadastro?.files?.[0] && !fotoPerfilCadastro) {
+            try {
+                fotoPerfilCadastro = await converterImagemPerfilParaBase64(inputFotoCadastro.files[0]);
+                atualizarPreviewFotoCadastro(fotoPerfilCadastro);
+            } catch (erroImagem) {
+                fotoPerfilCadastro = '';
+                if (erro) erro.textContent = 'Escolha um arquivo de imagem válido para a foto de perfil.';
+                return;
+            }
+        }
 
         if (nome.length < 3) {
             erro.textContent = 'Digite um nome com pelo menos 3 letras.';
@@ -321,7 +432,7 @@ function configurarFormularioCadastro() {
             cidade,
             uf,
             complemento,
-            fotoPerfil: '',
+            fotoPerfil: fotoPerfilCadastro,
             senha,
             tipo: tipoSelecionado.value,
             criadoEm: new Date().toISOString(),
@@ -329,7 +440,12 @@ function configurarFormularioCadastro() {
         };
 
         usuarios.push(novoUsuario);
-        salvarUsuarios(usuarios);
+
+        if (!salvarUsuarios(usuarios)) {
+            erro.textContent = 'Não foi possível salvar o cadastro. Tente usar uma foto menor ou limpe o armazenamento do navegador.';
+            return;
+        }
+
         salvarSessao(nome, novoUsuario.tipo, email);
 
         const parametros = new URLSearchParams(window.location.search);
@@ -433,6 +549,7 @@ function configurarPerfilUsuario() {
     const inputFoto = document.getElementById('perfil-foto');
     const botaoRemoverFoto = document.getElementById('perfil-remover-foto');
     let fotoPerfilAtual = usuarioLogado.fotoPerfil || '';
+    let promessaFotoPerfil = Promise.resolve(fotoPerfilAtual);
 
     atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value || usuarioLogado.nome || 'Usuário CastraPrev');
 
@@ -453,27 +570,37 @@ function configurarPerfilUsuario() {
                 return;
             }
 
-            const leitor = new FileReader();
-            leitor.onload = function (evento) {
-                fotoPerfilAtual = evento.target?.result || '';
-                atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
-                if (erro) erro.textContent = '';
-            };
-            leitor.readAsDataURL(arquivo);
+            promessaFotoPerfil = converterImagemPerfilParaBase64(arquivo)
+                .then(function (imagemConvertida) {
+                    fotoPerfilAtual = imagemConvertida;
+                    atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
+                    if (erro) erro.textContent = '';
+                    return fotoPerfilAtual;
+                })
+                .catch(function () {
+                    fotoPerfilAtual = '';
+                    inputFoto.value = '';
+                    atualizarPreviewAvatarPerfil('', campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
+                    if (erro) erro.textContent = 'Não foi possível carregar essa imagem. Escolha outra foto menor.';
+                    return '';
+                });
         });
     }
 
     if (botaoRemoverFoto) {
         botaoRemoverFoto.addEventListener('click', function () {
             fotoPerfilAtual = '';
+            promessaFotoPerfil = Promise.resolve('');
             if (inputFoto) inputFoto.value = '';
             atualizarPreviewAvatarPerfil('', campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
             if (erro) erro.textContent = '';
         });
     }
 
-    formPerfil.addEventListener('submit', function (event) {
+    formPerfil.addEventListener('submit', async function (event) {
         event.preventDefault();
+
+        fotoPerfilAtual = await promessaFotoPerfil;
 
         const nome = document.getElementById('perfil-nome').value.trim();
         const email = document.getElementById('perfil-email').value.trim().toLowerCase();
@@ -578,7 +705,12 @@ function configurarPerfilUsuario() {
         };
 
         usuarios[indiceUsuario] = usuarioAtualizado;
-        salvarUsuarios(usuarios);
+
+        if (!salvarUsuarios(usuarios)) {
+            if (erro) erro.textContent = 'Não foi possível salvar o perfil. Tente usar uma foto menor ou limpe o armazenamento do navegador.';
+            return;
+        }
+
         salvarSessao(usuarioAtualizado.nome, usuarioAtualizado.tipo, usuarioAtualizado.email);
         preencherResumoPerfil(usuarioAtualizado);
         atualizarAreaLogin();
