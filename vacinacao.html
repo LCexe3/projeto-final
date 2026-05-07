@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacinação | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <nav aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="vacinacao.html" class="active">Vacinação</a>
+                <a href="educacao.html">Educação</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                            <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner" data-aos="fade-up">
+            <span class="badge"><i class="fas fa-syringe"></i> Imunização</span>
+            <h1>Calendário de <span>Vacinas</span></h1>
+            <p>A vacinação é uma das formas mais importantes de proteção. A carteirinha do pet deve ser acompanhada por um médico veterinário.</p>
+        </section>
+
+        <section class="photo-highlight-grid" data-aos="fade-up">
+            <article class="photo-card photo-card-large">
+                <img src="cachorro1.png" alt="Cachorro saudável em destaque na página de vacinação">
+                <div class="photo-card-caption">
+                    <h3>Vacinação é prevenção</h3>
+                    <p>Manter a carteirinha em dia é uma das atitudes mais importantes para proteger o pet e toda a comunidade.</p>
+                </div>
+            </article>
+
+            <article class="tip-panel">
+                <span class="badge"><i class="fas fa-shield-heart"></i> Proteção</span>
+                <h2>Visual renovado para orientar melhor</h2>
+                <p>Agora a página de vacinação também tem destaque com foto, mantendo o visual moderno e acolhedor do CastraPrev.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Conteúdo mais atrativo visualmente</li>
+                    <li><i class="fas fa-check-circle"></i> Informações importantes em destaque</li>
+                    <li><i class="fas fa-check-circle"></i> Melhor experiência de navegação</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="timeline-container" data-aos="fade-up">
+            <div class="timeline-modern">
+                <article class="timeline-step">
+                    <div class="step-marker"><i class="fas fa-syringe"></i></div>
+                    <div class="step-content">
+                        <span class="step-date">45 a 60 dias</span>
+                        <h3>Primeira dose</h3>
+                        <p>Início do protocolo vacinal. Em cães, geralmente V8 ou V10. Em gatos, geralmente V4 ou V5, conforme avaliação profissional.</p>
+                    </div>
+                </article>
+
+                <article class="timeline-step">
+                    <div class="step-marker"><i class="fas fa-redo"></i></div>
+                    <div class="step-content">
+                        <span class="step-date">Após a 1ª dose</span>
+                        <h3>Reforços iniciais</h3>
+                        <p>Os reforços completam a proteção do filhote. O intervalo deve ser definido pelo veterinário responsável.</p>
+                    </div>
+                </article>
+
+                <article class="timeline-step">
+                    <div class="step-marker"><i class="fas fa-shield-virus"></i></div>
+                    <div class="step-content">
+                        <span class="step-date">A partir dos 4 meses</span>
+                        <h3>Vacina antirrábica</h3>
+                        <p>Protege contra a raiva, uma doença grave que também envolve saúde pública.</p>
+                    </div>
+                </article>
+
+                <article class="timeline-step">
+                    <div class="step-marker"><i class="fas fa-calendar-check"></i></div>
+                    <div class="step-content">
+                        <span class="step-date">Todos os anos</span>
+                        <h3>Reforço anual</h3>
+                        <p>Depois do protocolo inicial, os reforços ajudam a manter a proteção durante toda a vida do animal.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="info-card gold-tip" style="border-left-color: var(--primary); background: var(--accent);" data-aos="zoom-in">
+            <div class="tip-icon" style="color: var(--primary);"><i class="fas fa-info-circle"></i></div>
+            <div class="tip-content">
+                <h3>Importante</h3>
+                <p>Vacinas devem ser aplicadas em animais saudáveis e por profissional capacitado. Não medique ou vacine por conta própria.</p>
+            </div>
+        </section>
+            <section class="photo-grid-section" data-aos="fade-up">
+            <div class="photo-grid photo-grid-2">
+                <article class="photo-card compact">
+                    <img src="cachorro-vacina.png" alt="Filhote representando o início do calendário vacinal">
+                    <div class="photo-card-caption">
+                        <h3>Proteção desde filhote</h3>
+                        <p>O acompanhamento desde cedo ajuda o tutor a manter o protocolo em dia.</p>
+                    </div>
+                </article>
+                <article class="photo-card compact">
+                    <img src="cachorro2.png" alt="Cão e gato em contexto de prevenção e cuidado">
+                    <div class="photo-card-caption">
+                        <h3>Mais saúde ao longo da vida</h3>
+                        <p>Prevenção, consultas e reforços anuais colaboram para um pet mais protegido.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+ <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
