@@ -53,6 +53,7 @@
                 </div>
 
                 <h2 id="perfil-resumo-nome">Usuário CastraPrev</h2>
+                <p id="perfil-resumo-apelido" class="perfil-resumo-apelido">@usuario</p>
                 <span id="perfil-resumo-tipo" class="perfil-tipo-badge">Tutor</span>
 
                 <div class="perfil-info-lista">
@@ -101,17 +102,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="perfil-email"><i class="fas fa-envelope"></i> E-mail</label>
-                            <input type="email" id="perfil-email" placeholder="exemplo@email.com" autocomplete="email" required>
+                            <label for="perfil-apelido"><i class="fas fa-star"></i> Apelido</label>
+                            <input type="text" id="perfil-apelido" placeholder="Nome que aparecerá no topo" autocomplete="nickname" maxlength="24" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
+                            <label for="perfil-email"><i class="fas fa-envelope"></i> E-mail</label>
+                            <input type="email" id="perfil-email" placeholder="exemplo@email.com" autocomplete="email" required>
+                        </div>
+
+                        <div class="form-group">
                             <label for="perfil-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
                             <input type="tel" id="perfil-telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-telefone-mask>
                         </div>
+                    </div>
 
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="perfil-tipo"><i class="fas fa-id-card"></i> Tipo de usuário</label>
                             <select id="perfil-tipo" required>
@@ -125,6 +133,7 @@
                         <div class="form-group">
                             <label for="perfil-cep"><i class="fas fa-map-pin"></i> CEP</label>
                             <input type="text" id="perfil-cep" placeholder="00000-000" autocomplete="postal-code" maxlength="9" data-cep-mask required>
+                            <small id="perfil-cep-status" class="cep-status" aria-live="polite"></small>
                         </div>
 
                         <div class="form-group">

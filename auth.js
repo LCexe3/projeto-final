@@ -1,6 +1,7 @@
 const CHAVE_LOGADO = 'castraprev_logado';
 const CHAVE_USUARIO = 'castraprev_usuario';
 const CHAVE_USUARIO_EMAIL = 'castraprev_usuario_email';
+const CHAVE_USUARIO_APELIDO = 'castraprev_usuario_apelido';
 const CHAVE_TIPO_USUARIO = 'castraprev_tipo_usuario';
 const CHAVE_USUARIOS = 'castraprev_usuarios';
 
@@ -32,6 +33,18 @@ function pegarUsuario() {
     return localStorage.getItem(CHAVE_USUARIO) || '';
 }
 
+function pegarApelidoUsuario() {
+    return localStorage.getItem(CHAVE_USUARIO_APELIDO) || '';
+}
+
+function obterPrimeiroNome(nome = '') {
+    return String(nome).trim().split(/\s+/)[0] || 'Usuário';
+}
+
+function obterApelidoUsuario(usuario = null) {
+    return (usuario?.apelido || pegarApelidoUsuario() || obterPrimeiroNome(usuario?.nome || pegarUsuario())).trim();
+}
+
 function pegarEmailUsuario() {
     return localStorage.getItem(CHAVE_USUARIO_EMAIL) || '';
 }
@@ -44,9 +57,12 @@ function nomeTipoUsuario(tipo = pegarTipoUsuario()) {
     return tipo === 'doador' ? 'Doador' : 'Tutor';
 }
 
-function salvarSessao(nome, tipo, email = '') {
+function salvarSessao(nome, tipo, email = '', apelido = '') {
+    const apelidoFinal = (apelido || obterPrimeiroNome(nome)).trim();
+
     localStorage.setItem(CHAVE_LOGADO, 'true');
     localStorage.setItem(CHAVE_USUARIO, nome);
+    localStorage.setItem(CHAVE_USUARIO_APELIDO, apelidoFinal);
     localStorage.setItem(CHAVE_TIPO_USUARIO, tipo || 'tutor');
 
     if (email) {
@@ -58,6 +74,7 @@ function sair() {
     localStorage.removeItem(CHAVE_LOGADO);
     localStorage.removeItem(CHAVE_USUARIO);
     localStorage.removeItem(CHAVE_USUARIO_EMAIL);
+    localStorage.removeItem(CHAVE_USUARIO_APELIDO);
     localStorage.removeItem(CHAVE_TIPO_USUARIO);
     window.location.href = 'index.html';
 }
@@ -77,7 +94,7 @@ function pegarPaginaAtual() {
 
 function obterMarkupAvatar(usuario, classeExtra = '') {
     const classe = classeExtra ? ` ${classeExtra}` : '';
-    const nome = limparTexto(usuario?.nome || 'Usuário CastraPrev');
+    const nome = limparTexto(usuario?.nome || obterApelidoUsuario(usuario) || 'Usuário CastraPrev');
 
     if (usuario?.fotoPerfil) {
         return `<span class="avatar-box${classe}"><img src="${usuario.fotoPerfil}" alt="Foto de perfil de ${nome}"></span>`;
@@ -204,13 +221,88 @@ function formatarCepCampo(campo) {
     campo.value = valor;
 }
 
+function definirStatusCep(prefixo, mensagem = '', tipo = '') {
+    const status = document.getElementById(`${prefixo}-cep-status`);
+    if (!status) return;
+
+    status.textContent = mensagem;
+    status.classList.remove('sucesso', 'erro');
+
+    if (tipo) {
+        status.classList.add(tipo);
+    }
+}
+
+function preencherCampoEndereco(id, valor) {
+    const campo = document.getElementById(id);
+    if (campo && valor) {
+        campo.value = valor;
+        campo.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+}
+
+async function buscarEnderecoPorCep(campoCep) {
+    if (!campoCep) return;
+
+    const cepLimpo = campoCep.value.replace(/\D/g, '');
+    const prefixo = campoCep.id.startsWith('perfil-') ? 'perfil' : 'cadastro';
+
+    if (cepLimpo.length < 8) {
+        definirStatusCep(prefixo);
+        campoCep.dataset.ultimoCepBuscado = '';
+        return;
+    }
+
+    if (campoCep.dataset.ultimoCepBuscado === cepLimpo) return;
+
+    campoCep.dataset.ultimoCepBuscado = cepLimpo;
+    definirStatusCep(prefixo, 'Buscando endereço pelo CEP...', '');
+
+    try {
+        const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+
+        if (!resposta.ok) {
+            throw new Error('falha-na-busca');
+        }
+
+        const dados = await resposta.json();
+
+        if (dados.erro) {
+            throw new Error('cep-nao-encontrado');
+        }
+
+        preencherCampoEndereco(`${prefixo}-endereco`, dados.logradouro || '');
+        preencherCampoEndereco(`${prefixo}-bairro`, dados.bairro || '');
+        preencherCampoEndereco(`${prefixo}-cidade`, dados.localidade || '');
+        preencherCampoEndereco(`${prefixo}-uf`, dados.uf || '');
+
+        definirStatusCep(prefixo, 'Endereço encontrado automaticamente. Confira o número e o complemento.', 'sucesso');
+
+        const campoNumero = document.getElementById(`${prefixo}-numero`);
+        if (campoNumero && !campoNumero.value) {
+            campoNumero.focus();
+        }
+    } catch (erro) {
+        campoCep.dataset.ultimoCepBuscado = '';
+        definirStatusCep(prefixo, 'CEP não encontrado. Confira os números ou preencha o endereço manualmente.', 'erro');
+    }
+}
+
 function configurarMascarasAuth() {
     document.querySelectorAll('[data-telefone-mask]').forEach(campo => {
         campo.addEventListener('input', () => formatarTelefoneCampo(campo));
     });
 
     document.querySelectorAll('[data-cep-mask]').forEach(campo => {
-        campo.addEventListener('input', () => formatarCepCampo(campo));
+        let tempoBuscaCep;
+
+        campo.addEventListener('input', () => {
+            formatarCepCampo(campo);
+            clearTimeout(tempoBuscaCep);
+            tempoBuscaCep = setTimeout(() => buscarEnderecoPorCep(campo), 450);
+        });
+
+        campo.addEventListener('blur', () => buscarEnderecoPorCep(campo));
     });
 }
 
@@ -221,12 +313,13 @@ function atualizarAreaLogin() {
     if (estaLogado()) {
         const usuarioCompleto = pegarUsuarioLogadoCompleto();
         const nome = usuarioCompleto?.nome || pegarUsuario();
+        const apelido = obterApelidoUsuario(usuarioCompleto);
         const tipo = usuarioCompleto?.tipo || pegarTipoUsuario();
 
         areaLogin.innerHTML = `
             <a href="perfil.html" class="usuario-logado" title="${limparTexto(nome)} - ${nomeTipoUsuario(tipo)}">
                 ${obterMarkupAvatar(usuarioCompleto, 'avatar-mini')}
-                <span class="usuario-texto">${limparTexto(nome)} <small>${nomeTipoUsuario(tipo)}</small></span>
+                <span class="usuario-texto"><strong>Olá, ${limparTexto(apelido)}</strong><small>${nomeTipoUsuario(tipo)}</small></span>
             </a>
             <button type="button" class="btn-sair" onclick="sair()">Sair</button>
         `;
@@ -306,7 +399,8 @@ function configurarFormularioLogin() {
         const usuarioEncontrado = usuarios.find(usuario => {
             const mesmoEmail = (usuario.email || '').toLowerCase() === identificacao;
             const mesmoNome = (usuario.nome || '').toLowerCase() === identificacao;
-            return (mesmoEmail || mesmoNome) && usuario.senha === senha;
+            const mesmoApelido = (usuario.apelido || '').toLowerCase() === identificacao;
+            return (mesmoEmail || mesmoNome || mesmoApelido) && usuario.senha === senha;
         });
 
         if (!usuarioEncontrado) {
@@ -315,7 +409,7 @@ function configurarFormularioLogin() {
         }
 
         erro.textContent = '';
-        salvarSessao(usuarioEncontrado.nome, usuarioEncontrado.tipo, usuarioEncontrado.email);
+        salvarSessao(usuarioEncontrado.nome, usuarioEncontrado.tipo, usuarioEncontrado.email, usuarioEncontrado.apelido);
 
         const parametros = new URLSearchParams(window.location.search);
         const destino = parametros.get('from') || 'agendamento.html';
@@ -358,6 +452,7 @@ function configurarFormularioCadastro() {
         event.preventDefault();
 
         const nome = document.getElementById('cadastro-nome').value.trim();
+        const apelido = document.getElementById('cadastro-apelido')?.value.trim() || obterPrimeiroNome(nome);
         const email = document.getElementById('cadastro-email').value.trim().toLowerCase();
         const telefone = document.getElementById('cadastro-telefone')?.value.trim() || '';
         const cep = document.getElementById('cadastro-cep')?.value.trim() || '';
@@ -384,6 +479,11 @@ function configurarFormularioCadastro() {
 
         if (nome.length < 3) {
             erro.textContent = 'Digite um nome com pelo menos 3 letras.';
+            return;
+        }
+
+        if (apelido.length < 2) {
+            erro.textContent = 'Digite um apelido com pelo menos 2 letras. Esse nome aparecerá no topo do site.';
             return;
         }
 
@@ -423,6 +523,7 @@ function configurarFormularioCadastro() {
         const novoUsuario = {
             id: Date.now(),
             nome,
+            apelido,
             email,
             telefone,
             cep,
@@ -446,7 +547,7 @@ function configurarFormularioCadastro() {
             return;
         }
 
-        salvarSessao(nome, novoUsuario.tipo, email);
+        salvarSessao(nome, novoUsuario.tipo, email, apelido);
 
         const parametros = new URLSearchParams(window.location.search);
         const destino = parametros.get('from') || 'agendamento.html';
@@ -468,6 +569,7 @@ function preencherDadosDoUsuarioLogado() {
 
     const preenchimentos = {
         '[data-preencher-nome]': usuarioCompleto?.nome || nome,
+        '[data-preencher-apelido]': obterApelidoUsuario(usuarioCompleto),
         '[data-preencher-email]': usuarioCompleto?.email || '',
         '[data-preencher-telefone]': usuarioCompleto?.telefone || '',
         '[data-preencher-endereco]': usuarioCompleto?.endereco || '',
@@ -495,12 +597,16 @@ function preencherDadosDoUsuarioLogado() {
 
 function preencherResumoPerfil(usuario) {
     const nomeResumo = document.getElementById('perfil-resumo-nome');
+    const apelidoResumo = document.getElementById('perfil-resumo-apelido');
     const tipoResumo = document.getElementById('perfil-resumo-tipo');
     const emailResumo = document.getElementById('perfil-resumo-email');
     const telefoneResumo = document.getElementById('perfil-resumo-telefone');
     const enderecoResumo = document.getElementById('perfil-resumo-endereco');
 
+    const apelido = obterApelidoUsuario(usuario);
+
     if (nomeResumo) nomeResumo.textContent = usuario.nome || 'Usuário CastraPrev';
+    if (apelidoResumo) apelidoResumo.textContent = `@${apelido}`;
     if (tipoResumo) tipoResumo.textContent = nomeTipoUsuario(usuario.tipo);
     if (emailResumo) emailResumo.textContent = usuario.email || 'E-mail não informado';
     if (telefoneResumo) telefoneResumo.textContent = usuario.telefone || 'Telefone não informado';
@@ -534,6 +640,7 @@ function configurarPerfilUsuario() {
     preencherResumoPerfil(usuarioLogado);
 
     document.getElementById('perfil-nome').value = usuarioLogado.nome || '';
+    document.getElementById('perfil-apelido').value = obterApelidoUsuario(usuarioLogado);
     document.getElementById('perfil-email').value = usuarioLogado.email || '';
     document.getElementById('perfil-telefone').value = usuarioLogado.telefone || '';
     document.getElementById('perfil-tipo').value = usuarioLogado.tipo || 'tutor';
@@ -546,6 +653,7 @@ function configurarPerfilUsuario() {
     document.getElementById('perfil-complemento').value = usuarioLogado.complemento || '';
 
     const campoNome = document.getElementById('perfil-nome');
+    const campoApelido = document.getElementById('perfil-apelido');
     const inputFoto = document.getElementById('perfil-foto');
     const botaoRemoverFoto = document.getElementById('perfil-remover-foto');
     let fotoPerfilAtual = usuarioLogado.fotoPerfil || '';
@@ -556,6 +664,15 @@ function configurarPerfilUsuario() {
     if (campoNome) {
         campoNome.addEventListener('input', function () {
             atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value.trim() || 'Usuário CastraPrev');
+        });
+    }
+
+    if (campoApelido) {
+        campoApelido.addEventListener('input', function () {
+            const apelidoResumo = document.getElementById('perfil-resumo-apelido');
+            if (apelidoResumo) {
+                apelidoResumo.textContent = `@${campoApelido.value.trim() || obterPrimeiroNome(campoNome.value)}`;
+            }
         });
     }
 
@@ -603,6 +720,7 @@ function configurarPerfilUsuario() {
         fotoPerfilAtual = await promessaFotoPerfil;
 
         const nome = document.getElementById('perfil-nome').value.trim();
+        const apelido = document.getElementById('perfil-apelido').value.trim();
         const email = document.getElementById('perfil-email').value.trim().toLowerCase();
         const telefone = document.getElementById('perfil-telefone').value.trim();
         const tipo = document.getElementById('perfil-tipo').value;
@@ -625,6 +743,11 @@ function configurarPerfilUsuario() {
 
         if (nome.length < 3) {
             if (erro) erro.textContent = 'Digite um nome com pelo menos 3 letras.';
+            return;
+        }
+
+        if (apelido.length < 2) {
+            if (erro) erro.textContent = 'Digite um apelido com pelo menos 2 letras. Esse nome aparecerá no topo do site.';
             return;
         }
 
@@ -689,6 +812,7 @@ function configurarPerfilUsuario() {
         const usuarioAtualizado = {
             ...usuarios[indiceUsuario],
             nome,
+            apelido,
             email,
             telefone,
             tipo,
@@ -711,7 +835,7 @@ function configurarPerfilUsuario() {
             return;
         }
 
-        salvarSessao(usuarioAtualizado.nome, usuarioAtualizado.tipo, usuarioAtualizado.email);
+        salvarSessao(usuarioAtualizado.nome, usuarioAtualizado.tipo, usuarioAtualizado.email, usuarioAtualizado.apelido);
         preencherResumoPerfil(usuarioAtualizado);
         atualizarAreaLogin();
 

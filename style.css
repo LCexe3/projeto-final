@@ -2156,3 +2156,36 @@ html[data-theme="dark"] .login-page {
 /* ==========================================================
    FIM DO TEMA CLARO E ESCURO
    ========================================================== */
+
+/* Apelido no topo e retorno visual do CEP */
+.usuario-texto {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.usuario-texto strong {
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.perfil-resumo-apelido {
+    margin: -4px 0 10px;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.cep-status {
+    min-height: 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.cep-status.sucesso {
+    color: var(--success);
+}
+
+.cep-status.erro {
+    color: var(--danger);
+}
