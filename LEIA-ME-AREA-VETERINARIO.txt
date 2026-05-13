@@ -1,0 +1,29 @@
+CAStraPrev - Ligação entre site do tutor e painel do veterinário
+
+Arquivos novos criados:
+- veterinario-login.html
+- veterinario-dashboard.html
+- veterinario.css
+- veterinario.js
+
+Arquivos modificados:
+- script.js: agora o formulário "Agendar agora" salva o animal em localStorage na chave castraprev_solicitacoes.
+- páginas HTML principais: receberam o link "Veterinário" no menu.
+
+Como testar:
+1. Abra index.html ou login.html.
+2. Crie um cadastro de tutor no site do usuário.
+3. Entre em "Agendar agora" e cadastre o animal.
+4. Abra veterinario-login.html.
+5. Use o acesso rápido:
+   E-mail: admin@castraprev.com
+   Senha: admin123
+6. O painel veterinario-dashboard.html mostrará:
+   - tutores cadastrados no site do usuário;
+   - animais enviados no agendamento;
+   - status do atendimento;
+   - detalhes do tutor, endereço, contato, animal e observações;
+   - campo de observação interna do veterinário.
+
+Observação importante:
+Essa ligação usa localStorage, então funciona no mesmo navegador/computador. Para funcionar entre computadores diferentes ou para um projeto real online, precisa de banco de dados/backend, como Firebase, Supabase, MySQL ou API própria.
