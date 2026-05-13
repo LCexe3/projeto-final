@@ -31,8 +31,9 @@
             <nav aria-label="Menu principal">
                 <a href="index.html">Início</a>
                 <a href="castracao.html">Castração</a>
-                <a href="vacinacao.html">Vacinação</a>
+                <a href="prevencao.html">Prevenção</a>
                 <a href="educacao.html">Educação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
                 <a href="veterinario-login.html">Veterinário</a>
                 <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
                 <div id="area-login" class="area-login"></div>
@@ -44,7 +45,7 @@
         <section class="hero-inner perfil-hero" data-aos="fade-up">
             <span class="badge"><i class="fas fa-user-pen"></i> Área do usuário</span>
             <h1>Meu <span>perfil</span></h1>
-            <p>Atualize seus dados pessoais, endereço, telefone, tipo de acesso e senha para manter seu cadastro sempre correto no CastraPrev.</p>
+            <p>Atualize seus dados pessoais, endereço, telefone e senha para manter seu cadastro sempre correto no CastraPrev.</p>
         </section>
 
         <section class="perfil-page-grid" data-aos="fade-up">
@@ -65,6 +66,9 @@
 
                 <a href="agendamento.html" class="btn-main perfil-btn-agendar">
                     Ir para agendamento <i class="fas fa-calendar-check"></i>
+                </a>
+                <a href="acompanhamento.html" class="btn-ghost perfil-btn-agendar">
+                    Acompanhar animal <i class="fas fa-list-check"></i>
                 </a>
             </aside>
 
@@ -117,16 +121,6 @@
                         <div class="form-group">
                             <label for="perfil-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
                             <input type="tel" id="perfil-telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-telefone-mask>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="perfil-tipo"><i class="fas fa-id-card"></i> Tipo de usuário</label>
-                            <select id="perfil-tipo" required>
-                                <option value="tutor">Tutor do animal</option>
-                                <option value="doador">Doador</option>
-                            </select>
                         </div>
                     </div>
 

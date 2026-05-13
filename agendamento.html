@@ -31,8 +31,9 @@
             <nav aria-label="Menu principal">
                 <a href="index.html">Início</a>
                 <a href="castracao.html">Castração</a>
-                <a href="vacinacao.html">Vacinação</a>
+                <a href="prevencao.html">Prevenção</a>
                 <a href="educacao.html">Educação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
                 <a href="veterinario-login.html">Veterinário</a>
                 <a href="agendamento.html" class="cta-header active" data-requer-login>Agendar agora</a>
                 <div id="area-login" class="area-login"></div>
@@ -43,8 +44,8 @@
     <main>
         <section class="hero-inner" data-aos="fade-up">
             <span class="badge"><i class="fas fa-calendar-check"></i> Área liberada</span>
-            <h1>Solicite atendimento ou <span>registre uma doação</span></h1>
-            <p>Escolha o tipo de usuário abaixo. O tutor pode solicitar atendimento para o animal, e o doador pode informar doações de dinheiro, ração, mantas ou outros itens.</p>
+            <h1>Solicite <span>castração ou prevenção</span></h1>
+            <p>Preencha os dados do animal para que o veterinário analise a solicitação. Depois, o tutor poderá acompanhar o processo pelo próprio site.</p>
         </section>
 
         <section class="login-confirmado somente-logado" data-aos="fade-up">
@@ -52,27 +53,23 @@
             <p id="resumo-usuario-logado">Login confirmado. Escolha abaixo como deseja continuar.</p>
         </section>
 
-        <section class="perfil-agendamento" data-aos="fade-up">
+        <section class="perfil-agendamento acompanhamento-chamada" data-aos="fade-up">
             <div>
-                <span class="badge"><i class="fas fa-users"></i> Escolha de usuário</span>
-                <h2>Como você deseja usar a área de agendamento?</h2>
-                <p>Você pode solicitar atendimento como tutor ou registrar uma contribuição como doador.</p>
+                <span class="badge"><i class="fas fa-list-check"></i> Acompanhamento do animal</span>
+                <h2>Depois de enviar, acompanhe o andamento pelo site</h2>
+                <p>O veterinário poderá atualizar o status do animal no painel administrativo, e o tutor verá tudo na página de acompanhamento.</p>
             </div>
 
-            <div class="perfil-select-area">
-                <label for="tipo-atendimento">Tipo de acesso</label>
-                <select id="tipo-atendimento">
-                    <option value="tutor">Tutor do animal</option>
-                    <option value="doador">Doador</option>
-                </select>
-            </div>
+            <a href="acompanhamento.html" class="btn-main" data-requer-login>
+                Acompanhar processo <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
 
-        <section class="form-container tipo-form active" id="area-tutor" data-tipo-form="tutor" data-aos="fade-up">
+        <section class="form-container" id="area-tutor" data-aos="fade-up">
             <div class="form-title-box">
                 <span class="badge"><i class="fas fa-paw"></i> Tutor do animal</span>
-                <h2>Agendamento para atendimento do pet</h2>
-                <p>Preencha os dados do tutor e do animal. A equipe entrará em contato para confirmar a disponibilidade.</p>
+                <h2>Agendamento para castração e prevenção</h2>
+                <p>Preencha os dados do tutor e do animal. A solicitação aparecerá no painel do veterinário para análise.</p>
             </div>
 
             <form id="form-agendar" class="modern-form">
@@ -114,8 +111,8 @@
                     <select id="servico" name="servico" required>
                         <option value="" disabled selected>Escolha o serviço...</option>
                         <option value="castracao">Castração</option>
-                        <option value="vacinacao">Vacinação</option>
-                        <option value="orientacao">Orientação veterinária</option>
+                        <option value="prevencao">Consulta preventiva</option>
+                        <option value="orientacao">Orientação pré/pós-castração</option>
                     </select>
                 </div>
 
@@ -129,73 +126,6 @@
                 </button>
 
                 <p id="mensagem-form" class="form-message" aria-live="polite"></p>
-            </form>
-        </section>
-
-        <section class="form-container tipo-form" id="area-doador" data-tipo-form="doador" data-aos="fade-up">
-            <div class="form-title-box">
-                <span class="badge"><i class="fas fa-hand-holding-heart"></i> Doador</span>
-                <h2>Cadastro de doação para os animais</h2>
-                <p>Informe como deseja ajudar. A equipe do CastraPrev entrará em contato para combinar a entrega ou orientar a contribuição.</p>
-            </div>
-
-            <form id="form-doacao" class="modern-form">
-                <div class="form-group">
-                    <label for="doador-nome"><i class="fas fa-user"></i> Nome do doador</label>
-                    <input type="text" id="doador-nome" name="doador-nome" placeholder="Digite seu nome completo" data-preencher-nome required>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="doador-email"><i class="fas fa-envelope"></i> E-mail de contato</label>
-                        <input type="email" id="doador-email" name="doador-email" placeholder="exemplo@email.com" data-preencher-email required>
-                    </div>
-                    <div class="form-group">
-                        <label for="doador-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
-                        <input type="tel" id="doador-telefone" name="doador-telefone" placeholder="(00) 00000-0000" data-preencher-telefone data-telefone-mask required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="tipo-doacao"><i class="fas fa-gift"></i> Tipo de doação</label>
-                        <select id="tipo-doacao" name="tipo-doacao" required>
-                            <option value="" disabled selected>Escolha uma opção...</option>
-                            <option value="dinheiro">Dinheiro</option>
-                            <option value="racao">Ração</option>
-                            <option value="mantas">Mantas / cobertores</option>
-                            <option value="medicamentos">Medicamentos / materiais veterinários</option>
-                            <option value="higiene">Produtos de higiene</option>
-                            <option value="outros">Outros itens</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantidade-doacao"><i class="fas fa-box-open"></i> Quantidade ou valor</label>
-                        <input type="text" id="quantidade-doacao" name="quantidade-doacao" placeholder="Ex: R$ 50, 5kg de ração, 2 mantas..." required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="forma-entrega"><i class="fas fa-truck"></i> Forma de entrega</label>
-                    <select id="forma-entrega" name="forma-entrega" required>
-                        <option value="" disabled selected>Selecione...</option>
-                        <option value="retirada">Quero combinar uma retirada</option>
-                        <option value="entrega">Posso entregar em um ponto de coleta</option>
-                        <option value="pix">Quero receber orientação para doação em dinheiro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="observacoes-doacao"><i class="fas fa-comment-dots"></i> Observações sobre a doação</label>
-                    <textarea id="observacoes-doacao" name="observacoes-doacao" placeholder="Descreva melhor os itens, local de retirada, horários disponíveis ou qualquer informação importante."></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">
-                    Registrar doação <i class="fas fa-heart"></i>
-                </button>
-
-                <p id="mensagem-doacao" class="form-message" aria-live="polite"></p>
             </form>
         </section>
     </main>

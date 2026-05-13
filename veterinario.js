@@ -233,7 +233,7 @@ function vetAtualizarStats(tutores, solicitacoes) {
     if (statTutores) statTutores.textContent = tutores.length;
     if (statAnimais) statAnimais.textContent = solicitacoes.length;
     if (statAguardando) statAguardando.textContent = solicitacoes.filter(item => item.status === 'Aguardando análise').length;
-    if (statFinalizados) statFinalizados.textContent = solicitacoes.filter(item => item.status === 'Castração realizada').length;
+    if (statFinalizados) statFinalizados.textContent = solicitacoes.filter(item => ['Procedimento realizado', 'Finalizado', 'Castração realizada'].includes(item.status)).length;
 }
 
 function vetTextoBusca(item = {}) {
@@ -273,7 +273,7 @@ function vetRenderizarSolicitacoes(solicitacoes) {
                 <td>${vetLimpar(enderecoCurto)}</td>
                 <td>
                     <select class="vet-status-select" data-status-id="${item.id}">
-                        ${['Aguardando análise', 'Em atendimento', 'Castração agendada', 'Castração realizada', 'Cancelado'].map(status => `<option value="${status}" ${item.status === status ? 'selected' : ''}>${status}</option>`).join('')}
+                        ${['Aguardando análise', 'Em atendimento', 'Atendimento agendado', 'Procedimento realizado', 'Finalizado', 'Cancelado'].map(status => `<option value="${status}" ${(item.status === status || (item.status === 'Castração agendada' && status === 'Atendimento agendado') || (item.status === 'Castração realizada' && status === 'Procedimento realizado')) ? 'selected' : ''}>${status}</option>`).join('')}
                     </select>
                 </td>
                 <td><button type="button" class="vet-btn-small" data-detalhes-solicitacao="${item.id}">Ver detalhes</button></td>
@@ -500,7 +500,7 @@ function vetConfigurarDashboard() {
     const adminMini = document.getElementById('vet-admin-mini');
 
     if (boasVindas) {
-        boasVindas.textContent = `Bem-vindo(a), ${sessao.nome}. Aqui você acompanha os cadastros dos tutores e animais do CastraPrev.`;
+        boasVindas.textContent = `Bem-vindo(a), ${sessao.nome}. Aqui você acompanha os tutores e atualiza o processo de castração e prevenção dos animais.`;
     }
 
     if (adminMini) {

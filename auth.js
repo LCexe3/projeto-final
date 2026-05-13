@@ -54,7 +54,7 @@ function pegarTipoUsuario() {
 }
 
 function nomeTipoUsuario(tipo = pegarTipoUsuario()) {
-    return tipo === 'doador' ? 'Doador' : 'Tutor';
+    return 'Tutor';
 }
 
 function salvarSessao(nome, tipo, email = '', apelido = '') {
@@ -463,7 +463,7 @@ function configurarFormularioCadastro() {
         const cidade = document.getElementById('cadastro-cidade')?.value.trim() || '';
         const uf = document.getElementById('cadastro-uf')?.value.trim() || '';
         const senha = document.getElementById('cadastro-senha').value.trim();
-        const tipoSelecionado = document.querySelector('input[name="cadastro-tipo"]:checked');
+        const tipoSelecionado = document.querySelector('input[name="cadastro-tipo"]:checked') || { value: 'tutor' };
         const erro = erroCadastro || document.getElementById('erro-cadastro');
 
         if (inputFotoCadastro?.files?.[0] && !fotoPerfilCadastro) {
@@ -507,11 +507,6 @@ function configurarFormularioCadastro() {
             return;
         }
 
-        if (!tipoSelecionado) {
-            erro.textContent = 'Escolha se você é tutor ou doador.';
-            return;
-        }
-
         const usuarios = carregarUsuarios();
         const emailJaExiste = usuarios.some(usuario => (usuario.email || '').toLowerCase() === email);
 
@@ -535,7 +530,7 @@ function configurarFormularioCadastro() {
             complemento,
             fotoPerfil: fotoPerfilCadastro,
             senha,
-            tipo: tipoSelecionado.value,
+            tipo: 'tutor',
             criadoEm: new Date().toISOString(),
             atualizadoEm: new Date().toISOString()
         };
@@ -564,7 +559,7 @@ function preencherDadosDoUsuarioLogado() {
 
     const resumo = document.getElementById('resumo-usuario-logado');
     if (resumo) {
-        resumo.textContent = `Login confirmado: ${nome} (${nomeTipoUsuario(tipo)}). Escolha abaixo se deseja solicitar atendimento para um animal ou realizar uma doação.`;
+        resumo.textContent = `Login confirmado: ${nome} (${nomeTipoUsuario(tipo)}). Solicite atendimento e acompanhe o processo do animal pelo site.`;
     }
 
     const preenchimentos = {
@@ -590,7 +585,7 @@ function preencherDadosDoUsuarioLogado() {
 
     const seletorTipo = document.getElementById('tipo-atendimento');
     if (seletorTipo) {
-        seletorTipo.value = tipo;
+        seletorTipo.value = 'tutor';
         seletorTipo.dispatchEvent(new Event('change'));
     }
 }
@@ -643,7 +638,8 @@ function configurarPerfilUsuario() {
     document.getElementById('perfil-apelido').value = obterApelidoUsuario(usuarioLogado);
     document.getElementById('perfil-email').value = usuarioLogado.email || '';
     document.getElementById('perfil-telefone').value = usuarioLogado.telefone || '';
-    document.getElementById('perfil-tipo').value = usuarioLogado.tipo || 'tutor';
+    const campoTipoPerfil = document.getElementById('perfil-tipo');
+    if (campoTipoPerfil) campoTipoPerfil.value = 'tutor';
     document.getElementById('perfil-cep').value = usuarioLogado.cep || '';
     document.getElementById('perfil-uf').value = usuarioLogado.uf || '';
     document.getElementById('perfil-endereco').value = usuarioLogado.endereco || '';
@@ -723,7 +719,7 @@ function configurarPerfilUsuario() {
         const apelido = document.getElementById('perfil-apelido').value.trim();
         const email = document.getElementById('perfil-email').value.trim().toLowerCase();
         const telefone = document.getElementById('perfil-telefone').value.trim();
-        const tipo = document.getElementById('perfil-tipo').value;
+        const tipo = 'tutor';
         const cep = document.getElementById('perfil-cep').value.trim();
         const uf = document.getElementById('perfil-uf').value.trim();
         const endereco = document.getElementById('perfil-endereco').value.trim();

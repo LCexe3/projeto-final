@@ -30,7 +30,7 @@
 
             <span class="badge"><i class="fas fa-lock"></i> Acesso ao sistema</span>
             <h1>Entre ou crie seu cadastro</h1>
-            <p>Escolha uma opção abaixo. Tutores podem solicitar agendamento e doadores podem registrar doações de dinheiro, ração, mantas e outros itens.</p>
+            <p>Entre ou crie seu cadastro de tutor para solicitar castração, receber orientações de prevenção e acompanhar o processo do animal.</p>
 
             <div class="auth-tabs" role="tablist" aria-label="Escolha entre login e cadastro">
                 <button type="button" class="active" data-auth-tab="login"><i class="fas fa-right-to-bracket"></i> Entrar</button>
@@ -56,7 +56,7 @@
                     </button>
                 </form>
 
-                <p class="login-info"><i class="fas fa-info-circle"></i> Se você ainda não tem cadastro, clique em <b>Cadastrar</b> e escolha se é tutor ou doador.</p>
+                <p class="login-info"><i class="fas fa-info-circle"></i> Se você ainda não tem cadastro, clique em <b>Cadastrar</b>. O acesso do site é exclusivo para tutores de animais.</p>
             </section>
 
             <section class="auth-section" data-auth-section="cadastro">
@@ -174,22 +174,11 @@
                         <input type="password" id="cadastro-senha" placeholder="Mínimo de 4 caracteres" autocomplete="new-password" required>
                     </div>
 
-                    <div class="form-group">
-                        <label><i class="fas fa-id-card"></i> Tipo de usuário</label>
-                        <div class="tipo-cadastro-grid">
-                            <label class="tipo-card">
-                                <input type="radio" name="cadastro-tipo" value="tutor" checked>
-                                <span><i class="fas fa-paw"></i></span>
-                                <strong>Tutor do animal</strong>
-                                <small>Quero agendar castração, vacinação ou orientação veterinária.</small>
-                            </label>
-
-                            <label class="tipo-card">
-                                <input type="radio" name="cadastro-tipo" value="doador">
-                                <span><i class="fas fa-hand-holding-heart"></i></span>
-                                <strong>Doador</strong>
-                                <small>Quero ajudar com dinheiro, ração, mantas, medicamentos ou outros itens.</small>
-                            </label>
+                    <div class="cadastro-info-tutor">
+                        <i class="fas fa-paw"></i>
+                        <div>
+                            <strong>Cadastro de tutor</strong>
+                            <p>O CastraPrev trabalha apenas com castração e prevenção. Depois do cadastro, você poderá solicitar atendimento e acompanhar cada etapa do animal.</p>
                         </div>
                     </div>
 

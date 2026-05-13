@@ -219,10 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (mensagemForm) {
-                mensagemForm.textContent = `${nome}, recebemos a solicitação de atendimento para ${pet}! Ela já apareceu no painel do veterinário.`;
+                mensagemForm.innerHTML = `${nome}, recebemos a solicitação para ${pet}! Ela já apareceu no painel do veterinário. <a href="acompanhamento.html">Acompanhar processo</a>`;
                 mensagemForm.classList.add('show');
             } else {
-                alert('Solicitação salva! Ela já apareceu no painel do veterinário.');
+                alert('Solicitação salva! Ela já apareceu no painel do veterinário e pode ser acompanhada pelo site.');
             }
 
             agendarForm.reset();
@@ -233,29 +233,125 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const formDoacao = document.getElementById('form-doacao');
-    const mensagemDoacao = document.getElementById('mensagem-doacao');
+    const limparHtml = (texto = '') => String(texto)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
 
-    if (formDoacao) {
-        formDoacao.addEventListener('submit', (e) => {
-            e.preventDefault();
+    const formatarDataAcompanhamento = (dataIso = '') => {
+        if (!dataIso) return 'Data não informada';
+        try {
+            return new Intl.DateTimeFormat('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }).format(new Date(dataIso));
+        } catch (erro) {
+            return 'Data não informada';
+        }
+    };
 
-            if (!formDoacao.checkValidity()) {
-                formDoacao.reportValidity();
-                return;
-            }
+    const statusProcesso = ['Aguardando análise', 'Em atendimento', 'Atendimento agendado', 'Procedimento realizado', 'Finalizado'];
 
-            const nome = document.getElementById('doador-nome')?.value.trim() || 'Doador';
-            const tipo = document.getElementById('tipo-doacao')?.selectedOptions[0]?.textContent || 'doação';
+    const normalizarStatusAcompanhamento = (status = '') => {
+        if (status === 'Castração agendada') return 'Atendimento agendado';
+        if (status === 'Castração realizada') return 'Procedimento realizado';
+        return status || 'Aguardando análise';
+    };
 
-            if (mensagemDoacao) {
-                mensagemDoacao.textContent = `${nome}, sua doação de ${tipo.toLowerCase()} foi registrada! A equipe do CastraPrev entrará em contato para combinar os detalhes.`;
-                mensagemDoacao.classList.add('show');
-            } else {
-                alert('Sua doação foi registrada! A equipe entrará em contato.');
-            }
+    const classeStatusAcompanhamento = (status = '') => {
+        const normalizado = normalizarStatusAcompanhamento(status).toLowerCase();
+        if (normalizado.includes('cancel')) return 'cancelado';
+        if (normalizado.includes('final') || normalizado.includes('realizado')) return 'finalizado';
+        if (normalizado.includes('agendado')) return 'agendado';
+        if (normalizado.includes('atendimento')) return 'andamento';
+        return 'aguardando';
+    };
 
-            formDoacao.reset();
-        });
-    }
+    const etapaConcluida = (statusAtual, etapa) => {
+        const status = normalizarStatusAcompanhamento(statusAtual);
+        if (status === 'Cancelado') return false;
+        const indiceAtual = statusProcesso.indexOf(status);
+        const indiceEtapa = statusProcesso.indexOf(etapa);
+        return indiceAtual >= indiceEtapa;
+    };
+
+    const renderizarAcompanhamentoTutor = () => {
+        const lista = document.getElementById('lista-acompanhamento');
+        const vazio = document.getElementById('sem-acompanhamento');
+        const resumo = document.getElementById('resumo-acompanhamento');
+
+        if (!lista) return;
+
+        const usuarioLogado = obterUsuarioLogadoParaSolicitacao();
+        const solicitacoes = carregarSolicitacoesCastraPrev();
+        const emailUsuario = (usuarioLogado?.email || '').toLowerCase();
+
+        const minhasSolicitacoes = solicitacoes
+            .filter(item => {
+                const mesmoId = usuarioLogado?.id && item.tutorId === usuarioLogado.id;
+                const mesmoEmail = emailUsuario && (item.tutorEmail || '').toLowerCase() === emailUsuario;
+                return mesmoId || mesmoEmail;
+            })
+            .sort((a, b) => new Date(b.criadoEm || 0) - new Date(a.criadoEm || 0));
+
+        if (resumo) {
+            resumo.textContent = minhasSolicitacoes.length
+                ? `Você possui ${minhasSolicitacoes.length} solicitação(ões) cadastrada(s). Acompanhe abaixo a etapa atual de cada animal.`
+                : 'Você ainda não possui animais em acompanhamento. Envie uma solicitação de castração ou prevenção para aparecer aqui.';
+        }
+
+        if (vazio) vazio.style.display = minhasSolicitacoes.length ? 'none' : 'block';
+
+        lista.innerHTML = minhasSolicitacoes.map(item => {
+            const status = normalizarStatusAcompanhamento(item.status);
+            const classeStatus = classeStatusAcompanhamento(status);
+            const observacaoVet = item.observacoesVeterinario || 'O veterinário ainda não adicionou observações para este atendimento.';
+
+            return `
+                <article class="acompanhamento-card">
+                    <div class="acompanhamento-card-topo">
+                        <div>
+                            <span class="badge"><i class="fas fa-paw"></i> ${limparHtml(item.servico || 'Atendimento')}</span>
+                            <h2>${limparHtml(item.petNome || 'Animal')}</h2>
+                            <p>${limparHtml(item.petEspecie || 'Espécie não informada')}</p>
+                        </div>
+                        <span class="status-badge status-${classeStatus}">${limparHtml(status)}</span>
+                    </div>
+
+                    <div class="acompanhamento-dados">
+                        <p><i class="fas fa-calendar-plus"></i> Solicitado em: <strong>${formatarDataAcompanhamento(item.criadoEm)}</strong></p>
+                        <p><i class="fas fa-rotate"></i> Última atualização: <strong>${formatarDataAcompanhamento(item.atualizadoEm || item.criadoEm)}</strong></p>
+                    </div>
+
+                    <div class="linha-processo" aria-label="Etapas do acompanhamento">
+                        ${statusProcesso.map(etapa => `
+                            <div class="etapa-processo ${etapaConcluida(status, etapa) ? 'concluida' : ''}">
+                                <span><i class="fas fa-check"></i></span>
+                                <small>${limparHtml(etapa)}</small>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="acompanhamento-observacoes">
+                        <div>
+                            <strong><i class="fas fa-comment-medical"></i> Suas observações</strong>
+                            <p>${limparHtml(item.observacoesTutor || 'Nenhuma observação enviada.')}</p>
+                        </div>
+                        <div>
+                            <strong><i class="fas fa-user-doctor"></i> Retorno do veterinário</strong>
+                            <p>${limparHtml(observacaoVet)}</p>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }).join('');
+    };
+
+    renderizarAcompanhamentoTutor();
+
 });

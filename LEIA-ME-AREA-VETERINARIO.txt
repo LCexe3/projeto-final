@@ -8,22 +8,27 @@ Arquivos novos criados:
 
 Arquivos modificados:
 - script.js: agora o formulário "Agendar agora" salva o animal em localStorage na chave castraprev_solicitacoes.
-- páginas HTML principais: receberam o link "Veterinário" no menu.
+- páginas HTML principais: receberam os links "Veterinário" e "Acompanhamento" no menu.
+- acompanhamento.html: nova área do tutor para acompanhar o processo do animal.
+- prevencao.html: página focada em prevenção; o antigo arquivo vacinacao.html apenas redireciona para ela.
 
 Como testar:
 1. Abra index.html ou login.html.
 2. Crie um cadastro de tutor no site do usuário.
-3. Entre em "Agendar agora" e cadastre o animal.
+3. Entre em "Agendar agora" e cadastre o animal para castração ou prevenção.
 4. Abra veterinario-login.html.
 5. Use o acesso rápido:
    E-mail: admin@castraprev.com
    Senha: admin123
-6. O painel veterinario-dashboard.html mostrará:
+6. O painel veterinario-dashboard.html mostrará e permitirá atualizar:
    - tutores cadastrados no site do usuário;
    - animais enviados no agendamento;
-   - status do atendimento;
+   - status do processo do animal;
    - detalhes do tutor, endereço, contato, animal e observações;
    - campo de observação interna do veterinário.
 
 Observação importante:
 Essa ligação usa localStorage, então funciona no mesmo navegador/computador. Para funcionar entre computadores diferentes ou para um projeto real online, precisa de banco de dados/backend, como Firebase, Supabase, MySQL ou API própria.
+
+
+Atualização: o sistema do tutor agora trabalha apenas com castração e prevenção. A antiga área de contribuição foi retirada e foi criada a página acompanhamento.html para o tutor acompanhar o processo do animal conforme o veterinário atualiza o status no painel.
