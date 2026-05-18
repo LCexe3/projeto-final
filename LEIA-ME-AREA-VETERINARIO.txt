@@ -1,0 +1,34 @@
+CastraPrev - Ligação entre site do tutor, painel veterinário e arrecadação
+
+Arquivos principais do painel:
+- veterinario-login.html
+- veterinario-dashboard.html
+- veterinario.css
+- veterinario.js
+
+Arquivos de integração:
+- supabaseClient.js
+- castraprev-supabase.js
+- supabase-schema.sql
+
+Atualizações desta versão:
+- Corrigido o conflito que fazia "Ver detalhes" e "Ver cadastro" não abrirem os dados corretos.
+- O arquivo castraprev-supabase.js não sobrescreve mais as funções do painel veterinário quando veterinario.js está carregado.
+- O painel veterinário agora mantém os dados integrados ao Supabase.
+- A página arrecadacao.html foi adicionada novamente.
+- A arrecadação salva no Supabase pela tabela fundraising_contributions.
+- O painel veterinário mostra e gerencia as contribuições recebidas.
+
+Como testar:
+1. Execute supabase-schema.sql no SQL Editor do Supabase.
+2. Abra o projeto com Live Server.
+3. Crie um tutor em login.html.
+4. Faça um agendamento em agendamento.html.
+5. Entre em veterinario-login.html e crie/acesse um veterinário.
+6. No painel, teste:
+   - Ver detalhes do animal;
+   - Ver cadastro do tutor;
+   - alterar status do atendimento;
+   - salvar observação do veterinário;
+   - visualizar arrecadações.
+7. Abra arrecadacao.html, registre uma contribuição e confira no painel veterinário.
