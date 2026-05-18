@@ -2520,6 +2520,7 @@ html[data-theme="dark"] .etapa-processo {
         grid-template-columns: 1fr;
     }
 }
+<<<<<<< HEAD
 
 /* Página de arrecadação */
 .arrecadacao-hero {
@@ -2813,3 +2814,5 @@ html[data-theme="dark"] .arrecadacao-item strong {
         padding: 22px;
     }
 }
+=======
+>>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28

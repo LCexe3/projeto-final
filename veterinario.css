@@ -761,6 +761,7 @@ img {
         min-width: 0;
     }
 }
+<<<<<<< HEAD
 
 /* Ajustes para a área de arrecadação no painel veterinário */
 .vet-stats-grid {
@@ -791,3 +792,5 @@ img {
     background: rgba(214, 69, 69, 0.12);
     color: var(--vet-danger);
 }
+=======
+>>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
