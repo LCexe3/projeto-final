@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acompanhamento | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-protegida="true">
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <nav aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html">Educação</a>
+                <a href="arrecadacao.html">Arrecadação</a>
+                <a href="acompanhamento.html" class="active" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner acompanhamento-hero" data-aos="fade-up">
+            <span class="badge"><i class="fas fa-list-check"></i> Processo do animal</span>
+            <h1>Acompanhe o <span>andamento</span></h1>
+            <p id="resumo-acompanhamento">Veja o status atualizado das solicitações de castração e prevenção enviadas para o veterinário.</p>
+        </section>
+
+        <section class="acompanhamento-info-grid" data-aos="fade-up">
+            <article>
+                <i class="fas fa-paper-plane"></i>
+                <strong>1. Solicitação enviada</strong>
+                <p>O tutor envia os dados do animal pela página de agendamento.</p>
+            </article>
+            <article>
+                <i class="fas fa-user-doctor"></i>
+                <strong>2. Análise veterinária</strong>
+                <p>O veterinário avalia o caso no painel administrativo.</p>
+            </article>
+            <article>
+                <i class="fas fa-clipboard-check"></i>
+                <strong>3. Status atualizado</strong>
+                <p>O tutor acompanha cada alteração diretamente nesta página.</p>
+            </article>
+        </section>
+
+        <section class="acompanhamento-painel" data-aos="fade-up">
+            <div class="section-heading">
+                <span class="badge"><i class="fas fa-paw"></i> Meus animais</span>
+                <h2>Solicitações em acompanhamento</h2>
+                <p>As informações abaixo vêm do mesmo registro que aparece no painel do veterinário.</p>
+            </div>
+
+            <div id="lista-acompanhamento" class="acompanhamento-lista"></div>
+
+            <div id="sem-acompanhamento" class="acompanhamento-vazio">
+                <i class="fas fa-dog"></i>
+                <h3>Nenhum animal em acompanhamento ainda</h3>
+                <p>Faça uma solicitação de castração ou prevenção para acompanhar o processo aqui.</p>
+                <a href="agendamento.html" class="btn-main">Solicitar atendimento <i class="fas fa-calendar-check"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
