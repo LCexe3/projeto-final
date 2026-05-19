@@ -4,7 +4,6 @@ const CHAVE_USUARIO_EMAIL = 'castraprev_usuario_email';
 const CHAVE_USUARIO_APELIDO = 'castraprev_usuario_apelido';
 const CHAVE_TIPO_USUARIO = 'castraprev_tipo_usuario';
 const CHAVE_USUARIOS = 'castraprev_usuarios';
-<<<<<<< HEAD
 const CHAVE_USUARIO_PERFIL = 'castraprev_usuario_perfil';
 
 const sbAuth = () => window.supabaseClient || null;
@@ -68,10 +67,6 @@ function carregarUsuarios() {
     const perfil = pegarUsuarioLogadoCompleto();
     if (perfil) return [perfil];
 
-=======
-
-function carregarUsuarios() {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     try {
         const usuariosSalvos = JSON.parse(localStorage.getItem(CHAVE_USUARIOS));
         return Array.isArray(usuariosSalvos) ? usuariosSalvos : [];
@@ -84,10 +79,7 @@ function carregarUsuarios() {
 function salvarUsuarios(usuarios) {
     try {
         localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
-<<<<<<< HEAD
         if (Array.isArray(usuarios) && usuarios[0]) salvarPerfilLocal(usuarios[0]);
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         return true;
     } catch (erro) {
         console.warn('Não foi possível salvar os usuários:', erro);
@@ -124,11 +116,7 @@ function pegarTipoUsuario() {
 }
 
 function nomeTipoUsuario(tipo = pegarTipoUsuario()) {
-<<<<<<< HEAD
     return tipo === 'veterinario' ? 'Veterinário' : 'Tutor';
-=======
-    return 'Tutor';
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function salvarSessao(nome, tipo, email = '', apelido = '') {
@@ -139,25 +127,15 @@ function salvarSessao(nome, tipo, email = '', apelido = '') {
     localStorage.setItem(CHAVE_USUARIO_APELIDO, apelidoFinal);
     localStorage.setItem(CHAVE_TIPO_USUARIO, tipo || 'tutor');
 
-<<<<<<< HEAD
     if (email) localStorage.setItem(CHAVE_USUARIO_EMAIL, email);
 }
 
 function limparSessaoLocal() {
-=======
-    if (email) {
-        localStorage.setItem(CHAVE_USUARIO_EMAIL, email);
-    }
-}
-
-function sair() {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     localStorage.removeItem(CHAVE_LOGADO);
     localStorage.removeItem(CHAVE_USUARIO);
     localStorage.removeItem(CHAVE_USUARIO_EMAIL);
     localStorage.removeItem(CHAVE_USUARIO_APELIDO);
     localStorage.removeItem(CHAVE_TIPO_USUARIO);
-<<<<<<< HEAD
     localStorage.removeItem(CHAVE_USUARIO_PERFIL);
 }
 
@@ -168,8 +146,6 @@ async function sair() {
         console.warn('Erro ao sair do Supabase:', erro);
     }
     limparSessaoLocal();
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     window.location.href = 'index.html';
 }
 
@@ -189,16 +165,10 @@ function pegarPaginaAtual() {
 function obterMarkupAvatar(usuario, classeExtra = '') {
     const classe = classeExtra ? ` ${classeExtra}` : '';
     const nome = limparTexto(usuario?.nome || obterApelidoUsuario(usuario) || 'Usuário CastraPrev');
-<<<<<<< HEAD
     const foto = usuario?.fotoPerfil || usuario?.foto_perfil || '';
 
     if (foto) {
         return `<span class="avatar-box${classe}"><img src="${foto}" alt="Foto de perfil de ${nome}"></span>`;
-=======
-
-    if (usuario?.fotoPerfil) {
-        return `<span class="avatar-box${classe}"><img src="${usuario.fotoPerfil}" alt="Foto de perfil de ${nome}"></span>`;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     }
 
     return `<span class="avatar-box avatar-fallback${classe}"><i class="fas fa-user"></i></span>`;
@@ -207,13 +177,7 @@ function obterMarkupAvatar(usuario, classeExtra = '') {
 function atualizarPreviewAvatarPerfil(fotoPerfil = '', nome = '') {
     ['perfil-resumo-avatar', 'perfil-foto-preview'].forEach(id => {
         const avatar = document.getElementById(id);
-<<<<<<< HEAD
         if (avatar) avatar.innerHTML = obterMarkupAvatar({ fotoPerfil, nome });
-=======
-        if (avatar) {
-            avatar.innerHTML = obterMarkupAvatar({ fotoPerfil, nome });
-        }
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     });
 }
 
@@ -221,39 +185,16 @@ function atualizarPreviewFotoCadastro(fotoPerfil = '') {
     const preview = document.getElementById('cadastro-foto-preview');
     if (!preview) return;
 
-<<<<<<< HEAD
     if (fotoPerfil) preview.innerHTML = `<img src="${fotoPerfil}" alt="Prévia da foto de perfil">`;
     else preview.innerHTML = '<i class="fas fa-user"></i>';
-=======
-    if (fotoPerfil) {
-        preview.innerHTML = `<img src="${fotoPerfil}" alt="Prévia da foto de perfil">`;
-    } else {
-        preview.innerHTML = '<i class="fas fa-user"></i>';
-    }
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function converterImagemPerfilParaBase64(arquivo) {
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
         if (!arquivo) return resolve('');
         if (!arquivo.type.startsWith('image/')) return reject(new Error('arquivo-invalido'));
 
         const leitor = new FileReader();
-=======
-        if (!arquivo) {
-            resolve('');
-            return;
-        }
-
-        if (!arquivo.type.startsWith('image/')) {
-            reject(new Error('arquivo-invalido'));
-            return;
-        }
-
-        const leitor = new FileReader();
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         leitor.onload = function (evento) {
             const imagemOriginal = evento.target?.result || '';
             const imagem = new Image();
@@ -263,7 +204,6 @@ function converterImagemPerfilParaBase64(arquivo) {
                 const proporcao = Math.min(1, tamanhoMaximo / Math.max(imagem.width, imagem.height));
                 const largura = Math.max(1, Math.round(imagem.width * proporcao));
                 const altura = Math.max(1, Math.round(imagem.height * proporcao));
-<<<<<<< HEAD
                 const canvas = document.createElement('canvas');
                 canvas.width = largura;
                 canvas.height = altura;
@@ -275,35 +215,10 @@ function converterImagemPerfilParaBase64(arquivo) {
             imagem.src = imagemOriginal;
         };
         leitor.onerror = function () { reject(new Error('erro-leitura')); };
-=======
-
-                const canvas = document.createElement('canvas');
-                canvas.width = largura;
-                canvas.height = altura;
-
-                const contexto = canvas.getContext('2d');
-                contexto.drawImage(imagem, 0, 0, largura, altura);
-
-                resolve(canvas.toDataURL('image/jpeg', 0.86));
-            };
-
-            imagem.onerror = function () {
-                resolve(imagemOriginal);
-            };
-
-            imagem.src = imagemOriginal;
-        };
-
-        leitor.onerror = function () {
-            reject(new Error('erro-leitura'));
-        };
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         leitor.readAsDataURL(arquivo);
     });
 }
 
-<<<<<<< HEAD
 function pegarUsuarioLogadoCompleto() {
     try {
         const perfil = JSON.parse(localStorage.getItem(CHAVE_USUARIO_PERFIL));
@@ -366,86 +281,31 @@ async function sincronizarSessaoSupabase() {
     salvarSessao(usuarioLocal.nome, usuarioLocal.tipo, usuarioLocal.email, usuarioLocal.apelido);
     salvarPerfilLocal(usuarioLocal);
     return usuarioLocal;
-=======
-
-function pegarUsuarioLogadoCompleto() {
-    const usuarios = carregarUsuarios();
-    const emailSessao = pegarEmailUsuario().toLowerCase();
-    const nomeSessao = pegarUsuario().toLowerCase();
-
-    let usuario = null;
-
-    if (emailSessao) {
-        usuario = usuarios.find(item => (item.email || '').toLowerCase() === emailSessao);
-    }
-
-    if (!usuario && nomeSessao) {
-        usuario = usuarios.find(item => (item.nome || '').toLowerCase() === nomeSessao);
-    }
-
-    return usuario || null;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function formatarTelefoneCampo(campo) {
     if (!campo) return;
-<<<<<<< HEAD
     let valor = campo.value.replace(/\D/g, '').slice(0, 11);
     if (valor.length > 10) valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
     else if (valor.length > 6) valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
     else if (valor.length > 2) valor = valor.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
     else if (valor.length > 0) valor = valor.replace(/^(\d*)$/, '($1');
-=======
-
-    let valor = campo.value.replace(/\D/g, '').slice(0, 11);
-
-    if (valor.length > 10) {
-        valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-    } else if (valor.length > 6) {
-        valor = valor.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
-    } else if (valor.length > 2) {
-        valor = valor.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
-    } else if (valor.length > 0) {
-        valor = valor.replace(/^(\d*)$/, '($1');
-    }
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     campo.value = valor;
 }
 
 function formatarCepCampo(campo) {
     if (!campo) return;
-<<<<<<< HEAD
     let valor = campo.value.replace(/\D/g, '').slice(0, 8);
     if (valor.length > 5) valor = valor.replace(/^(\d{5})(\d{0,3})$/, '$1-$2');
-=======
-
-    let valor = campo.value.replace(/\D/g, '').slice(0, 8);
-
-    if (valor.length > 5) {
-        valor = valor.replace(/^(\d{5})(\d{0,3})$/, '$1-$2');
-    }
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     campo.value = valor;
 }
 
 function definirStatusCep(prefixo, mensagem = '', tipo = '') {
     const status = document.getElementById(`${prefixo}-cep-status`);
     if (!status) return;
-<<<<<<< HEAD
     status.textContent = mensagem;
     status.classList.remove('sucesso', 'erro');
     if (tipo) status.classList.add(tipo);
-=======
-
-    status.textContent = mensagem;
-    status.classList.remove('sucesso', 'erro');
-
-    if (tipo) {
-        status.classList.add(tipo);
-    }
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function preencherCampoEndereco(id, valor) {
@@ -458,21 +318,13 @@ function preencherCampoEndereco(id, valor) {
 
 async function buscarEnderecoPorCep(campoCep) {
     if (!campoCep) return;
-<<<<<<< HEAD
     const cepLimpo = campoCep.value.replace(/\D/g, '');
     const prefixo = campoCep.id.startsWith('perfil-') ? 'perfil' : 'cadastro';
-=======
-
-    const cepLimpo = campoCep.value.replace(/\D/g, '');
-    const prefixo = campoCep.id.startsWith('perfil-') ? 'perfil' : 'cadastro';
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     if (cepLimpo.length < 8) {
         definirStatusCep(prefixo);
         campoCep.dataset.ultimoCepBuscado = '';
         return;
     }
-<<<<<<< HEAD
     if (campoCep.dataset.ultimoCepBuscado === cepLimpo) return;
     campoCep.dataset.ultimoCepBuscado = cepLimpo;
     definirStatusCep(prefixo, 'Buscando endereço pelo CEP...', '');
@@ -481,44 +333,13 @@ async function buscarEnderecoPorCep(campoCep) {
         if (!resposta.ok) throw new Error('falha-na-busca');
         const dados = await resposta.json();
         if (dados.erro) throw new Error('cep-nao-encontrado');
-=======
-
-    if (campoCep.dataset.ultimoCepBuscado === cepLimpo) return;
-
-    campoCep.dataset.ultimoCepBuscado = cepLimpo;
-    definirStatusCep(prefixo, 'Buscando endereço pelo CEP...', '');
-
-    try {
-        const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
-
-        if (!resposta.ok) {
-            throw new Error('falha-na-busca');
-        }
-
-        const dados = await resposta.json();
-
-        if (dados.erro) {
-            throw new Error('cep-nao-encontrado');
-        }
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         preencherCampoEndereco(`${prefixo}-endereco`, dados.logradouro || '');
         preencherCampoEndereco(`${prefixo}-bairro`, dados.bairro || '');
         preencherCampoEndereco(`${prefixo}-cidade`, dados.localidade || '');
         preencherCampoEndereco(`${prefixo}-uf`, dados.uf || '');
-<<<<<<< HEAD
         definirStatusCep(prefixo, 'Endereço encontrado automaticamente. Confira o número e o complemento.', 'sucesso');
         const campoNumero = document.getElementById(`${prefixo}-numero`);
         if (campoNumero && !campoNumero.value) campoNumero.focus();
-=======
-
-        definirStatusCep(prefixo, 'Endereço encontrado automaticamente. Confira o número e o complemento.', 'sucesso');
-
-        const campoNumero = document.getElementById(`${prefixo}-numero`);
-        if (campoNumero && !campoNumero.value) {
-            campoNumero.focus();
-        }
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     } catch (erro) {
         campoCep.dataset.ultimoCepBuscado = '';
         definirStatusCep(prefixo, 'CEP não encontrado. Confira os números ou preencha o endereço manualmente.', 'erro');
@@ -529,24 +350,13 @@ function configurarMascarasAuth() {
     document.querySelectorAll('[data-telefone-mask]').forEach(campo => {
         campo.addEventListener('input', () => formatarTelefoneCampo(campo));
     });
-<<<<<<< HEAD
     document.querySelectorAll('[data-cep-mask]').forEach(campo => {
         let tempoBuscaCep;
-=======
-
-    document.querySelectorAll('[data-cep-mask]').forEach(campo => {
-        let tempoBuscaCep;
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         campo.addEventListener('input', () => {
             formatarCepCampo(campo);
             clearTimeout(tempoBuscaCep);
             tempoBuscaCep = setTimeout(() => buscarEnderecoPorCep(campo), 450);
         });
-<<<<<<< HEAD
-=======
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         campo.addEventListener('blur', () => buscarEnderecoPorCep(campo));
     });
 }
@@ -560,10 +370,6 @@ function atualizarAreaLogin() {
         const nome = usuarioCompleto?.nome || pegarUsuario();
         const apelido = obterApelidoUsuario(usuarioCompleto);
         const tipo = usuarioCompleto?.tipo || pegarTipoUsuario();
-<<<<<<< HEAD
-=======
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         areaLogin.innerHTML = `
             <a href="perfil.html" class="usuario-logado" title="${limparTexto(nome)} - ${nomeTipoUsuario(tipo)}">
                 ${obterMarkupAvatar(usuarioCompleto, 'avatar-mini')}
@@ -572,42 +378,17 @@ function atualizarAreaLogin() {
             <button type="button" class="btn-sair" onclick="sair()">Sair</button>
         `;
     } else {
-<<<<<<< HEAD
         areaLogin.innerHTML = `<a href="login.html" class="btn-login"><i class="fas fa-user"></i> Entrar</a>`;
-=======
-        areaLogin.innerHTML = `
-            <a href="login.html" class="btn-login"><i class="fas fa-user"></i> Entrar</a>
-        `;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     }
 }
 
 function controlarConteudoRestrito() {
-<<<<<<< HEAD
     document.querySelectorAll('.somente-logado').forEach(item => item.style.display = estaLogado() ? '' : 'none');
     document.querySelectorAll('.somente-visitante').forEach(item => item.style.display = estaLogado() ? 'none' : '');
 }
 
 function protegerLinksDeAgendamento() {
     document.querySelectorAll('[data-requer-login]').forEach(link => {
-=======
-    const somenteLogado = document.querySelectorAll('.somente-logado');
-    const somenteVisitante = document.querySelectorAll('.somente-visitante');
-
-    somenteLogado.forEach(item => {
-        item.style.display = estaLogado() ? '' : 'none';
-    });
-
-    somenteVisitante.forEach(item => {
-        item.style.display = estaLogado() ? 'none' : '';
-    });
-}
-
-function protegerLinksDeAgendamento() {
-    const linksProtegidos = document.querySelectorAll('[data-requer-login]');
-
-    linksProtegidos.forEach(link => {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         link.addEventListener('click', function (event) {
             if (!estaLogado()) {
                 event.preventDefault();
@@ -619,27 +400,13 @@ function protegerLinksDeAgendamento() {
 }
 
 function mostrarAbaAcesso(aba) {
-<<<<<<< HEAD
     document.querySelectorAll('[data-auth-tab]').forEach(botao => botao.classList.toggle('active', botao.dataset.authTab === aba));
     document.querySelectorAll('[data-auth-section]').forEach(secao => secao.classList.toggle('active', secao.dataset.authSection === aba));
-=======
-    const botoes = document.querySelectorAll('[data-auth-tab]');
-    const secoes = document.querySelectorAll('[data-auth-section]');
-
-    botoes.forEach(botao => {
-        botao.classList.toggle('active', botao.dataset.authTab === aba);
-    });
-
-    secoes.forEach(secao => {
-        secao.classList.toggle('active', secao.dataset.authSection === aba);
-    });
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function configurarAbasAcesso() {
     const botoes = document.querySelectorAll('[data-auth-tab]');
     if (!botoes.length) return;
-<<<<<<< HEAD
     botoes.forEach(botao => botao.addEventListener('click', () => mostrarAbaAcesso(botao.dataset.authTab)));
     const parametros = new URLSearchParams(window.location.search);
     if (parametros.get('tab') === 'cadastro') mostrarAbaAcesso('cadastro');
@@ -648,23 +415,11 @@ function configurarAbasAcesso() {
 function destinoAposLogin(padrao = 'agendamento.html') {
     const parametros = new URLSearchParams(window.location.search);
     return parametros.get('from') || padrao;
-=======
-
-    botoes.forEach(botao => {
-        botao.addEventListener('click', () => mostrarAbaAcesso(botao.dataset.authTab));
-    });
-
-    const parametros = new URLSearchParams(window.location.search);
-    if (parametros.get('tab') === 'cadastro') {
-        mostrarAbaAcesso('cadastro');
-    }
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function configurarFormularioLogin() {
     const formLogin = document.getElementById('form-login');
     if (!formLogin) return;
-<<<<<<< HEAD
     formLogin.addEventListener('submit', async function (event) {
         event.preventDefault();
         const identificacao = document.getElementById('login-identificacao').value.trim().toLowerCase();
@@ -689,35 +444,6 @@ function configurarFormularioLogin() {
 
         await sincronizarSessaoSupabase();
         window.location.href = destinoAposLogin('agendamento.html');
-=======
-
-    formLogin.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const identificacao = document.getElementById('login-identificacao').value.trim().toLowerCase();
-        const senha = document.getElementById('login-senha').value.trim();
-        const erro = document.getElementById('erro-login');
-        const usuarios = carregarUsuarios();
-
-        const usuarioEncontrado = usuarios.find(usuario => {
-            const mesmoEmail = (usuario.email || '').toLowerCase() === identificacao;
-            const mesmoNome = (usuario.nome || '').toLowerCase() === identificacao;
-            const mesmoApelido = (usuario.apelido || '').toLowerCase() === identificacao;
-            return (mesmoEmail || mesmoNome || mesmoApelido) && usuario.senha === senha;
-        });
-
-        if (!usuarioEncontrado) {
-            erro.textContent = 'Cadastro não encontrado. Confira os dados ou crie uma conta.';
-            return;
-        }
-
-        erro.textContent = '';
-        salvarSessao(usuarioEncontrado.nome, usuarioEncontrado.tipo, usuarioEncontrado.email, usuarioEncontrado.apelido);
-
-        const parametros = new URLSearchParams(window.location.search);
-        const destino = parametros.get('from') || 'agendamento.html';
-        window.location.href = destino;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     });
 }
 
@@ -732,19 +458,11 @@ function configurarFormularioCadastro() {
     if (inputFotoCadastro) {
         inputFotoCadastro.addEventListener('change', async function () {
             const arquivo = inputFotoCadastro.files && inputFotoCadastro.files[0];
-<<<<<<< HEAD
-=======
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
             if (!arquivo) {
                 fotoPerfilCadastro = '';
                 atualizarPreviewFotoCadastro('');
                 return;
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
             try {
                 fotoPerfilCadastro = await converterImagemPerfilParaBase64(arquivo);
                 atualizarPreviewFotoCadastro(fotoPerfilCadastro);
@@ -760,10 +478,6 @@ function configurarFormularioCadastro() {
 
     formCadastro.addEventListener('submit', async function (event) {
         event.preventDefault();
-<<<<<<< HEAD
-=======
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         const nome = document.getElementById('cadastro-nome').value.trim();
         const apelido = document.getElementById('cadastro-apelido')?.value.trim() || obterPrimeiroNome(nome);
         const email = document.getElementById('cadastro-email').value.trim().toLowerCase();
@@ -774,7 +488,6 @@ function configurarFormularioCadastro() {
         const bairro = document.getElementById('cadastro-bairro')?.value.trim() || '';
         const complemento = document.getElementById('cadastro-complemento')?.value.trim() || '';
         const cidade = document.getElementById('cadastro-cidade')?.value.trim() || '';
-<<<<<<< HEAD
         const uf = document.getElementById('cadastro-uf')?.value.trim().toUpperCase() || '';
         const senha = document.getElementById('cadastro-senha').value.trim();
         const erro = erroCadastro || document.getElementById('erro-cadastro');
@@ -783,25 +496,11 @@ function configurarFormularioCadastro() {
         if (inputFotoCadastro?.files?.[0] && !fotoPerfilCadastro) {
             try { fotoPerfilCadastro = await converterImagemPerfilParaBase64(inputFotoCadastro.files[0]); }
             catch (erroImagem) {
-=======
-        const uf = document.getElementById('cadastro-uf')?.value.trim() || '';
-        const senha = document.getElementById('cadastro-senha').value.trim();
-        const tipoSelecionado = document.querySelector('input[name="cadastro-tipo"]:checked') || { value: 'tutor' };
-        const erro = erroCadastro || document.getElementById('erro-cadastro');
-
-        if (inputFotoCadastro?.files?.[0] && !fotoPerfilCadastro) {
-            try {
-                fotoPerfilCadastro = await converterImagemPerfilParaBase64(inputFotoCadastro.files[0]);
-                atualizarPreviewFotoCadastro(fotoPerfilCadastro);
-            } catch (erroImagem) {
-                fotoPerfilCadastro = '';
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
                 if (erro) erro.textContent = 'Escolha um arquivo de imagem válido para a foto de perfil.';
                 return;
             }
         }
 
-<<<<<<< HEAD
         if (nome.length < 3) return erro.textContent = 'Digite um nome com pelo menos 3 letras.';
         if (apelido.length < 2) return erro.textContent = 'Digite um apelido com pelo menos 2 letras. Esse nome aparecerá no topo do site.';
         if (!email.includes('@') || !email.includes('.')) return erro.textContent = 'Digite um e-mail válido.';
@@ -820,48 +519,6 @@ function configurarFormularioCadastro() {
 
         const novoUsuario = {
             id: data.user.id,
-=======
-        if (nome.length < 3) {
-            erro.textContent = 'Digite um nome com pelo menos 3 letras.';
-            return;
-        }
-
-        if (apelido.length < 2) {
-            erro.textContent = 'Digite um apelido com pelo menos 2 letras. Esse nome aparecerá no topo do site.';
-            return;
-        }
-
-        if (!email.includes('@') || !email.includes('.')) {
-            erro.textContent = 'Digite um e-mail válido.';
-            return;
-        }
-
-        if (cep.replace(/\D/g, '').length !== 8) {
-            erro.textContent = 'Digite um CEP válido com 8 números.';
-            return;
-        }
-
-        if (!endereco || !numero || !bairro || !cidade || !uf) {
-            erro.textContent = 'Preencha o endereço completo: endereço, número, bairro, cidade, UF e CEP.';
-            return;
-        }
-
-        if (senha.length < 4) {
-            erro.textContent = 'A senha precisa ter pelo menos 4 caracteres.';
-            return;
-        }
-
-        const usuarios = carregarUsuarios();
-        const emailJaExiste = usuarios.some(usuario => (usuario.email || '').toLowerCase() === email);
-
-        if (emailJaExiste) {
-            erro.textContent = 'Este e-mail já foi cadastrado. Use a área de login.';
-            return;
-        }
-
-        const novoUsuario = {
-            id: Date.now(),
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
             nome,
             apelido,
             email,
@@ -874,7 +531,6 @@ function configurarFormularioCadastro() {
             uf,
             complemento,
             fotoPerfil: fotoPerfilCadastro,
-<<<<<<< HEAD
             tipo: 'tutor'
         };
 
@@ -893,48 +549,16 @@ function configurarFormularioCadastro() {
         salvarSessao(localFinal.nome, localFinal.tipo, localFinal.email, localFinal.apelido);
         salvarPerfilLocal(localFinal);
         window.location.href = destinoAposLogin('agendamento.html');
-=======
-            senha,
-            tipo: 'tutor',
-            criadoEm: new Date().toISOString(),
-            atualizadoEm: new Date().toISOString()
-        };
-
-        usuarios.push(novoUsuario);
-
-        if (!salvarUsuarios(usuarios)) {
-            erro.textContent = 'Não foi possível salvar o cadastro. Tente usar uma foto menor ou limpe o armazenamento do navegador.';
-            return;
-        }
-
-        salvarSessao(nome, novoUsuario.tipo, email, apelido);
-
-        const parametros = new URLSearchParams(window.location.search);
-        const destino = parametros.get('from') || 'agendamento.html';
-        window.location.href = destino;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     });
 }
 
 function preencherDadosDoUsuarioLogado() {
     if (!estaLogado()) return;
-<<<<<<< HEAD
     const usuarioCompleto = pegarUsuarioLogadoCompleto();
     const nome = usuarioCompleto?.nome || pegarUsuario();
     const tipo = usuarioCompleto?.tipo || pegarTipoUsuario();
     const resumo = document.getElementById('resumo-usuario-logado');
     if (resumo) resumo.textContent = `Login confirmado: ${nome} (${nomeTipoUsuario(tipo)}). Solicite atendimento e acompanhe o processo do animal pelo site.`;
-=======
-
-    const usuarioCompleto = pegarUsuarioLogadoCompleto();
-    const nome = usuarioCompleto?.nome || pegarUsuario();
-    const tipo = usuarioCompleto?.tipo || pegarTipoUsuario();
-
-    const resumo = document.getElementById('resumo-usuario-logado');
-    if (resumo) {
-        resumo.textContent = `Login confirmado: ${nome} (${nomeTipoUsuario(tipo)}). Solicite atendimento e acompanhe o processo do animal pelo site.`;
-    }
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     const preenchimentos = {
         '[data-preencher-nome]': usuarioCompleto?.nome || nome,
@@ -948,21 +572,9 @@ function preencherDadosDoUsuarioLogado() {
         '[data-preencher-cidade]': usuarioCompleto?.cidade || '',
         '[data-preencher-uf]': usuarioCompleto?.uf || ''
     };
-<<<<<<< HEAD
     Object.entries(preenchimentos).forEach(([seletor, valor]) => {
         document.querySelectorAll(seletor).forEach(campo => { if (!campo.value && valor) campo.value = valor; });
     });
-=======
-
-    Object.entries(preenchimentos).forEach(([seletor, valor]) => {
-        document.querySelectorAll(seletor).forEach(campo => {
-            if (!campo.value && valor) {
-                campo.value = valor;
-            }
-        });
-    });
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     const seletorTipo = document.getElementById('tipo-atendimento');
     if (seletorTipo) {
         seletorTipo.value = 'tutor';
@@ -971,45 +583,21 @@ function preencherDadosDoUsuarioLogado() {
 }
 
 function preencherResumoPerfil(usuario) {
-<<<<<<< HEAD
     const apelido = obterApelidoUsuario(usuario);
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     const nomeResumo = document.getElementById('perfil-resumo-nome');
     const apelidoResumo = document.getElementById('perfil-resumo-apelido');
     const tipoResumo = document.getElementById('perfil-resumo-tipo');
     const emailResumo = document.getElementById('perfil-resumo-email');
     const telefoneResumo = document.getElementById('perfil-resumo-telefone');
     const enderecoResumo = document.getElementById('perfil-resumo-endereco');
-<<<<<<< HEAD
-=======
-
-    const apelido = obterApelidoUsuario(usuario);
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     if (nomeResumo) nomeResumo.textContent = usuario.nome || 'Usuário CastraPrev';
     if (apelidoResumo) apelidoResumo.textContent = `@${apelido}`;
     if (tipoResumo) tipoResumo.textContent = nomeTipoUsuario(usuario.tipo);
     if (emailResumo) emailResumo.textContent = usuario.email || 'E-mail não informado';
     if (telefoneResumo) telefoneResumo.textContent = usuario.telefone || 'Telefone não informado';
-<<<<<<< HEAD
     const partesEndereco = [usuario.endereco, usuario.numero ? `Nº ${usuario.numero}` : '', usuario.bairro, usuario.cidade, usuario.uf, usuario.cep ? `CEP ${usuario.cep}` : ''].filter(Boolean).join(', ');
     if (enderecoResumo) enderecoResumo.textContent = partesEndereco || 'Endereço ainda não informado';
     atualizarPreviewAvatarPerfil(usuario.fotoPerfil || usuario.foto_perfil || '', usuario.nome || 'Usuário CastraPrev');
-=======
-
-    const partesEndereco = [
-        usuario.endereco,
-        usuario.numero ? `Nº ${usuario.numero}` : '',
-        usuario.bairro,
-        usuario.cidade,
-        usuario.uf,
-        usuario.cep ? `CEP ${usuario.cep}` : ''
-    ].filter(Boolean).join(', ');
-
-    if (enderecoResumo) enderecoResumo.textContent = partesEndereco || 'Endereço ainda não informado';
-    atualizarPreviewAvatarPerfil(usuario.fotoPerfil || '', usuario.nome || 'Usuário CastraPrev');
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function configurarPerfilUsuario() {
@@ -1018,11 +606,7 @@ function configurarPerfilUsuario() {
 
     const mensagem = document.getElementById('mensagem-perfil');
     const erro = document.getElementById('erro-perfil');
-<<<<<<< HEAD
     let usuarioLogado = pegarUsuarioLogadoCompleto();
-=======
-    const usuarioLogado = pegarUsuarioLogadoCompleto();
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     if (!usuarioLogado) {
         if (erro) erro.textContent = 'Não encontrei os dados do seu cadastro. Saia e entre novamente para atualizar a sessão.';
@@ -1030,10 +614,6 @@ function configurarPerfilUsuario() {
     }
 
     preencherResumoPerfil(usuarioLogado);
-<<<<<<< HEAD
-=======
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     document.getElementById('perfil-nome').value = usuarioLogado.nome || '';
     document.getElementById('perfil-apelido').value = obterApelidoUsuario(usuarioLogado);
     document.getElementById('perfil-email').value = usuarioLogado.email || '';
@@ -1052,7 +632,6 @@ function configurarPerfilUsuario() {
     const campoApelido = document.getElementById('perfil-apelido');
     const inputFoto = document.getElementById('perfil-foto');
     const botaoRemoverFoto = document.getElementById('perfil-remover-foto');
-<<<<<<< HEAD
     let fotoPerfilAtual = usuarioLogado.fotoPerfil || usuarioLogado.foto_perfil || '';
     let promessaFotoPerfil = Promise.resolve(fotoPerfilAtual);
     atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value || usuarioLogado.nome || 'Usuário CastraPrev');
@@ -1157,212 +736,15 @@ function configurarPerfilUsuario() {
         document.getElementById('perfil-confirmar-senha').value = '';
         if (mensagem) {
             mensagem.textContent = 'Perfil atualizado com sucesso! Seus novos dados já foram salvos no Supabase.';
-=======
-    let fotoPerfilAtual = usuarioLogado.fotoPerfil || '';
-    let promessaFotoPerfil = Promise.resolve(fotoPerfilAtual);
-
-    atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value || usuarioLogado.nome || 'Usuário CastraPrev');
-
-    if (campoNome) {
-        campoNome.addEventListener('input', function () {
-            atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value.trim() || 'Usuário CastraPrev');
-        });
-    }
-
-    if (campoApelido) {
-        campoApelido.addEventListener('input', function () {
-            const apelidoResumo = document.getElementById('perfil-resumo-apelido');
-            if (apelidoResumo) {
-                apelidoResumo.textContent = `@${campoApelido.value.trim() || obterPrimeiroNome(campoNome.value)}`;
-            }
-        });
-    }
-
-    if (inputFoto) {
-        inputFoto.addEventListener('change', function () {
-            const arquivo = inputFoto.files && inputFoto.files[0];
-            if (!arquivo) return;
-
-            if (!arquivo.type.startsWith('image/')) {
-                if (erro) erro.textContent = 'Escolha um arquivo de imagem válido para a foto de perfil.';
-                inputFoto.value = '';
-                return;
-            }
-
-            promessaFotoPerfil = converterImagemPerfilParaBase64(arquivo)
-                .then(function (imagemConvertida) {
-                    fotoPerfilAtual = imagemConvertida;
-                    atualizarPreviewAvatarPerfil(fotoPerfilAtual, campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
-                    if (erro) erro.textContent = '';
-                    return fotoPerfilAtual;
-                })
-                .catch(function () {
-                    fotoPerfilAtual = '';
-                    inputFoto.value = '';
-                    atualizarPreviewAvatarPerfil('', campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
-                    if (erro) erro.textContent = 'Não foi possível carregar essa imagem. Escolha outra foto menor.';
-                    return '';
-                });
-        });
-    }
-
-    if (botaoRemoverFoto) {
-        botaoRemoverFoto.addEventListener('click', function () {
-            fotoPerfilAtual = '';
-            promessaFotoPerfil = Promise.resolve('');
-            if (inputFoto) inputFoto.value = '';
-            atualizarPreviewAvatarPerfil('', campoNome.value.trim() || usuarioLogado.nome || 'Usuário CastraPrev');
-            if (erro) erro.textContent = '';
-        });
-    }
-
-    formPerfil.addEventListener('submit', async function (event) {
-        event.preventDefault();
-
-        fotoPerfilAtual = await promessaFotoPerfil;
-
-        const nome = document.getElementById('perfil-nome').value.trim();
-        const apelido = document.getElementById('perfil-apelido').value.trim();
-        const email = document.getElementById('perfil-email').value.trim().toLowerCase();
-        const telefone = document.getElementById('perfil-telefone').value.trim();
-        const tipo = 'tutor';
-        const cep = document.getElementById('perfil-cep').value.trim();
-        const uf = document.getElementById('perfil-uf').value.trim();
-        const endereco = document.getElementById('perfil-endereco').value.trim();
-        const numero = document.getElementById('perfil-numero').value.trim();
-        const bairro = document.getElementById('perfil-bairro').value.trim();
-        const cidade = document.getElementById('perfil-cidade').value.trim();
-        const complemento = document.getElementById('perfil-complemento').value.trim();
-        const senhaAtual = document.getElementById('perfil-senha-atual').value.trim();
-        const novaSenha = document.getElementById('perfil-nova-senha').value.trim();
-        const confirmarSenha = document.getElementById('perfil-confirmar-senha').value.trim();
-
-        if (erro) erro.textContent = '';
-        if (mensagem) {
-            mensagem.textContent = '';
-            mensagem.classList.remove('show');
-        }
-
-        if (nome.length < 3) {
-            if (erro) erro.textContent = 'Digite um nome com pelo menos 3 letras.';
-            return;
-        }
-
-        if (apelido.length < 2) {
-            if (erro) erro.textContent = 'Digite um apelido com pelo menos 2 letras. Esse nome aparecerá no topo do site.';
-            return;
-        }
-
-        if (!email.includes('@') || !email.includes('.')) {
-            if (erro) erro.textContent = 'Digite um e-mail válido.';
-            return;
-        }
-
-        if (cep.replace(/\D/g, '').length !== 8) {
-            if (erro) erro.textContent = 'Digite um CEP válido com 8 números.';
-            return;
-        }
-
-        if (!endereco || !numero || !bairro || !cidade || !uf) {
-            if (erro) erro.textContent = 'Preencha o endereço completo: endereço, número, bairro, cidade, UF e CEP.';
-            return;
-        }
-
-        const usuarios = carregarUsuarios();
-        const indiceUsuario = usuarios.findIndex(usuario => {
-            if (usuarioLogado.email) {
-                return (usuario.email || '').toLowerCase() === usuarioLogado.email.toLowerCase();
-            }
-            return usuario.id === usuarioLogado.id;
-        });
-
-        if (indiceUsuario === -1) {
-            if (erro) erro.textContent = 'Não foi possível localizar seu cadastro para salvar as alterações.';
-            return;
-        }
-
-        const emailJaExiste = usuarios.some((usuario, indice) => {
-            return indice !== indiceUsuario && (usuario.email || '').toLowerCase() === email;
-        });
-
-        if (emailJaExiste) {
-            if (erro) erro.textContent = 'Este e-mail já está sendo usado em outro cadastro.';
-            return;
-        }
-
-        let senhaFinal = usuarios[indiceUsuario].senha;
-
-        if (novaSenha || confirmarSenha || senhaAtual) {
-            if (senhaAtual !== usuarios[indiceUsuario].senha) {
-                if (erro) erro.textContent = 'Para trocar a senha, digite sua senha atual corretamente.';
-                return;
-            }
-
-            if (novaSenha.length < 4) {
-                if (erro) erro.textContent = 'A nova senha precisa ter pelo menos 4 caracteres.';
-                return;
-            }
-
-            if (novaSenha !== confirmarSenha) {
-                if (erro) erro.textContent = 'A confirmação da nova senha não confere.';
-                return;
-            }
-
-            senhaFinal = novaSenha;
-        }
-
-        const usuarioAtualizado = {
-            ...usuarios[indiceUsuario],
-            nome,
-            apelido,
-            email,
-            telefone,
-            tipo,
-            cep,
-            endereco,
-            numero,
-            bairro,
-            cidade,
-            uf,
-            complemento,
-            fotoPerfil: fotoPerfilAtual,
-            senha: senhaFinal,
-            atualizadoEm: new Date().toISOString()
-        };
-
-        usuarios[indiceUsuario] = usuarioAtualizado;
-
-        if (!salvarUsuarios(usuarios)) {
-            if (erro) erro.textContent = 'Não foi possível salvar o perfil. Tente usar uma foto menor ou limpe o armazenamento do navegador.';
-            return;
-        }
-
-        salvarSessao(usuarioAtualizado.nome, usuarioAtualizado.tipo, usuarioAtualizado.email, usuarioAtualizado.apelido);
-        preencherResumoPerfil(usuarioAtualizado);
-        atualizarAreaLogin();
-
-        document.getElementById('perfil-senha-atual').value = '';
-        document.getElementById('perfil-nova-senha').value = '';
-        document.getElementById('perfil-confirmar-senha').value = '';
-
-        if (mensagem) {
-            mensagem.textContent = 'Perfil atualizado com sucesso! Seus novos dados já foram salvos.';
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
             mensagem.classList.add('show');
         }
     });
 }
 
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', async function () {
     await sincronizarSessaoSupabase();
 
     const paginaProtegida = document.body.dataset.protegida === 'true';
-=======
-document.addEventListener('DOMContentLoaded', function () {
-    const paginaProtegida = document.body.dataset.protegida === 'true';
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     if (paginaProtegida && !estaLogado()) {
         const paginaAtual = pegarPaginaAtual();
         window.location.href = `login.html?from=${encodeURIComponent(paginaAtual)}`;

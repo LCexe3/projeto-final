@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-=======
-const VET_CHAVE_USUARIOS = 'castraprev_usuarios';
-const VET_CHAVE_SOLICITACOES = 'castraprev_solicitacoes';
-const VET_CHAVE_VETERINARIOS = 'castraprev_veterinarios';
-const VET_CHAVE_SESSAO = 'castraprev_veterinario_logado';
-
-function vetLerArray(chave) {
-    try {
-        const dados = JSON.parse(localStorage.getItem(chave));
-        return Array.isArray(dados) ? dados : [];
-    } catch (erro) {
-        console.warn(`Erro ao ler ${chave}:`, erro);
-        return [];
-    }
-}
-
-function vetSalvarArray(chave, dados) {
-    localStorage.setItem(chave, JSON.stringify(dados));
-}
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 function vetLimpar(texto = '') {
     return String(texto)
         .replaceAll('&', '&amp;')
@@ -40,16 +18,11 @@ function vetFormatarData(dataIso = '') {
             hour: '2-digit',
             minute: '2-digit'
         }).format(new Date(dataIso));
-<<<<<<< HEAD
     } catch {
-=======
-    } catch (erro) {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         return 'Data não informada';
     }
 }
 
-<<<<<<< HEAD
 function vetFormatarMoeda(valor = 0) {
     return Number(valor || 0).toLocaleString('pt-BR', {
         style: 'currency',
@@ -57,8 +30,6 @@ function vetFormatarMoeda(valor = 0) {
     });
 }
 
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 function vetEnderecoCompleto(item = {}) {
     const partes = [
         item.endereco || item.tutorEndereco,
@@ -72,53 +43,6 @@ function vetEnderecoCompleto(item = {}) {
     return partes.join(', ') || 'Endereço não informado';
 }
 
-<<<<<<< HEAD
-=======
-function vetGarantirDemo() {
-    const veterinarios = vetLerArray(VET_CHAVE_VETERINARIOS);
-    const existeDemo = veterinarios.some(vet => (vet.email || '').toLowerCase() === 'admin@castraprev.com');
-
-    if (!existeDemo) {
-        veterinarios.unshift({
-            id: 1,
-            nome: 'Dr. Administrador CastraPrev',
-            email: 'admin@castraprev.com',
-            senha: 'admin123',
-            crmv: 'CRMV-RJ 00000',
-            telefone: '(00) 00000-0000',
-            clinica: 'Painel demonstrativo CastraPrev',
-            cidade: 'Três Rios',
-            uf: 'RJ',
-            criadoEm: new Date().toISOString()
-        });
-        vetSalvarArray(VET_CHAVE_VETERINARIOS, veterinarios);
-    }
-}
-
-function vetSessaoAtual() {
-    try {
-        return JSON.parse(localStorage.getItem(VET_CHAVE_SESSAO)) || null;
-    } catch (erro) {
-        return null;
-    }
-}
-
-function vetSalvarSessao(veterinario) {
-    localStorage.setItem(VET_CHAVE_SESSAO, JSON.stringify({
-        id: veterinario.id,
-        nome: veterinario.nome,
-        email: veterinario.email,
-        crmv: veterinario.crmv,
-        clinica: veterinario.clinica
-    }));
-}
-
-function vetSair() {
-    localStorage.removeItem(VET_CHAVE_SESSAO);
-    window.location.href = 'veterinario-login.html';
-}
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 function vetMostrarAba(aba) {
     document.querySelectorAll('[data-vet-tab]').forEach(botao => {
         botao.classList.toggle('active', botao.dataset.vetTab === aba);
@@ -129,7 +53,6 @@ function vetMostrarAba(aba) {
     });
 }
 
-<<<<<<< HEAD
 async function vetSessaoAtual() {
     if (!window.supabaseClient) return null;
 
@@ -165,13 +88,6 @@ async function vetSair() {
 function vetConfigurarLogin() {
     if (!document.body.classList.contains('vet-login-page')) return;
 
-=======
-function vetConfigurarLogin() {
-    if (!document.body.classList.contains('vet-login-page')) return;
-
-    vetGarantirDemo();
-
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     document.querySelectorAll('[data-vet-tab]').forEach(botao => {
         botao.addEventListener('click', () => vetMostrarAba(botao.dataset.vetTab));
     });
@@ -179,17 +95,12 @@ function vetConfigurarLogin() {
     const formLogin = document.getElementById('form-vet-login');
     const formCadastro = document.getElementById('form-vet-cadastro');
 
-<<<<<<< HEAD
     formLogin?.addEventListener('submit', async function (event) {
-=======
-    formLogin?.addEventListener('submit', function (event) {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         event.preventDefault();
 
         const email = document.getElementById('vet-login-email').value.trim().toLowerCase();
         const senha = document.getElementById('vet-login-senha').value.trim();
         const erro = document.getElementById('vet-login-erro');
-<<<<<<< HEAD
 
         erro.textContent = '';
         erro.classList.remove('show');
@@ -200,19 +111,11 @@ function vetConfigurarLogin() {
         });
 
         if (error || !data.user) {
-=======
-        const veterinarios = vetLerArray(VET_CHAVE_VETERINARIOS);
-
-        const encontrado = veterinarios.find(vet => (vet.email || '').toLowerCase() === email && vet.senha === senha);
-
-        if (!encontrado) {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
             erro.textContent = 'Veterinário não encontrado. Confira o e-mail e a senha.';
             erro.classList.add('show');
             return;
         }
 
-<<<<<<< HEAD
         const { data: veterinario } = await supabaseClient
             .from('veterinarians')
             .select('*')
@@ -231,15 +134,6 @@ function vetConfigurarLogin() {
     });
 
     formCadastro?.addEventListener('submit', async function (event) {
-=======
-        erro.textContent = '';
-        erro.classList.remove('show');
-        vetSalvarSessao(encontrado);
-        window.location.href = 'veterinario-dashboard.html';
-    });
-
-    formCadastro?.addEventListener('submit', function (event) {
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         event.preventDefault();
 
         const nome = document.getElementById('vet-cadastro-nome').value.trim();
@@ -252,12 +146,9 @@ function vetConfigurarLogin() {
         const senha = document.getElementById('vet-cadastro-senha').value.trim();
         const erro = document.getElementById('vet-cadastro-erro');
 
-<<<<<<< HEAD
         erro.textContent = '';
         erro.classList.remove('show');
 
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         if (nome.length < 3) {
             erro.textContent = 'Digite o nome completo do veterinário.';
             erro.classList.add('show');
@@ -282,7 +173,6 @@ function vetConfigurarLogin() {
             return;
         }
 
-<<<<<<< HEAD
         const { data: authData, error: authError } = await supabaseClient.auth.signUp({
             email,
             password: senha
@@ -314,45 +204,10 @@ function vetConfigurarLogin() {
             return;
         }
 
-=======
-        const veterinarios = vetLerArray(VET_CHAVE_VETERINARIOS);
-        const emailExiste = veterinarios.some(vet => (vet.email || '').toLowerCase() === email);
-        const crmvExiste = veterinarios.some(vet => (vet.crmv || '').toLowerCase() === crmv.toLowerCase());
-
-        if (emailExiste) {
-            erro.textContent = 'Este e-mail já está cadastrado como veterinário.';
-            erro.classList.add('show');
-            return;
-        }
-
-        if (crmvExiste) {
-            erro.textContent = 'Este CRMV já está cadastrado.';
-            erro.classList.add('show');
-            return;
-        }
-
-        const novoVeterinario = {
-            id: Date.now(),
-            nome,
-            email,
-            crmv,
-            telefone,
-            clinica,
-            cidade,
-            uf,
-            senha,
-            criadoEm: new Date().toISOString()
-        };
-
-        veterinarios.push(novoVeterinario);
-        vetSalvarArray(VET_CHAVE_VETERINARIOS, veterinarios);
-        vetSalvarSessao(novoVeterinario);
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
         window.location.href = 'veterinario-dashboard.html';
     });
 }
 
-<<<<<<< HEAD
 async function vetObterDadosDashboard() {
     const { data: tutores = [], error: tutoresError } = await supabaseClient
         .from('profiles')
@@ -502,26 +357,6 @@ function vetAtualizarStats(tutores, solicitacoes, arrecadacoes = []) {
             .reduce((soma, item) => soma + Number(item.valor || 0), 0);
         statArrecadacao.textContent = vetFormatarMoeda(total);
     }
-=======
-function vetObterDadosDashboard() {
-    const usuarios = vetLerArray(VET_CHAVE_USUARIOS);
-    const tutores = usuarios.filter(usuario => (usuario.tipo || 'tutor') === 'tutor');
-    const solicitacoes = vetLerArray(VET_CHAVE_SOLICITACOES);
-
-    return { usuarios, tutores, solicitacoes };
-}
-
-function vetAtualizarStats(tutores, solicitacoes) {
-    const statTutores = document.getElementById('stat-tutores');
-    const statAnimais = document.getElementById('stat-animais');
-    const statAguardando = document.getElementById('stat-aguardando');
-    const statFinalizados = document.getElementById('stat-finalizados');
-
-    if (statTutores) statTutores.textContent = tutores.length;
-    if (statAnimais) statAnimais.textContent = solicitacoes.length;
-    if (statAguardando) statAguardando.textContent = solicitacoes.filter(item => item.status === 'Aguardando análise').length;
-    if (statFinalizados) statFinalizados.textContent = solicitacoes.filter(item => ['Procedimento realizado', 'Finalizado', 'Castração realizada'].includes(item.status)).length;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function vetTextoBusca(item = {}) {
@@ -537,14 +372,8 @@ function vetRenderizarSolicitacoes(solicitacoes) {
     if (!lista) return;
 
     const filtradas = solicitacoes.filter(item => {
-<<<<<<< HEAD
         return (!busca || vetTextoBusca(item).includes(busca)) &&
                (!filtroStatus || item.status === filtroStatus);
-=======
-        const combinaBusca = !busca || vetTextoBusca(item).includes(busca);
-        const combinaStatus = !filtroStatus || item.status === filtroStatus;
-        return combinaBusca && combinaStatus;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     });
 
     lista.innerHTML = filtradas.map(item => {
@@ -566,13 +395,9 @@ function vetRenderizarSolicitacoes(solicitacoes) {
                 <td>${vetLimpar(enderecoCurto)}</td>
                 <td>
                     <select class="vet-status-select" data-status-id="${item.id}">
-<<<<<<< HEAD
                         ${['Aguardando análise', 'Em atendimento', 'Atendimento agendado', 'Procedimento realizado', 'Finalizado', 'Cancelado']
                             .map(status => `<option value="${status}" ${item.status === status ? 'selected' : ''}>${status}</option>`)
                             .join('')}
-=======
-                        ${['Aguardando análise', 'Em atendimento', 'Atendimento agendado', 'Procedimento realizado', 'Finalizado', 'Cancelado'].map(status => `<option value="${status}" ${(item.status === status || (item.status === 'Castração agendada' && status === 'Atendimento agendado') || (item.status === 'Castração realizada' && status === 'Procedimento realizado')) ? 'selected' : ''}>${status}</option>`).join('')}
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
                     </select>
                 </td>
                 <td><button type="button" class="vet-btn-small" data-detalhes-solicitacao="${item.id}">Ver detalhes</button></td>
@@ -583,19 +408,11 @@ function vetRenderizarSolicitacoes(solicitacoes) {
     if (vazio) vazio.style.display = filtradas.length ? 'none' : 'block';
 
     lista.querySelectorAll('[data-status-id]').forEach(select => {
-<<<<<<< HEAD
         select.addEventListener('change', () => vetAlterarStatus(select.dataset.statusId, select.value));
     });
 
     lista.querySelectorAll('[data-detalhes-solicitacao]').forEach(botao => {
         botao.addEventListener('click', () => vetAbrirDetalhesSolicitacao(botao.dataset.detalhesSolicitacao));
-=======
-        select.addEventListener('change', () => vetAlterarStatus(Number(select.dataset.statusId), select.value));
-    });
-
-    lista.querySelectorAll('[data-detalhes-solicitacao]').forEach(botao => {
-        botao.addEventListener('click', () => vetAbrirDetalhesSolicitacao(Number(botao.dataset.detalhesSolicitacao)));
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     });
 }
 
@@ -609,15 +426,7 @@ function vetRenderizarTutores(tutores, solicitacoes) {
     const filtrados = tutores.filter(item => !busca || vetTextoBusca(item).includes(busca));
 
     lista.innerHTML = filtrados.map(tutor => {
-<<<<<<< HEAD
         const totalPets = solicitacoes.filter(item => item.tutorId === tutor.id).length;
-=======
-        const totalPets = solicitacoes.filter(item => {
-            const mesmoId = tutor.id && item.tutorId === tutor.id;
-            const mesmoEmail = tutor.email && (item.tutorEmail || '').toLowerCase() === tutor.email.toLowerCase();
-            return mesmoId || mesmoEmail;
-        }).length;
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
         return `
             <tr>
@@ -641,7 +450,6 @@ function vetRenderizarTutores(tutores, solicitacoes) {
     if (vazio) vazio.style.display = filtrados.length ? 'none' : 'block';
 
     lista.querySelectorAll('[data-detalhes-tutor]').forEach(botao => {
-<<<<<<< HEAD
         botao.addEventListener('click', () => vetAbrirDetalhesTutor(botao.dataset.detalhesTutor));
     });
 }
@@ -744,54 +552,13 @@ async function vetSalvarObservacao(id) {
         alert('Erro ao salvar observação: ' + error.message);
         return;
     }
-=======
-        botao.addEventListener('click', () => vetAbrirDetalhesTutor(Number(botao.dataset.detalhesTutor)));
-    });
-}
-
-function vetAlterarStatus(id, status) {
-    const solicitacoes = vetLerArray(VET_CHAVE_SOLICITACOES);
-    const indice = solicitacoes.findIndex(item => Number(item.id) === Number(id));
-
-    if (indice === -1) return;
-
-    solicitacoes[indice] = {
-        ...solicitacoes[indice],
-        status,
-        atualizadoEm: new Date().toISOString()
-    };
-
-    vetSalvarArray(VET_CHAVE_SOLICITACOES, solicitacoes);
-    vetAtualizarDashboard();
-}
-
-function vetSalvarObservacao(id) {
-    const textarea = document.getElementById('observacao-veterinario');
-    const mensagem = document.getElementById('mensagem-observacao');
-    const solicitacoes = vetLerArray(VET_CHAVE_SOLICITACOES);
-    const indice = solicitacoes.findIndex(item => Number(item.id) === Number(id));
-
-    if (indice === -1 || !textarea) return;
-
-    solicitacoes[indice] = {
-        ...solicitacoes[indice],
-        observacoesVeterinario: textarea.value.trim(),
-        atualizadoEm: new Date().toISOString()
-    };
-
-    vetSalvarArray(VET_CHAVE_SOLICITACOES, solicitacoes);
-    vetAtualizarDashboard(false);
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     if (mensagem) {
         mensagem.textContent = 'Observação salva com sucesso.';
         mensagem.classList.add('show');
     }
-<<<<<<< HEAD
 
     vetAtualizarDashboard(false);
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 }
 
 function vetAbrirDrawer(html) {
@@ -808,23 +575,13 @@ function vetAbrirDrawer(html) {
 function vetFecharDrawer() {
     const drawer = document.getElementById('vet-detalhes');
     if (!drawer) return;
-<<<<<<< HEAD
-
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     drawer.classList.remove('active');
     drawer.setAttribute('aria-hidden', 'true');
 }
 
-<<<<<<< HEAD
 async function vetAbrirDetalhesSolicitacao(id) {
     const { solicitacoes } = await vetObterDadosDashboard();
     const item = solicitacoes.find(solicitacao => solicitacao.id === id);
-=======
-function vetAbrirDetalhesSolicitacao(id) {
-    const { solicitacoes } = vetObterDadosDashboard();
-    const item = solicitacoes.find(solicitacao => Number(solicitacao.id) === Number(id));
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     if (!item) return;
 
@@ -860,7 +617,6 @@ function vetAbrirDetalhesSolicitacao(id) {
     document.getElementById('salvar-observacao')?.addEventListener('click', () => vetSalvarObservacao(id));
 }
 
-<<<<<<< HEAD
 async function vetAbrirDetalhesTutor(id) {
     const { tutores, solicitacoes } = await vetObterDadosDashboard();
     const tutor = tutores.find(usuario => usuario.id === id);
@@ -868,19 +624,6 @@ async function vetAbrirDetalhesTutor(id) {
     if (!tutor) return;
 
     const petsTutor = solicitacoes.filter(item => item.tutorId === tutor.id);
-=======
-function vetAbrirDetalhesTutor(id) {
-    const { tutores, solicitacoes } = vetObterDadosDashboard();
-    const tutor = tutores.find(usuario => Number(usuario.id) === Number(id));
-
-    if (!tutor) return;
-
-    const petsTutor = solicitacoes.filter(item => {
-        const mesmoId = tutor.id && item.tutorId === tutor.id;
-        const mesmoEmail = tutor.email && (item.tutorEmail || '').toLowerCase() === tutor.email.toLowerCase();
-        return mesmoId || mesmoEmail;
-    });
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     vetAbrirDrawer(`
         <span class="vet-badge"><i class="fas fa-user"></i> Cadastro do tutor</span>
@@ -912,7 +655,6 @@ function vetAbrirDetalhesTutor(id) {
     `);
 
     document.querySelectorAll('[data-abrir-pet]').forEach(botao => {
-<<<<<<< HEAD
         botao.addEventListener('click', () => vetAbrirDetalhesSolicitacao(botao.dataset.abrirPet));
     });
 }
@@ -926,34 +668,14 @@ async function vetAtualizarDashboard(fecharDetalhes = false) {
     vetRenderizarSolicitacoes(solicitacoes);
     vetRenderizarTutores(tutores, solicitacoes);
     vetRenderizarArrecadacoes(arrecadacoes);
-=======
-        botao.addEventListener('click', () => vetAbrirDetalhesSolicitacao(Number(botao.dataset.abrirPet)));
-    });
-}
-
-function vetAtualizarDashboard(fecharDetalhes = false) {
-    if (!document.body.classList.contains('vet-dashboard-page')) return;
-
-    const { tutores, solicitacoes } = vetObterDadosDashboard();
-    vetAtualizarStats(tutores, solicitacoes);
-    vetRenderizarSolicitacoes(solicitacoes);
-    vetRenderizarTutores(tutores, solicitacoes);
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     if (fecharDetalhes) vetFecharDrawer();
 }
 
-<<<<<<< HEAD
 async function vetConfigurarDashboard() {
     if (!document.body.classList.contains('vet-dashboard-page')) return;
 
     const sessao = await vetSessaoAtual();
-=======
-function vetConfigurarDashboard() {
-    if (!document.body.classList.contains('vet-dashboard-page')) return;
-
-    const sessao = vetSessaoAtual();
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     if (!sessao) {
         window.location.href = 'veterinario-login.html';
@@ -979,10 +701,6 @@ function vetConfigurarDashboard() {
 
     document.getElementById('vet-sair')?.addEventListener('click', vetSair);
     document.getElementById('fechar-detalhes')?.addEventListener('click', vetFecharDrawer);
-<<<<<<< HEAD
-
-=======
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
     document.getElementById('vet-detalhes')?.addEventListener('click', event => {
         if (event.target.id === 'vet-detalhes') vetFecharDrawer();
     });
@@ -990,23 +708,13 @@ function vetConfigurarDashboard() {
     document.getElementById('busca-solicitacao')?.addEventListener('input', () => vetAtualizarDashboard());
     document.getElementById('filtro-status')?.addEventListener('change', () => vetAtualizarDashboard());
     document.getElementById('busca-tutor')?.addEventListener('input', () => vetAtualizarDashboard());
-<<<<<<< HEAD
     document.getElementById('busca-arrecadacao')?.addEventListener('input', () => vetAtualizarDashboard());
     document.getElementById('filtro-status-arrecadacao')?.addEventListener('change', () => vetAtualizarDashboard());
-=======
-
-    window.addEventListener('storage', event => {
-        if ([VET_CHAVE_USUARIOS, VET_CHAVE_SOLICITACOES].includes(event.key)) {
-            vetAtualizarDashboard();
-        }
-    });
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
 
     vetAtualizarDashboard();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-<<<<<<< HEAD
     if (!window.supabaseClient) {
         alert('Supabase não carregou. Confira a ordem dos scripts no HTML.');
         return;
@@ -1015,8 +723,3 @@ document.addEventListener('DOMContentLoaded', function () {
     vetConfigurarLogin();
     vetConfigurarDashboard();
 });
-=======
-    vetConfigurarLogin();
-    vetConfigurarDashboard();
-});
->>>>>>> e7ea820c9b6a56adebe8d2b2a9b624c0c90d3f28
