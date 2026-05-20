@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Veterinário | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="veterinario.css">
+</head>
+<body class="vet-dashboard-page">
+    <aside class="vet-sidebar">
+        <a href="index.html" class="vet-brand vet-brand-sidebar">
+            <span class="vet-logo"><img src="castraprev.png" alt="Logo CastraPrev"></span>
+            <span>Castra<b>Prev</b></span>
+        </a>
+
+        <nav class="vet-menu" aria-label="Menu do painel veterinário">
+            <a href="#visao-geral" class="active"><i class="fas fa-chart-line"></i> Visão geral</a>
+            <a href="#solicitacoes"><i class="fas fa-paw"></i> Animais</a>
+            <a href="#tutores"><i class="fas fa-users"></i> Tutores</a>
+            <a href="#arrecadacao"><i class="fas fa-hand-holding-heart"></i> Arrecadação</a>
+            <a href="index.html"><i class="fas fa-house"></i> Site do tutor</a>
+        </nav>
+
+        <button type="button" id="vet-sair" class="vet-btn-logout"><i class="fas fa-right-from-bracket"></i> Sair</button>
+    </aside>
+
+    <main class="vet-dashboard-main">
+        <header class="vet-topbar">
+            <div>
+                <span class="vet-badge"><i class="fas fa-user-shield"></i> Administrador veterinário</span>
+                <h1>Painel de controle</h1>
+                <p id="vet-boas-vindas">Gerencie os processos de castração e prevenção recebidos pelo site do tutor.</p>
+            </div>
+
+            <div class="vet-admin-mini" id="vet-admin-mini">
+                <span class="vet-admin-avatar"><i class="fas fa-user-doctor"></i></span>
+                <div>
+                    <strong>Veterinário</strong>
+                    <small>CRMV não informado</small>
+                </div>
+            </div>
+        </header>
+
+        <section id="visao-geral" class="vet-stats-grid" aria-label="Resumo do painel">
+            <article class="vet-stat-card">
+                <i class="fas fa-users"></i>
+                <span>Tutores cadastrados</span>
+                <strong id="stat-tutores">0</strong>
+            </article>
+
+            <article class="vet-stat-card">
+                <i class="fas fa-paw"></i>
+                <span>Animais enviados</span>
+                <strong id="stat-animais">0</strong>
+            </article>
+
+            <article class="vet-stat-card">
+                <i class="fas fa-clock"></i>
+                <span>Aguardando análise</span>
+                <strong id="stat-aguardando">0</strong>
+            </article>
+
+            <article class="vet-stat-card">
+                <i class="fas fa-check-circle"></i>
+                <span>Processos finalizados</span>
+                <strong id="stat-finalizados">0</strong>
+            </article>
+
+            <article class="vet-stat-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <span>Total arrecadado</span>
+                <strong id="stat-arrecadacao">R$ 0,00</strong>
+            </article>
+        </section>
+
+        <section class="vet-alert-box">
+            <i class="fas fa-circle-info"></i>
+            <div>
+                <strong>Ligação entre os dois sites</strong>
+                <p>Quando o tutor cria uma conta e envia o animal em “Agendar agora”, a solicitação aparece aqui. Ao alterar o status, o tutor consegue acompanhar a atualização pelo site.</p>
+            </div>
+        </section>
+
+        <section id="solicitacoes" class="vet-panel">
+            <div class="vet-panel-heading">
+                <div>
+                    <span class="vet-badge"><i class="fas fa-clipboard-list"></i> Solicitações</span>
+                    <h2>Animais cadastrados pelos tutores</h2>
+                </div>
+
+                <div class="vet-filters">
+                    <input type="search" id="busca-solicitacao" placeholder="Buscar tutor, pet, cidade...">
+                    <select id="filtro-status">
+                        <option value="">Todos os status</option>
+                        <option value="Aguardando análise">Aguardando análise</option>
+                        <option value="Em atendimento">Em atendimento</option>
+                        <option value="Atendimento agendado">Atendimento agendado</option>
+                        <option value="Procedimento realizado">Procedimento realizado</option>
+                        <option value="Finalizado">Finalizado</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="vet-table-wrap">
+                <table class="vet-table">
+                    <thead>
+                        <tr>
+                            <th>Tutor</th>
+                            <th>Animal</th>
+                            <th>Serviço</th>
+                            <th>Cidade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-solicitacoes"></tbody>
+                </table>
+            </div>
+
+            <p id="sem-solicitacoes" class="vet-empty-state">Nenhum animal cadastrado ainda. Faça um agendamento no site do tutor para aparecer aqui.</p>
+        </section>
+
+        <section id="tutores" class="vet-panel">
+            <div class="vet-panel-heading">
+                <div>
+                    <span class="vet-badge"><i class="fas fa-address-book"></i> Cadastros</span>
+                    <h2>Tutores cadastrados no site</h2>
+                </div>
+
+                <div class="vet-filters">
+                    <input type="search" id="busca-tutor" placeholder="Buscar nome, e-mail, bairro...">
+                </div>
+            </div>
+
+            <div class="vet-table-wrap">
+                <table class="vet-table">
+                    <thead>
+                        <tr>
+                            <th>Tutor</th>
+                            <th>Contato</th>
+                            <th>Endereço</th>
+                            <th>Tipo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-tutores"></tbody>
+                </table>
+            </div>
+
+            <p id="sem-tutores" class="vet-empty-state">Nenhum tutor cadastrado ainda.</p>
+        </section>
+
+
+        <section id="arrecadacao" class="vet-panel">
+            <div class="vet-panel-heading">
+                <div>
+                    <span class="vet-badge"><i class="fas fa-hand-holding-heart"></i> Arrecadação</span>
+                    <h2>Contribuições registradas no site</h2>
+                </div>
+
+                <div class="vet-filters">
+                    <input type="search" id="busca-arrecadacao" placeholder="Buscar nome, e-mail, forma...">
+                    <select id="filtro-status-arrecadacao">
+                        <option value="">Todos os status</option>
+                        <option value="Registrada">Registrada</option>
+                        <option value="Confirmada">Confirmada</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="vet-table-wrap">
+                <table class="vet-table">
+                    <thead>
+                        <tr>
+                            <th>Contribuidor</th>
+                            <th>Valor</th>
+                            <th>Forma</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th>Mensagem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-arrecadacoes"></tbody>
+                </table>
+            </div>
+
+            <p id="sem-arrecadacoes" class="vet-empty-state">Nenhuma contribuição registrada ainda.</p>
+        </section>
+
+    </main>
+
+    <section class="vet-drawer" id="vet-detalhes" aria-live="polite" aria-hidden="true">
+        <div class="vet-drawer-card">
+            <button type="button" id="fechar-detalhes" class="vet-drawer-close" aria-label="Fechar detalhes"><i class="fas fa-times"></i></button>
+            <div id="conteudo-detalhes"></div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="veterinario.js"></script>
+</body>
+</html>
