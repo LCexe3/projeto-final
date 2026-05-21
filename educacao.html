@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educação | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-overlay" aria-hidden="true"></div>
+            <nav id="menu-principal" class="nav-menu" aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html" class="active">Educação</a>
+                <a href="arrecadacao.html">Arrecadação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner" data-aos="fade-up">
+            <span class="badge"><i class="fas fa-book-open"></i> Conscientização</span>
+            <h1>Posse <span>Responsável</span></h1>
+            <p>Ter um animal de estimação é um ato de amor, mas também de compromisso. Faça o checklist e veja pontos importantes antes de adotar ou comprar um pet.</p>
+        </section>
+
+        <section class="photo-highlight-grid" data-aos="fade-up">
+            <article class="photo-card photo-card-large">
+                <img src="gato1.png" alt="Tutor com cachorro em momento de cuidado e carinho">
+                <div class="photo-card-caption">
+                    <h3>Educação começa no dia a dia</h3>
+                    <p>Com informação, rotina e carinho, o tutor cria um ambiente melhor para o animal viver com segurança e bem-estar.</p>
+                </div>
+            </article>
+
+            <article class="tip-panel">
+                <span class="badge"><i class="fas fa-heart"></i> Compromisso do tutor</span>
+                <h2>Posse responsável começa antes da adoção</h2>
+                <p>Adotar ou cuidar de um animal exige tempo, planejamento e carinho. O tutor precisa garantir alimentação, segurança, vacinação, castração e acompanhamento veterinário durante toda a vida do pet.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Ambiente seguro, limpo e protegido contra fugas</li>
+                    <li><i class="fas fa-check-circle"></i> Rotina com alimentação, água, passeios e brincadeiras</li>
+                    <li><i class="fas fa-check-circle"></i> Cuidado contínuo com saúde, higiene e bem-estar</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="checklist-container" data-aos="fade-up">
+            <div class="checklist-header">
+                <h2>Checklist do tutor</h2>
+                <p>Marque os requisitos que você já atende:</p>
+            </div>
+
+            <ul class="checklist-modern">
+                <li>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">
+                            <strong>Recursos financeiros</strong>
+                            <p>Tenho orçamento para alimentação de qualidade, vacinas, vermífugo e atendimento veterinário.</p>
+                        </span>
+                    </label>
+                </li>
+                <li>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">
+                            <strong>Segurança doméstica</strong>
+                            <p>Minha casa é segura, com telas em janelas, portões fechados e proteção contra fugas.</p>
+                        </span>
+                    </label>
+                </li>
+                <li>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">
+                            <strong>Tempo e dedicação</strong>
+                            <p>Tenho tempo para passear, brincar, limpar o ambiente e observar mudanças de comportamento.</p>
+                        </span>
+                    </label>
+                </li>
+                <li>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">
+                            <strong>Acordo familiar</strong>
+                            <p>Todos da casa estão de acordo com a chegada do animal e entendem as responsabilidades.</p>
+                        </span>
+                    </label>
+                </li>
+                <li>
+                    <label class="check-item">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="item-text">
+                            <strong>Compromisso a longo prazo</strong>
+                            <p>Cães e gatos podem viver muitos anos. Estou pronto para cuidar do pet por toda a vida.</p>
+                        </span>
+                    </label>
+                </li>
+            </ul>
+        </section>
+
+        <section class="info-card gold-tip" data-aos="zoom-in">
+            <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="tip-content">
+                <h3>Dica de ouro</h3>
+                <p>Adestramento positivo, rotina, socialização e paciência evitam muitos problemas de comportamento. Eduque sem violência.</p>
+            </div>
+        </section>
+            <section class="photo-grid-section" data-aos="fade-up">
+            <div class="photo-grid photo-grid-2">
+                <article class="photo-card compact">
+                    <img src="pata.png" alt="Cão e gato representando convivência responsável">
+                    <div class="photo-card-caption">
+                        <h3>Lar com responsabilidade</h3>
+                        <p>Cuidar do ambiente e da saúde do pet evita fugas, riscos e estresse.</p>
+                    </div>
+                </article>
+                <article class="photo-card compact">
+                    <img src="fuca.png" alt="Cachorro tranquilo em ambiente seguro">
+                    <div class="photo-card-caption">
+                        <h3>Tempo, carinho e atenção</h3>
+                        <p>Posse responsável também é dedicar tempo para o bem-estar físico e emocional do animal.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span><span>|</span>
+                <div class="logo-circle"><img src="nextmult.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Next<b>Mult</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

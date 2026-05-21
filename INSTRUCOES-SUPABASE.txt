@@ -1,0 +1,42 @@
+CASTRAPREV + SUPABASE - VERSÃO COM PAINEL VETERINÁRIO E ARRECADAÇÃO
+
+1) No Supabase, execute o arquivo supabase-schema.sql no SQL Editor se for criar o banco do zero.
+   Se você já tinha executado o schema antes, rode apenas supabase-arrecadacao-update.sql para adicionar a arrecadação.
+   O schema completo cria/atualiza as tabelas:
+   - profiles
+   - veterinarians
+   - pets
+   - appointments
+   - fundraising_contributions
+
+2) Para teste local, em Authentication > Sign In / Providers > Email, deixe "Confirm email" desativado.
+   Assim o cadastro cria o usuário no Auth e já grava o perfil/tutor/veterinário no banco.
+
+3) O arquivo supabaseClient.js centraliza a conexão:
+   - URL do projeto Supabase
+   - Anon Public Key JWT
+   Obs.: anon key pode ficar no front-end. Nunca coloque service_role no navegador.
+
+4) Fluxo do tutor:
+   - login/cadastro usa Supabase Auth;
+   - dados do tutor são salvos em profiles;
+   - o formulário "Agendar agora" cria o pet em pets;
+   - o agendamento é salvo em appointments;
+   - o tutor acompanha o status em acompanhamento.html.
+
+5) Fluxo do veterinário:
+   - veterinario-login.html cria/entra com usuário veterinário;
+   - veterinario-dashboard.html carrega tutores, animais, status e arrecadações do Supabase;
+   - os botões "Ver detalhes" e "Ver cadastro" usam os dados reais do Supabase;
+   - o veterinário pode atualizar status e observações.
+
+6) Fluxo de arrecadação:
+   - arrecadacao.html registra contribuições na tabela fundraising_contributions;
+   - a página mostra total arrecadado, meta e últimos registros;
+   - o painel veterinário permite visualizar e alterar o status da contribuição.
+
+7) Se algo não salvar ou não aparecer:
+   - abra F12 > Console;
+   - confira se o arquivo supabase-schema.sql foi executado;
+   - use Live Server/localhost, não abra o HTML direto por file://;
+   - verifique se as políticas RLS foram criadas junto com o schema.
