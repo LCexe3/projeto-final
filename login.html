@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <main class="login-main">
+        <section class="login-card acesso-card">
+            <a href="index.html" class="brand login-brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+
+            <span class="badge"><i class="fas fa-lock"></i> Acesso ao sistema</span>
+            <h1>Entre ou crie seu cadastro</h1>
+            <p>Entre ou crie seu cadastro de tutor para solicitar castração, receber orientações de prevenção e acompanhar o processo do animal.</p>
+
+            <div class="auth-tabs" role="tablist" aria-label="Escolha entre login e cadastro">
+                <button type="button" class="active" data-auth-tab="login"><i class="fas fa-right-to-bracket"></i> Entrar</button>
+                <button type="button" data-auth-tab="cadastro"><i class="fas fa-user-plus"></i> Cadastrar</button>
+            </div>
+
+            <section class="auth-section active" data-auth-section="login">
+                <form id="form-login" class="login-form">
+                    <div class="form-group">
+                        <label for="login-identificacao"><i class="fas fa-user"></i>E-mail</label>
+                        <input type="text" id="login-identificacao" placeholder=" Digite seu e-mail" autocomplete="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-senha"><i class="fas fa-key"></i>Senha</label>
+                        <input type="password" id="login-senha" placeholder=" Digite sua senha" autocomplete="current-password" required>
+                    </div>
+
+                    <p id="erro-login" class="erro-login" aria-live="polite"></p>
+
+                    <button type="submit" class="btn-submit">
+                        Entrar e continuar <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <p class="login-info"><i class="fas fa-info-circle"></i> Se você ainda não tem cadastro, clique em <b>Cadastrar</b>. O acesso do site é exclusivo para tutores de animais.</p>
+            </section>
+
+            <section class="auth-section" data-auth-section="cadastro">
+                <form id="form-cadastro" class="login-form cadastro-form">
+                    <div class="foto-perfil-box">
+                        <div class="foto-preview" id="cadastro-foto-preview" aria-label="Prévia da foto de perfil">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div class="foto-perfil-controle">
+                            <strong>Foto de perfil</strong>
+                            <p>Opcional. Escolha uma foto sua para aparecer no menu e na área Meu Perfil.</p>
+                            <label for="cadastro-foto" class="btn-foto">
+                                <i class="fas fa-camera"></i> Escolher foto
+                            </label>
+                            <input type="file" id="cadastro-foto" class="campo-foto-escondido" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cadastro-nome"><i class="fas fa-user"></i> Nome completo</label>
+                            <input type="text" id="cadastro-nome" placeholder="Digite seu nome completo" autocomplete="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-apelido"><i class="fas fa-star"></i> Apelido</label>
+                            <input type="text" id="cadastro-apelido" placeholder="Nome que aparecerá no topo" autocomplete="nickname" maxlength="24">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cadastro-email"><i class="fas fa-envelope"></i> E-mail</label>
+                        <input type="email" id="cadastro-email" placeholder="exemplo@email.com" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cadastro-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
+                            <input type="tel" id="cadastro-telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-telefone-mask>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-cep"><i class="fas fa-map-pin"></i> CEP</label>
+                            <input type="text" id="cadastro-cep" placeholder="00000-000" autocomplete="postal-code" maxlength="9" data-cep-mask required>
+                            <small id="cadastro-cep-status" class="cep-status" aria-live="polite"></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cadastro-endereco"><i class="fas fa-location-dot"></i> Endereço completo</label>
+                        <input type="text" id="cadastro-endereco" placeholder="Rua, avenida, condomínio ou estrada" autocomplete="address-line1" required>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label for="cadastro-numero"><i class="fas fa-hashtag"></i> Número</label>
+                            <input type="text" id="cadastro-numero" placeholder="Ex: 123" autocomplete="address-line2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-bairro"><i class="fas fa-map"></i> Bairro</label>
+                            <input type="text" id="cadastro-bairro" placeholder="Digite o bairro" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-complemento"><i class="fas fa-circle-info"></i> Complemento</label>
+                            <input type="text" id="cadastro-complemento" placeholder="Casa, apto, bloco...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cadastro-cidade"><i class="fas fa-city"></i> Cidade</label>
+                            <input type="text" id="cadastro-cidade" placeholder="Digite a cidade" autocomplete="address-level2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cadastro-uf"><i class="fas fa-flag"></i> UF</label>
+                            <select id="cadastro-uf" autocomplete="address-level1" required>
+                                <option value="" disabled selected>Selecione...</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cadastro-senha"><i class="fas fa-key"></i> Criar senha</label>
+                        <input type="password" id="cadastro-senha" placeholder="Mínimo de 4 caracteres" autocomplete="new-password" required>
+                    </div>
+
+                    <div class="cadastro-info-tutor">
+                        <i class="fas fa-paw"></i>
+                        <div>
+                            <strong>Cadastro de tutor</strong>
+                            <p>O CastraPrev trabalha apenas com castração e prevenção. Depois do cadastro, você poderá solicitar atendimento e acompanhar cada etapa do animal.</p>
+                        </div>
+                    </div>
+
+                    <p id="erro-cadastro" class="erro-login" aria-live="polite"></p>
+
+                    <button type="submit" class="btn-submit">
+                        Criar cadastro e continuar <i class="fas fa-check-circle"></i>
+                    </button>
+                </form>
+
+                <p class="login-info"><i class="fas fa-shield-alt"></i> Proteção de dados garantida. Pela equipe do projeto NextMult.</p>
+            </section>
+
+            <a href="index.html" class="voltar-login"><i class="fas fa-arrow-left"></i> Voltar para o início</a>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
