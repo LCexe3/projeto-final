@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrecadação | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-overlay" aria-hidden="true"></div>
+            <nav id="menu-principal" class="nav-menu" aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html">Educação</a>
+                <a href="arrecadacao.html" class="active">Arrecadação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="arrecadacao-hero" data-aos="fade-up">
+            <div class="arrecadacao-hero-text">
+                <span class="badge"><i class="fas fa-hand-holding-heart"></i> Arrecadação CastraPrev</span>
+                <h1>Contribuições para fortalecer a castração e a prevenção.</h1>
+                <p>A arrecadação ajuda o projeto a organizar ações educativas, materiais de apoio e atendimentos voltados ao bem-estar de cães e gatos.</p>
+                <div class="hero-btns">
+                    <a href="#form-arrecadacao" class="btn-main">Quero contribuir <i class="fas fa-heart"></i></a>
+                    <a href="#transparencia" class="btn-ghost">Ver transparência <i class="fas fa-chart-line"></i></a>
+                </div>
+            </div>
+
+            <aside class="arrecadacao-card arrecadacao-meta-card" id="transparencia" data-aos="zoom-in" data-aos-delay="150">
+                <span class="badge"><i class="fas fa-bullseye"></i> Meta atual</span>
+                <h2 id="arrecadacao-total">R$ 0,00</h2>
+                <p>arrecadados de <strong id="arrecadacao-meta">R$ 5.000,00</strong></p>
+                <div class="arrecadacao-progress" aria-label="Progresso da meta de arrecadação">
+                    <span id="arrecadacao-barra"></span>
+                </div>
+                <small id="arrecadacao-contador">0 contribuição(ões) registradas</small>
+                <p id="arrecadacao-mensagem-status" class="form-message"></p>
+            </aside>
+        </section>
+
+        <section class="arrecadacao-grid" data-aos="fade-up">
+            <article class="arrecadacao-card">
+                <i class="fas fa-paw arrecadacao-card-icon"></i>
+                <h3>Para que serve?</h3>
+                <p>Os valores registrados podem apoiar campanhas de castração, materiais informativos, transporte, divulgação e orientação aos tutores.</p>
+            </article>
+            <article class="arrecadacao-card">
+                <i class="fas fa-shield-alt arrecadacao-card-icon"></i>
+                <h3>Transparência</h3>
+                <p>As contribuições ficam salvas no Supabase e podem ser acompanhadas pelo painel veterinário/administrativo.</p>
+            </article>
+            <article class="arrecadacao-card">
+                <i class="fas fa-stethoscope arrecadacao-card-icon"></i>
+                <h3>Impacto</h3>
+                <p>Mais apoio significa mais prevenção, mais orientação e mais cuidado para animais e famílias atendidas pelo projeto.</p>
+            </article>
+        </section>
+
+        <section class="arrecadacao-layout" data-aos="fade-up">
+            <form id="form-arrecadacao" class="arrecadacao-form card-form">
+                <span class="badge"><i class="fas fa-receipt"></i> Registrar contribuição</span>
+                <h2>Dados da arrecadação</h2>
+                <p>Preencha os campos abaixo para salvar sua contribuição no Supabase.</p>
+
+                <div class="form-grid">
+                    <label>Nome
+                        <input type="text" id="arrecadacao-nome" placeholder="Seu nome" required>
+                    </label>
+                    <label>E-mail
+                        <input type="email" id="arrecadacao-email" placeholder="seuemail@exemplo.com">
+                    </label>
+                    <label>Telefone
+                        <input type="tel" id="arrecadacao-telefone" placeholder="(00) 00000-0000" data-telefone-mask>
+                    </label>
+                    <label>Valor
+                        <input type="text" id="arrecadacao-valor" placeholder="Ex: 25,00" required>
+                    </label>
+                    <label>Forma de contribuição
+                        <select id="arrecadacao-forma" required>
+                            <option value="Pix">Pix</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Transferência">Transferência</option>
+                            <option value="Cartão">Cartão</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </label>
+                    <label>Status inicial
+                        <select id="arrecadacao-status">
+                            <option value="Registrada">Registrada</option>
+                            <option value="Confirmada">Confirmada</option>
+                        </select>
+                    </label>
+                </div>
+
+                <label>Mensagem / observação
+                    <textarea id="arrecadacao-mensagem" rows="4" placeholder="Ex: contribuição para campanha de castração de gatos"></textarea>
+                </label>
+
+                <button type="submit" class="btn-main">Salvar arrecadação <i class="fas fa-database"></i></button>
+                <p id="mensagem-arrecadacao" class="form-message"></p>
+            </form>
+
+            <aside class="arrecadacao-card arrecadacao-lista-card">
+                <span class="badge"><i class="fas fa-clock-rotate-left"></i> Últimos registros</span>
+                <h2>Contribuições recentes</h2>
+                <div id="arrecadacao-lista" class="arrecadacao-lista">
+                    <p>Nenhuma contribuição carregada ainda.</p>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span><span>|</span>
+                <div class="logo-circle"><img src="nextmult.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Next<b>Mult</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>
