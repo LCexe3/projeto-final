@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Castração | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-overlay" aria-hidden="true"></div>
+            <nav id="menu-principal" class="nav-menu" aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html" class="active">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html">Educação</a>
+                <a href="arrecadacao.html">Arrecadação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner" data-aos="fade-up">
+            <span class="badge"><i class="fas fa-heartbeat"></i> Saúde animal</span>
+            <h1>Mitos vs. <span>Realidade</span></h1>
+            <p>Muitas informações falsas impedem tutores de realizar o procedimento. Entender a ciência é o primeiro passo para cuidar melhor.</p>
+        </section>
+
+        <section class="split-section">
+            <div data-aos="fade-right">
+                <img src="cachorro-gato2.png" alt="Cachorro e gato juntos descansando">
+            </div>
+            <div class="info-grid" style="margin: 0;" data-aos="fade-left">
+                <article class="info-card">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3>Antes da cirurgia</h3>
+                    <p>O pet deve passar por avaliação veterinária, estar saudável e seguir as orientações de jejum e preparação.</p>
+                </article>
+                <article class="info-card">
+                    <i class="fas fa-house-medical"></i>
+                    <h3>Depois da cirurgia</h3>
+                    <p>O repouso, o colar elizabetano ou roupa cirúrgica e a medicação correta ajudam na recuperação segura.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="table-container" data-aos="fade-up">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>O que dizem por aí (Mito)</th>
+                        <th>A realidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-times-circle myth-icon"></i> “O animal fica deprimido”</td>
+                        <td><i class="fas fa-check-circle truth-icon"></i>O pet mantém sua personalidade. Em muitos casos fica mais tranquilo, sem perder energia ou carinho.</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-times-circle myth-icon"></i> “A fêmea precisa ter a primeira cria”</td>
+                        <td><i class="fas fa-check-circle truth-icon"></i>Não há necessidade. A castração planejada ajuda a evitar crias indesejadas e problemas reprodutivos.</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-times-circle myth-icon"></i> “A cirurgia é sempre perigosa”</td>
+                        <td><i class="fas fa-check-circle truth-icon"></i>Com avaliação profissional, anestesia adequada e cuidados pós-operatórios, é um procedimento comum e controlado.</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-times-circle myth-icon"></i> “Castrar é maldade”</td>
+                        <td><i class="fas fa-check-circle truth-icon"></i>Quando feita por veterinário, a castração é uma ação de cuidado, prevenção e responsabilidade social.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <section class="photo-highlight-grid" data-aos="fade-up">
+            <article class="photo-card photo-card-large">
+                <img src="cachorro_gato.png" alt="Cão e gato representando os benefícios da castração">
+                <div class="photo-card-caption">
+                    <h3>Castrar também é um ato de cuidado</h3>
+                    <p>O procedimento ajuda no controle populacional e pode contribuir para uma vida mais segura e equilibrada para o animal.</p>
+                </div>
+            </article>
+
+            <article class="tip-panel">
+                <span class="badge"><i class="fas fa-calendar-check"></i> Planejamento responsável</span>
+                <h2>Antes de castrar, o tutor precisa se orientar</h2>
+                <p>A castração deve ser realizada com avaliação veterinária, preparo adequado e cuidados no pós-operatório. O CastraPrev ajuda o tutor a entender cada etapa antes de solicitar o atendimento.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Evita ninhadas indesejadas e reduz o abandono</li>
+                    <li><i class="fas fa-check-circle"></i> Contribui para a prevenção de doenças reprodutivas</li>
+                    <li><i class="fas fa-check-circle"></i> Exige repouso, higiene e acompanhamento após a cirurgia</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="info-grid" aria-label="Benefícios da castração">
+                <article class="info-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-venus"></i>
+                    <h3>Fêmeas</h3>
+                    <p>Ajuda a evitar crias indesejadas, cios frequentes, gravidez psicológica e algumas doenças do sistema reprodutor.</p>
+                </article>
+                <article class="info-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-mars"></i>
+                    <h3>Machos</h3>
+                    <p>Pode reduzir fugas, brigas territoriais, marcação de urina e comportamentos ligados à reprodução.</p>
+                </article>
+                <article class="info-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-paw"></i>
+                    <h3>Comunidade</h3>
+                    <p>Evita ninhadas sem lar e contribui para diminuir o abandono de cães e gatos nas ruas.</p>
+                </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span><span>|</span>
+                <div class="logo-circle"><img src="nextmult.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Next<b>Mult</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>

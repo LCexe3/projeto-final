@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body data-protegida="true">
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-overlay" aria-hidden="true"></div>
+            <nav id="menu-principal" class="nav-menu" aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html">Educação</a>
+                <a href="arrecadacao.html">Arrecadação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner perfil-hero" data-aos="fade-up">
+            <span class="badge"><i class="fas fa-user-pen"></i> Área do usuário</span>
+            <h1>Meu <span>perfil</span></h1>
+            <p>Atualize seus dados pessoais, endereço, telefone e senha para manter seu cadastro sempre correto no CastraPrev.</p>
+        </section>
+
+        <section class="perfil-page-grid" data-aos="fade-up">
+            <aside class="perfil-resumo-card">
+                <div class="perfil-avatar perfil-avatar-foto" id="perfil-resumo-avatar" aria-label="Foto do usuário">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <h2 id="perfil-resumo-nome">Usuário CastraPrev</h2>
+                <p id="perfil-resumo-apelido" class="perfil-resumo-apelido">@usuario</p>
+                <span id="perfil-resumo-tipo" class="perfil-tipo-badge">Tutor</span>
+
+                <div class="perfil-info-lista">
+                    <p><i class="fas fa-envelope"></i> <span id="perfil-resumo-email">E-mail não informado</span></p>
+                    <p><i class="fab fa-whatsapp"></i> <span id="perfil-resumo-telefone">Telefone não informado</span></p>
+                    <p><i class="fas fa-location-dot"></i> <span id="perfil-resumo-endereco">Endereço ainda não informado</span></p>
+                </div>
+
+                <a href="agendamento.html" class="btn-main perfil-btn-agendar">
+                    Ir para agendamento <i class="fas fa-calendar-check"></i>
+                </a>
+                <a href="acompanhamento.html" class="btn-ghost perfil-btn-agendar">
+                    Acompanhar animal <i class="fas fa-list-check"></i>
+                </a>
+            </aside>
+
+            <section class="form-container perfil-form-container">
+                <div class="form-title-box">
+                    <span class="badge"><i class="fas fa-pen-to-square"></i> Editar cadastro</span>
+                    <h2>Modificar dados do perfil</h2>
+                    <p>Altere o que precisar e clique em salvar. Os dados ficam guardados no navegador através do cadastro do site.</p>
+                </div>
+
+                <form id="form-perfil" class="modern-form">
+                    <div class="foto-perfil-editor">
+                        <div class="perfil-avatar perfil-avatar-foto perfil-avatar-editor" id="perfil-foto-preview" aria-label="Prévia da foto de perfil">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div class="foto-perfil-controle">
+                            <strong>Foto de perfil</strong>
+                            <p>Troque a foto que aparece no seu perfil e no menu do site. A imagem fica salva no navegador.</p>
+                            <div class="foto-acoes">
+                                <label for="perfil-foto" class="btn-foto">
+                                    <i class="fas fa-camera"></i> Trocar foto
+                                </label>
+                                <button type="button" id="perfil-remover-foto" class="btn-remover-foto">
+                                    <i class="fas fa-trash"></i> Remover
+                                </button>
+                            </div>
+                            <input type="file" id="perfil-foto" class="campo-foto-escondido" accept="image/*">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="perfil-nome"><i class="fas fa-user"></i> Nome completo</label>
+                            <input type="text" id="perfil-nome" placeholder="Digite seu nome completo" autocomplete="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil-apelido"><i class="fas fa-star"></i> Apelido</label>
+                            <input type="text" id="perfil-apelido" placeholder="Nome que aparecerá no topo" autocomplete="nickname" maxlength="24" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="perfil-email"><i class="fas fa-envelope"></i> E-mail</label>
+                            <input type="email" id="perfil-email" placeholder="exemplo@email.com" autocomplete="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil-telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
+                            <input type="tel" id="perfil-telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-telefone-mask>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="perfil-cep"><i class="fas fa-map-pin"></i> CEP</label>
+                            <input type="text" id="perfil-cep" placeholder="00000-000" autocomplete="postal-code" maxlength="9" data-cep-mask required>
+                            <small id="perfil-cep-status" class="cep-status" aria-live="polite"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil-uf"><i class="fas fa-flag"></i> UF</label>
+                            <select id="perfil-uf" autocomplete="address-level1" required>
+                                <option value="">Selecione...</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="perfil-endereco"><i class="fas fa-road"></i> Endereço completo</label>
+                        <input type="text" id="perfil-endereco" placeholder="Rua, avenida, condomínio ou estrada" autocomplete="address-line1" required>
+                    </div>
+
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label for="perfil-numero"><i class="fas fa-hashtag"></i> Número</label>
+                            <input type="text" id="perfil-numero" placeholder="Ex: 123" autocomplete="address-line2" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil-bairro"><i class="fas fa-map"></i> Bairro</label>
+                            <input type="text" id="perfil-bairro" placeholder="Digite o bairro" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil-cidade"><i class="fas fa-city"></i> Cidade</label>
+                            <input type="text" id="perfil-cidade" placeholder="Digite a cidade" autocomplete="address-level2" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="perfil-complemento"><i class="fas fa-circle-info"></i> Complemento</label>
+                        <input type="text" id="perfil-complemento" placeholder="Casa, bloco, apartamento, ponto de referência...">
+                    </div>
+
+                    <div class="senha-box">
+                        <div>
+                            <span class="badge"><i class="fas fa-key"></i> Senha</span>
+                            <h3>Alterar senha</h3>
+                            <p>Preencha essa parte somente se quiser trocar sua senha.</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="perfil-senha-atual"><i class="fas fa-lock"></i> Senha atual</label>
+                                <input type="password" id="perfil-senha-atual" placeholder="Digite sua senha atual" autocomplete="current-password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="perfil-nova-senha"><i class="fas fa-key"></i> Nova senha</label>
+                                <input type="password" id="perfil-nova-senha" placeholder="Mínimo de 4 caracteres" autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil-confirmar-senha"><i class="fas fa-check"></i> Confirmar nova senha</label>
+                            <input type="password" id="perfil-confirmar-senha" placeholder="Digite a nova senha novamente" autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <p id="erro-perfil" class="erro-login" aria-live="polite"></p>
+
+                    <button type="submit" class="btn-submit">
+                        Salvar alterações <i class="fas fa-floppy-disk"></i>
+                    </button>
+
+                    <p id="mensagem-perfil" class="form-message" aria-live="polite"></p>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span><span>|</span>
+                <div class="logo-circle"><img src="nextmult.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Next<b>Mult</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>

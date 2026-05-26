@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CastraPrev | Bem-estar Animal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-overlay" aria-hidden="true"></div>
+            <nav id="menu-principal" class="nav-menu" aria-label="Menu principal">
+                <a href="index.html" class="active">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html">Educação</a>
+                <a href="arrecadacao.html">Arrecadação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section" data-aos="fade-up">
+            <div class="hero-text">
+                <span class="badge"><i class="fas fa-paw"></i> CastraPrev</span>
+                <h1>Cuidar é a melhor forma de <span>prevenir</span>.</h1>
+                <p>Informação, prevenção e responsabilidade para proteger cães e gatos, reduzir o abandono e incentivar a castração ética.</p>
+
+                <div class="hero-btns">
+                    <a href="agendamento.html" class="btn-main" data-requer-login>Agendar atendimento <i class="fas fa-calendar-check"></i></a>
+                    <a href="castracao.html" class="btn-ghost">Ver benefícios <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="stats-row" aria-label="Indicadores do projeto">
+                    <div class="stat-box">
+                        <strong>+Saúde</strong>
+                        <span>Prevenção de doenças</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>+Amor</strong>
+                        <span>Posse responsável</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>-Abandono</strong>
+                        <span>Controle populacional</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper" data-aos="zoom-in" data-aos-delay="150">
+                <img src="cachorro.jpeg" alt="Filhote feliz deitado na grama" class="main-img">
+            </div>
+        </section>
+
+        <section class="access-panel somente-visitante" data-aos="fade-up">
+            <div>
+                <span class="badge"><i class="fas fa-lock"></i> Área limitada</span>
+                <h2>Você está navegando como visitante</h2>
+                <p>Você pode conhecer as informações principais do CastraPrev, mas o agendamento e o acompanhamento do animal só são liberados depois do login ou cadastro.</p>
+            </div>
+            <a href="login.html?from=agendamento.html" class="btn-main">Entrar ou cadastrar para agendar <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+        <section class="access-panel access-panel-ok somente-logado" data-aos="fade-up">
+            <div>
+                <span class="badge"><i class="fas fa-unlock"></i> Área liberada</span>
+                <h2>Agendamento disponível</h2>
+                <p>Você já está logado no CastraPrev. Agora pode solicitar atendimento e acompanhar o processo do animal pelo site.</p>
+            </div>
+            <div class="access-actions"><a href="agendamento.html" class="btn-main">Ir para agendamento <i class="fas fa-calendar-check"></i></a><a href="acompanhamento.html" class="btn-ghost" data-requer-login>Acompanhar animal <i class="fas fa-list-check"></i></a></div>
+        </section>
+
+        <section class="access-panel arrecadacao-chamada-home" data-aos="fade-up">
+            <div>
+                <span class="badge"><i class="fas fa-hand-holding-heart"></i> Arrecadação</span>
+                <h2>Ajude o CastraPrev a ampliar o cuidado animal</h2>
+                <p>Acompanhe a meta de arrecadação e registre contribuições para apoiar ações de castração, prevenção e orientação aos tutores.</p>
+            </div>
+            <a href="arrecadacao.html" class="btn-main">Ver arrecadação <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+        <section class="info-grid" aria-label="Pilares do projeto">
+            <article class="info-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Prevenção</h3>
+                <p>O controle populacional ético ajuda a diminuir o número de animais abandonados e em situação de risco.</p>
+            </article>
+
+            <article class="info-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-stethoscope"></i>
+                <h3>Saúde</h3>
+                <p>Castração, vacinação e acompanhamento veterinário reduzem riscos de doenças e melhoram a qualidade de vida.</p>
+            </article>
+
+            <article class="info-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-book-open"></i>
+                <h3>Educação</h3>
+                <p>A informação correta ajuda tutores a tomarem decisões conscientes e evita maus-tratos por falta de orientação.</p>
+            </article>
+        </section>
+
+        <section class="photo-showcase" data-aos="fade-up">
+            <div class="section-heading centered">
+                <span class="badge"><i class="fas fa-image"></i> Galeria CastraPrev</span>
+                <h2>Mais cuidado, mais carinho e mais proteção</h2>
+                <p>O CastraPrev reúne orientação sobre castração, vacinação e posse responsável para ajudar tutores a cuidarem melhor de cães e gatos.</p>
+            </div>
+
+            <div class="photo-grid photo-grid-3">
+                <article class="photo-card">
+                    <img src="gato2.png" alt="Cachorro feliz recebendo cuidados">
+                    <div class="photo-card-caption">
+                        <h3>Atendimento humanizado</h3>
+                        <p>O tutor encontra informações simples para buscar ajuda, tirar dúvidas e cuidar do pet com responsabilidade.</p>
+                    </div>
+                </article>
+
+                <article class="photo-card">
+                    <img src="gato_cachorro3.png" alt="Cachorro e gato juntos representando o cuidado animal">
+                    <div class="photo-card-caption">
+                        <h3>Proteção para cães e gatos</h3>
+                        <p>A prevenção ajuda a reduzir abandono, doenças e riscos para os animais e para a comunidade.</p>
+                    </div>
+                </article>
+
+                <article class="photo-card">
+                    <img src="cachorro3.png" alt="Cachorro em momento de tranquilidade e saúde">
+                    <div class="photo-card-caption">
+                        <h3>Saúde e prevenção</h3>
+                        <p>Castração, vacinação e posse responsável continuam sendo os pilares do CastraPrev.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span><span>|</span>
+                <div class="logo-circle"><img src="nextmult.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Next<b>Mult</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>
