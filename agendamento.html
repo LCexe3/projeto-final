@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <script>
+        (function () {
+            try {
+                var temaSalvo = localStorage.getItem('castraprev_tema') || 'light';
+                document.documentElement.setAttribute('data-theme', temaSalvo);
+            } catch (erro) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body data-protegida="true">
+    <header>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu-overlay" aria-hidden="true"></div>
+            <nav id="menu-principal" class="nav-menu" aria-label="Menu principal">
+                <a href="index.html">Início</a>
+                <a href="castracao.html">Castração</a>
+                <a href="prevencao.html">Prevenção</a>
+                <a href="educacao.html">Educação</a>
+                <a href="arrecadacao.html">Arrecadação</a>
+                <a href="acompanhamento.html" data-requer-login>Acompanhamento</a>
+                <a href="veterinario-login.html">Veterinário</a>
+                <a href="agendamento.html" class="cta-header active" data-requer-login>Agendar agora</a>
+                <div id="area-login" class="area-login"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-inner" data-aos="fade-up">
+            <span class="badge"><i class="fas fa-calendar-check"></i> Área liberada</span>
+            <h1>Solicite <span>castração ou prevenção</span></h1>
+            <p>Preencha os dados do animal para que o veterinário analise a solicitação. Depois, o tutor poderá acompanhar o processo pelo próprio site.</p>
+        </section>
+
+        <section class="login-confirmado somente-logado" data-aos="fade-up">
+            <i class="fas fa-check-circle"></i>
+            <p id="resumo-usuario-logado">Login confirmado. Escolha abaixo como deseja continuar.</p>
+        </section>
+
+        <section class="perfil-agendamento acompanhamento-chamada" data-aos="fade-up">
+            <div>
+                <span class="badge"><i class="fas fa-list-check"></i> Acompanhamento do animal</span>
+                <h2>Depois de enviar, acompanhe o andamento pelo site</h2>
+                <p>O veterinário poderá atualizar o status do animal no painel administrativo, e o tutor verá tudo na página de acompanhamento.</p>
+            </div>
+
+            <a href="acompanhamento.html" class="btn-main" data-requer-login>
+                Acompanhar processo <i class="fas fa-arrow-right"></i>
+            </a>
+        </section>
+
+        <section class="form-container" id="area-tutor" data-aos="fade-up">
+            <div class="form-title-box">
+                <span class="badge"><i class="fas fa-paw"></i> Tutor do animal</span>
+                <h2>Agendamento para castração e prevenção</h2>
+                <p>Preencha os dados do tutor e do animal. A solicitação aparecerá no painel do veterinário para análise.</p>
+            </div>
+
+            <form id="form-agendar" class="modern-form">
+                <div class="form-group">
+                    <label for="nome"><i class="fas fa-user"></i> Nome do tutor</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" autocomplete="name" data-preencher-nome required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> E-mail de contato</label>
+                        <input type="email" id="email" name="email" placeholder="exemplo@email.com" autocomplete="email" data-preencher-email required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone"><i class="fab fa-whatsapp"></i> WhatsApp / telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" autocomplete="tel" data-preencher-telefone data-telefone-mask required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pet"><i class="fas fa-paw"></i> Nome do pet</label>
+                        <input type="text" id="pet" name="pet" placeholder="Ex: Thor, Mel, Nina..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="especie"><i class="fas fa-dog"></i> Espécie e sexo</label>
+                        <select id="especie" name="especie" required>
+                            <option value="" disabled selected>Selecione uma opção...</option>
+                            <option value="cao-macho">Cão - Macho</option>
+                            <option value="cao-femea">Cão - Fêmea</option>
+                            <option value="gato-macho">Gato - Macho</option>
+                            <option value="gato-femea">Gato - Fêmea</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="servico"><i class="fas fa-clipboard-list"></i> Serviço desejado</label>
+                    <select id="servico" name="servico" required>
+                        <option value="" disabled selected>Escolha o serviço...</option>
+                        <option value="castracao">Castração</option>
+                        <option value="prevencao">Consulta preventiva</option>
+                        <option value="orientacao">Orientação pré/pós-castração</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes"><i class="fas fa-comment-medical"></i> Observações médicas</label>
+                    <textarea id="observacoes" name="observacoes" placeholder="O pet possui alguma condição especial, alergia, vacina recente ou medicação em uso?"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Confirmar solicitação <i class="fas fa-paper-plane"></i>
+                </button>
+
+                <p id="mensagem-form" class="form-message" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand">
+                <div class="logo-circle"><img src="castraprev.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Castra<b>Prev</b></span><span>|</span>
+                <div class="logo-circle"><img src="nextmult.png" alt="Logo CastraPrev" class="logo"></div>
+                <span>Next<b>Multi</b></span>
+            </div>
+            <p>&copy; 2026 <b>CastraPrev</b> - Cuidado e Responsabilidade Animal.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="script.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>
