@@ -265,7 +265,7 @@ section {
 
 .main-img {
     width: 100%;
-    height: min(520px, 70vh);
+    height: min(900px, 70vh);
     object-fit: cover;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
