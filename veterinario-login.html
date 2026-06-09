@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Veterinário | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="veterinario.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body class="vet-login-page">
+    <main class="vet-auth-shell">
+        <section class="vet-auth-intro">
+            <a href="index.html" class="vet-brand">
+                <span class="vet-logo"><img src="castraprev.png" alt="Logo CastraPrev"></span>
+                <span>Castra<b>Prev</b></span>
+            </a>
+
+            <span class="vet-badge"><i class="fas fa-user-doctor"></i> Área profissional</span>
+            <h1>Painel exclusivo para veterinários</h1>
+            <p>Entre como administrador do CastraPrev para acompanhar tutores cadastrados, animais enviados pelo site do usuário e o status de cada atendimento.</p>
+
+            <div class="vet-demo-card">
+                <strong>Exemplo</strong>
+                <p>E-mail: <b>admin@castraprev.com</b></p>
+                <p>Senha: <b>admin123</b></p>
+            </div>
+
+            <a href="index.html" class="vet-back-link"><i class="fas fa-arrow-left"></i> Voltar para o site do tutor</a>
+        </section>
+
+        <section class="vet-auth-card">
+            <div class="vet-tabs" role="tablist" aria-label="Acesso veterinário">
+                <button type="button" class="active" data-vet-tab="login">Entrar</button>
+                <button type="button" data-vet-tab="cadastro">Cadastrar veterinário</button>
+            </div>
+
+            <section class="vet-auth-section active" data-vet-section="login">
+                <h2>Login do veterinário</h2>
+                <p>Acesse o painel para visualizar os tutores e animais cadastrados.</p>
+
+                <form id="form-vet-login" class="vet-form">
+                    <label>
+                        <span><i class="fas fa-envelope"></i> E-mail profissional</span>
+                        <input type="email" id="vet-login-email" placeholder="admin@castraprev.com" autocomplete="username" required>
+                    </label>
+
+                    <label>
+                        <span><i class="fas fa-key"></i> Senha</span>
+                        <input type="password" id="vet-login-senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+                    </label>
+
+                    <p id="vet-login-erro" class="vet-form-message"></p>
+
+                    <button type="submit" class="vet-btn-primary">Entrar no painel <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </section>
+
+            <section class="vet-auth-section" data-vet-section="cadastro">
+                <h2>Cadastro profissional</h2>
+                <p>Use dados diferentes do tutor. O CRMV identifica o veterinário responsável.</p>
+
+                <form id="form-vet-cadastro" class="vet-form">
+                    <label>
+                        <span><i class="fas fa-user-doctor"></i> Nome completo</span>
+                        <input type="text" id="vet-cadastro-nome" placeholder="Ex: Dra. Ana Souza" required>
+                    </label>
+
+                    <div class="vet-form-grid">
+                        <label>
+                            <span><i class="fas fa-envelope"></i> E-mail</span>
+                            <input type="email" id="vet-cadastro-email" placeholder="veterinario@email.com" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-id-card"></i> CRMV</span>
+                            <input type="text" id="vet-cadastro-crmv" placeholder="CRMV-RJ 00000" required>
+                        </label>
+                    </div>
+
+                    <div class="vet-form-grid">
+                        <label>
+                            <span><i class="fab fa-whatsapp"></i> Telefone</span>
+                            <input type="tel" id="vet-cadastro-telefone" placeholder="(00) 00000-0000" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-hospital"></i> Clínica / instituição</span>
+                            <input type="text" id="vet-cadastro-clinica" placeholder="Nome da clínica" required>
+                        </label>
+                    </div>
+
+                    <div class="vet-form-grid">
+                        <label>
+                            <span><i class="fas fa-city"></i> Cidade</span>
+                            <input type="text" id="vet-cadastro-cidade" placeholder="Cidade de atuação" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-flag"></i> UF</span>
+                            <input type="text" id="vet-cadastro-uf" placeholder="RJ" maxlength="2" required>
+                        </label>
+                    </div>
+
+                    <label>
+                        <span><i class="fas fa-key"></i> Senha</span>
+                        <input type="password" id="vet-cadastro-senha" placeholder="Mínimo de 4 caracteres" autocomplete="new-password" required>
+                    </label>
+
+                    <p id="vet-cadastro-erro" class="vet-form-message"></p>
+
+                    <button type="submit" class="vet-btn-primary">Cadastrar e entrar <i class="fas fa-check-circle"></i></button>
+                </form>
+            </section>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="veterinario.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>
