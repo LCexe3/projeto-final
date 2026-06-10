@@ -1,0 +1,21 @@
+MODIFICAÇÕES FEITAS NESTA VERSÃO
+
+1. Cadastro do veterinário melhorado
+- Adicionado aviso informando que cidade e UF serão usados na área de clínicas por localidade.
+- Mantidos os dados profissionais: nome, e-mail, CRMV, telefone, clínica, cidade e UF.
+
+2. Nova página editável do veterinário
+- Criado o arquivo veterinario-perfil.html.
+- O veterinário consegue editar: nome, apelido, e-mail, telefone, CRMV, clínica, CEP, endereço, número, bairro, cidade, UF, complemento e senha.
+- O perfil salva os dados nas tabelas veterinarians e profiles do Supabase.
+- O menu do painel veterinário agora possui o link “Meu perfil”.
+
+3. Clínicas da localidade na página inicial
+- A home agora possui a seção “Clínicas da localidade”.
+- O tutor/visitante pode pesquisar por cidade.
+- A listagem busca veterinários ativos da tabela veterinarians.
+- A cidade/UF do perfil profissional do veterinário é usada para exibir a clínica na busca.
+
+4. Supabase
+- Criado o arquivo supabase-veterinario-localidade-update.sql.
+- Rode esse SQL no Supabase se as clínicas/veterinários não aparecerem na home por causa das políticas RLS.

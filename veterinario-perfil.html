@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Veterinário | CastraPrev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="veterinario.css">
+    <link rel="stylesheet" href="acessibilidade.css">
+</head>
+<body class="vet-dashboard-page vet-profile-page">
+    <aside class="vet-sidebar">
+        <a href="index.html" class="vet-brand vet-brand-sidebar">
+            <span class="vet-logo"><img src="castraprev.png" alt="Logo CastraPrev"></span>
+            <span>Castra<b>Prev</b></span>
+        </a>
+
+        <nav class="vet-menu" aria-label="Menu do painel veterinário">
+            <a href="veterinario-dashboard.html#visao-geral"><i class="fas fa-chart-line"></i> Visão geral</a>
+            <a href="veterinario-dashboard.html#solicitacoes"><i class="fas fa-paw"></i> Animais</a>
+            <a href="veterinario-dashboard.html#tutores"><i class="fas fa-users"></i> Tutores</a>
+            <a href="veterinario-dashboard.html#arrecadacao"><i class="fas fa-hand-holding-heart"></i> Arrecadação</a>
+            <a href="veterinario-perfil.html" class="active"><i class="fas fa-user-pen"></i> Meu perfil</a>
+            <a href="index.html"><i class="fas fa-house"></i> Site do tutor</a>
+        </nav>
+
+        <button type="button" id="vet-sair" class="vet-btn-logout"><i class="fas fa-right-from-bracket"></i> Sair</button>
+    </aside>
+
+    <main class="vet-dashboard-main vet-profile-main">
+        <header class="vet-topbar">
+            <div>
+                <span class="vet-badge"><i class="fas fa-user-pen"></i> Perfil profissional</span>
+                <h1>Editar cadastro do veterinário</h1>
+                <p>Atualize os dados que identificam o profissional e a clínica. A cidade informada aqui será usada na área de clínicas por localidade do site.</p>
+            </div>
+
+            <div class="vet-admin-mini" id="vet-perfil-mini">
+                <span class="vet-admin-avatar"><i class="fas fa-user-doctor"></i></span>
+                <div>
+                    <strong>Veterinário</strong>
+                    <small>Carregando dados...</small>
+                </div>
+            </div>
+        </header>
+
+        <section class="vet-profile-grid">
+            <aside class="vet-profile-summary">
+                <span class="vet-profile-avatar"><i class="fas fa-user-doctor"></i></span>
+                <h2 id="vet-resumo-nome">Veterinário CastraPrev</h2>
+                <p id="vet-resumo-clinica">Clínica não informada</p>
+                <span class="vet-pill" id="vet-resumo-crmv">CRMV não informado</span>
+
+                <div class="vet-profile-info-list">
+                    <p><i class="fas fa-envelope"></i> <span id="vet-resumo-email">E-mail não informado</span></p>
+                    <p><i class="fab fa-whatsapp"></i> <span id="vet-resumo-telefone">Telefone não informado</span></p>
+                    <p><i class="fas fa-location-dot"></i> <span id="vet-resumo-localidade">Localidade não informada</span></p>
+                </div>
+
+                <div class="vet-alert-box vet-profile-locality-note">
+                    <i class="fas fa-map-location-dot"></i>
+                    <div>
+                        <strong>Clínicas por localidade</strong>
+                        <p>Quando o tutor pesquisar pela cidade na página inicial, sua clínica poderá aparecer com estes dados profissionais.</p>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="vet-panel vet-profile-form-panel">
+                <div class="vet-panel-heading vet-profile-heading">
+                    <div>
+                        <span class="vet-badge"><i class="fas fa-pen-to-square"></i> Dados editáveis</span>
+                        <h2>Modificar informações profissionais</h2>
+                    </div>
+                </div>
+
+                <form id="form-vet-perfil" class="vet-form">
+                    <div class="vet-form-grid">
+                        <label>
+                            <span><i class="fas fa-user-doctor"></i> Nome completo</span>
+                            <input type="text" id="vet-perfil-nome" placeholder="Ex: Dra. Ana Souza" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-star"></i> Apelido</span>
+                            <input type="text" id="vet-perfil-apelido" placeholder="Nome que aparece no topo" maxlength="24">
+                        </label>
+                    </div>
+
+                    <div class="vet-form-grid">
+                        <label>
+                            <span><i class="fas fa-envelope"></i> E-mail profissional</span>
+                            <input type="email" id="vet-perfil-email" placeholder="veterinario@email.com" autocomplete="email" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fab fa-whatsapp"></i> WhatsApp / telefone</span>
+                            <input type="tel" id="vet-perfil-telefone" placeholder="(00) 00000-0000" autocomplete="tel">
+                        </label>
+                    </div>
+
+                    <div class="vet-form-grid">
+                        <label>
+                            <span><i class="fas fa-id-card"></i> CRMV</span>
+                            <input type="text" id="vet-perfil-crmv" placeholder="CRMV-RJ 00000" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-hospital"></i> Clínica / instituição</span>
+                            <input type="text" id="vet-perfil-clinica" placeholder="Nome da clínica" required>
+                        </label>
+                    </div>
+
+                    <div class="vet-profile-section-title">
+                        <span class="vet-badge"><i class="fas fa-location-dot"></i> Localidade</span>
+                        <p>Preencha pelo menos cidade e UF para aparecer corretamente na área de clínicas da localidade.</p>
+                    </div>
+
+                    <div class="vet-form-grid vet-form-grid-3">
+                        <label>
+                            <span><i class="fas fa-map-pin"></i> CEP</span>
+                            <input type="text" id="vet-perfil-cep" placeholder="00000-000" maxlength="9" autocomplete="postal-code">
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-city"></i> Cidade</span>
+                            <input type="text" id="vet-perfil-cidade" placeholder="Cidade de atuação" autocomplete="address-level2" required>
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-flag"></i> UF</span>
+                            <input type="text" id="vet-perfil-uf" placeholder="RJ" maxlength="2" autocomplete="address-level1" required>
+                        </label>
+                    </div>
+
+                    <label>
+                        <span><i class="fas fa-road"></i> Endereço da clínica</span>
+                        <input type="text" id="vet-perfil-endereco" placeholder="Rua, avenida, condomínio ou estrada" autocomplete="address-line1">
+                    </label>
+
+                    <div class="vet-form-grid vet-form-grid-3">
+                        <label>
+                            <span><i class="fas fa-hashtag"></i> Número</span>
+                            <input type="text" id="vet-perfil-numero" placeholder="Ex: 123" autocomplete="address-line2">
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-map"></i> Bairro</span>
+                            <input type="text" id="vet-perfil-bairro" placeholder="Bairro">
+                        </label>
+
+                        <label>
+                            <span><i class="fas fa-circle-info"></i> Complemento</span>
+                            <input type="text" id="vet-perfil-complemento" placeholder="Sala, bloco, referência...">
+                        </label>
+                    </div>
+
+                    <div class="vet-password-box">
+                        <div>
+                            <span class="vet-badge"><i class="fas fa-key"></i> Senha</span>
+                            <h3>Alterar senha</h3>
+                            <p>Preencha somente se quiser trocar sua senha de acesso ao painel.</p>
+                        </div>
+
+                        <div class="vet-form-grid">
+                            <label>
+                                <span><i class="fas fa-key"></i> Nova senha</span>
+                                <input type="password" id="vet-perfil-nova-senha" placeholder="Mínimo de 4 caracteres" autocomplete="new-password">
+                            </label>
+
+                            <label>
+                                <span><i class="fas fa-check"></i> Confirmar nova senha</span>
+                                <input type="password" id="vet-perfil-confirmar-senha" placeholder="Digite a nova senha novamente" autocomplete="new-password">
+                            </label>
+                        </div>
+                    </div>
+
+                    <p id="vet-perfil-erro" class="vet-form-message" aria-live="polite"></p>
+
+                    <button type="submit" class="vet-btn-primary">Salvar alterações <i class="fas fa-floppy-disk"></i></button>
+
+                    <p id="vet-perfil-sucesso" class="vet-form-message vet-form-success" aria-live="polite"></p>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="castraprev-supabase.js"></script>
+    <script src="veterinario.js"></script>
+    <script src="acessibilidade.js"></script>
+</body>
+</html>
